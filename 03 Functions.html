@@ -1,0 +1,811 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>03. Functions</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="cbdcfa67-0683-4c0f-a0cd-5439b69955b7" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">✔️</span></div><h1 class="page-title">03. Functions</h1></header><div class="page-body"><p id="48ec0915-93f6-44f3-a0cd-61a81bffbd4a" class="">함수는 자바스크립트 Application의 기본적인 구성요소로</p><p id="2e5f73c2-4a18-4611-aa64-325fa23ac8c3" class="">추상화 계층을 구축하고, 클래스를 모방하거나 정보 은닉, 모듈에 대한 방법을 제공함</p><p id="ab6b73bc-9931-4f3d-bec2-1d6a0c36cbdd" class="">타입스크립트에서는 함수의 작업을 더 수월하게 하기 위해 몇 가지 추가적인 기능을 제공함</p><p id="363088f8-c557-413d-b007-7ae29b744ca6" class="">
+</p><p id="b6d11598-d460-4a5b-8173-43ff5dd6af1e" class="">자바스크립트와 마찬가지로 함수를 익명/기명으로 생성할 수 있음</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="817917e2-8939-4695-8bab-7c1a5b63de8d" class="code"><code><span class="token comment">// 기명 함수(named function)</span>
+<span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">,</span> y</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> x <span class="token operator">+</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 익명 함수(anonymous function)</span>
+<span class="token keyword">let</span> <span class="token function-variable function">myAdd</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">,</span> y</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> x <span class="token operator">+</span> y<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre><p id="d807285b-f8f5-4f88-84c8-11f463e32f23" class="">자바스크립트 함수에서 함수 바깥의 변수에 접근할 수 있고 이를 <strong>캡쳐</strong> 한다고 표현함</p><p id="c3fa7ae5-0892-4a70-969d-a23760a21434" class="">이 동작 방식을 알고 있는 것이 앞으로의 내용을 이해하는데 중요</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="996e69bf-3e81-4c13-9f53-ab28b748e91b" class="code"><code><span class="token keyword">let</span> z <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">addToZ</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">,</span> y</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> x <span class="token operator">+</span> y <span class="token operator">+</span> z<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><h2 id="59216065-30aa-40d3-bdac-491bd35883ac" class="">함수 타입(Function Types)</h2><h3 id="28e75481-7ad6-4a9e-b7fd-af996c45f1be" class="">함수에 타입을 넣기(Typing the function)</h3><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="91217c9b-6e0e-400f-8b63-2cc7dd2e39a3" class="code"><code><span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token operator">:</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">number</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> x <span class="token operator">+</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> <span class="token function-variable function">myAdd</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token operator">:</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">number</span> <span class="token punctuation">{</span> 
+	<span class="token keyword">return</span> x <span class="token operator">+</span> y<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre><p id="38f2e9dd-4b11-447a-beff-32381ab56346" class="">위에서 생성한 자바스크립트 함수의 기본적인 형태에 파라미터, 리턴 값에 타입을 추가할 수 있음</p><p id="ece83021-e001-4e50-b44f-53449ccdc8f3" class=""><code>return</code> 문을 보고 타입을 추론할 수 있기 때문에 리턴 값의 타입은 생략할 수 있음</p><p id="5b357972-20c7-45c1-aa0b-b9e7378d5ad8" class=""><mark class="highlight-gray"><em>개인적으로 써주는게 좋다고 생각.. 시그니처만 보고 알 수 있는게 코드 이해하기가 수월함</em></mark></p><h3 id="32a1759d-a3c7-42e1-b416-34f05b089d3b" class="">함수타입 작성하기(Writing the function type)</h3><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="cd3b8396-29a9-44bb-88b5-7dea95bc7c88" class="code"><code><span class="token keyword">let</span> <span class="token function-variable function">myAdd</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token operator">:</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function-variable function">number</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>
+  <span class="token parameter">x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> 
+  y<span class="token operator">:</span> <span class="token builtin">number</span></span>
+<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">number</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> x <span class="token operator">+</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre><p id="15f5af41-dbe7-4212-ad1e-08a499380219" class="">함수의 타입에는</p><ul id="db683452-fe5d-4f87-bfdd-53635056417e" class="bulleted-list"><li>매개변수 타입</li></ul><ul id="955daf48-cc12-46a8-8e63-59563ce92875" class="bulleted-list"><li>반환 타입</li></ul><p id="31d1885a-99c8-4867-8143-77a61d044ca6" class="">이 있어서 전체 함수 타입을 작성하고자 한다면 이 두 가지가 필요함</p><p id="d618b474-a24a-43cc-8369-3e3f614b7012" class="">함수 타입에 붙는 이름은 함수 내에서 사용하는게 아니라 가독성을 위한 것이라 아래와 같이 쓸 수도 있음</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="44acb82c-b918-4e48-a475-6558223d1608" class="code"><code><span class="token keyword">let</span> <span class="token function-variable function">myAdd</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">baseValue<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> increment<span class="token operator">:</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function-variable function">number</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>
+  <span class="token parameter">x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> 
+  y<span class="token operator">:</span> <span class="token builtin">number</span></span>
+<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">number</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> x <span class="token operator">+</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre><ul id="611d97e7-7b1e-4854-8931-435ac833412b" class="bulleted-list"><li><code>baseValue</code>, <code>increment</code>는 타입을 위해서 쓰는 변수이고<p id="cbb4e8d2-b43d-4ff8-9a35-bc250ac236a5" class="">실제로 함수 내에서 쓰는 변수는 <code>function</code>에 있는 <code>x</code>, <code>y</code></p></li></ul><ul id="d6566a5a-8788-4f65-b615-80cd699b1bb9" class="bulleted-list"><li>지정된 타입만 비교하고 이름은 안보기 때문에 이렇게 서로 다르게 해도 상관없음<p id="4e87bd4e-3849-4de7-8636-569a35ab4dbe" class=""><em>(하지만 변수명 짓기도 어려운데 굳이 다르게 할 일은 잘 없겠다 싶은 생각..ㅎ)</em></p></li></ul><ul id="98828a0d-7ac2-472e-a912-341455a69144" class="bulleted-list"><li>함수의 타입에는 위에서 말했듯이 매개변수와 반환 타입이 필요하기 때문에<p id="bc0b63a4-e7f3-4e15-8ac4-d7baf66f0d7d" class=""><code>=&gt;</code> 뒤에 반드시 반환타입이 명시되어야 함</p><p id="ea39fc79-1ca1-4987-b964-e6a4c8bab92f" class="">만약 함수가 반환하는게 없다면 <code>void</code>를 명시해주어야 함</p><p id="f988bf8a-c97d-4752-b85f-a758d5c1c001" class=""><mark class="highlight-gray"><em>C/C++ 배우고 온 우리한테는 자연스러운 부분이지만 다른 언어 안써본 사람들에게는 낯설수도 있겠다..</em></mark></p></li></ul><ul id="eb507edc-97c4-4e8b-becc-cd5bbdb69b53" class="bulleted-list"><li>함수 내부에서 사용하는 함수 외부의 captured 변수는 타입에 영향을 안 줌<p id="283f6fd4-8d69-4037-a43b-57bbe247fb66" class="">실제로 captured 변수는 함수의 &quot;숨겨진 상태(hidden state)&quot;로 API를 구성하지 않음</p><p id="0f758074-91a5-47e5-9378-7aa0978acaaf" class=""><mark class="highlight-gray"><em>함수형 프로그래밍과 순수 함수 내용이 생각나는 지점.. side effect..</em></mark></p></li></ul><h2 id="aecec6ef-9548-48f3-8160-d0bf2653a9b8" class="">타입 추론(Inferring the types)</h2><p id="93b438ac-01b3-4b88-b8fb-06ebbd137dcf" class="">한쪽에만 타입이 있어도 컴파일러가 알아서 타입을 추론함</p><p id="d6bc1d82-1bdf-4c72-9968-d43e70697dbd" class=""><em><mark class="highlight-gray">솔직히 이건 필수적인 부분이라고 생각함; 위에 두 번 쓰는거 보고 DRY하지 못함에 분노..</mark></em></p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="311ff6b0-08b1-4662-aa51-bd7bfa1f7ae2" class="code"><code><span class="token comment">// myAdd는 전체 함수 타입을 가짐</span>
+<span class="token keyword">let</span> <span class="token function-variable function">myAdd</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> y<span class="token operator">:</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">number</span> <span class="token punctuation">{</span> <span class="token keyword">return</span>  x <span class="token operator">+</span> y<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 매개변수 x 와 y는 number 타입을 가짐</span>
+<span class="token keyword">let</span> <span class="token function-variable function">myAdd</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">baseValue<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> increment<span class="token operator">:</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function-variable function">number</span> <span class="token operator">=</span>
+    <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">,</span> y</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> x <span class="token operator">+</span> y<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre><p id="a2ff7e9c-b0c2-4336-83a5-601a4907d036" class="">이런 타입 추론 방식을 &quot;contextual typing&quot; 라고 부름</p><p id="36398011-03a1-430f-abbd-72e812bb461a" class="">이를 통해서 프로그램에서 타입을 유지하기 위한 수고를 덜 수 있음 <mark class="highlight-gray">(아니었음 타입스크립트 때려침;)</mark></p><h2 id="6173fbf0-2029-4786-b4e3-2b5b768b726e" class="">선택적/기본 파라미터(Optional and Default Parameters)</h2><p id="3eb8e3a9-fab6-4963-be78-dd7875c305ca" class="">타입스크립트에서는 모든 파라미터가 함수에 필요하다고 가정함</p><p id="cfa12dd7-404d-496e-aec0-c114b684e9da" class="">파라미터에 <code>null</code>이나 <code>undefined</code>를 줄 수 없다는 것이 아니라,</p><p id="21ec5350-e00c-4478-855c-24cc65dd3b2f" class="">컴파일 단계에서 해당 함수를 호출하는 지점이 파라미터에 명시된 타입의 값을 넘겼는지 확인한다는 것</p><p id="22e2cb73-35ac-409d-9c89-5fb67c10c5e8" class=""><mark class="highlight-gray">만약 </mark><mark class="highlight-gray"><code>null</code></mark><mark class="highlight-gray">이나 </mark><mark class="highlight-gray"><code>undefined</code></mark><mark class="highlight-gray">를 파라미터에 지정했다면 그렇게 넘겼는지를 봄</mark></p><figure id="bc9388ce-fa17-4616-8802-494861c41882" class="image"><a href="03%20Functions%20bc9388cefa1746168802494861c41882/Untitled.png"><img style="width:1168px" src="03%20Functions%20bc9388cefa1746168802494861c41882/Untitled.png"/></a></figure><h3 id="d37739de-08bf-4607-8e09-58e9330ff6f0" class="">선택적 파라미터</h3><p id="8e5e05b9-ede1-42a2-823a-d4a42c2f91a7" class="">자바스크립트에서처럼 선택적으로 파라미터를 넘기고 싶다면 (필요할 땐 넘기고 아니면 안넘김 = <code>undefined</code>)</p><p id="6b91f295-f28e-46bc-8fa6-147372d20225" class="">매개변수의 이름 끝에 <code>?</code>를 붙여서 해당 파라미터를 선택적으로 만들 수 있음</p><figure id="a2adb645-4649-4201-82ac-af850e5f6087" class="image"><a href="03%20Functions%20bc9388cefa1746168802494861c41882/Untitled%201.png"><img style="width:1178px" src="03%20Functions%20bc9388cefa1746168802494861c41882/Untitled%201.png"/></a></figure><ul id="c3c620cc-b918-4395-84f6-265db69de515" class="bulleted-list"><li>위의 코드에서 <code>lastName</code>을 선택적 파라미터로 변경함으로써<p id="467aee0f-7722-4711-913d-ffffdaf131ae" class="">파라미터 갯수를 적게 넘긴 첫 번째 실행은 성공하지만</p><p id="36cf778d-a510-47b7-9a8c-945f4de9d5cc" class="">여전히 정해진 파라미터 수보다 많이 넘긴 경우에는 오류가 됨</p><p id="f9b3459b-388a-40a0-b541-646308930ca8" class=""><strong>= 선택적 파라미터를 쓰더라도 반드시 파라미터가 함수에 정의되어 있어야 함</strong></p></li></ul><ul id="b8646fad-c083-4768-a54e-4c3ddfc326e3" class="bulleted-list"><li><strong>주의</strong> : 선택적 파라미터는 파라미터 순서에서 제일 뒤에 와야 함</li></ul><h3 id="42d68f64-5710-4b46-a52d-e4c320085bbb" class="">기본 파라미터</h3><p id="5b81a02c-0df2-4281-b4eb-3a1f05e3c5f6" class="">값을 제공하지 않았거나 <code>undefined</code>를 받았을 때 할당할 값을 지정 가능</p><p id="13112632-86e5-42d3-a359-3da27e398bd4" class="">자바스크립트에서 파라미터 기본 값을 지정하는거랑 똑같음</p><figure id="b3a10e67-3833-42ac-b9ca-b19bf9655c57" class="image"><a href="03%20Functions%20bc9388cefa1746168802494861c41882/Untitled%202.png"><img style="width:1242px" src="03%20Functions%20bc9388cefa1746168802494861c41882/Untitled%202.png"/></a></figure><p id="14251396-6c29-4c5f-ac49-340066577df6" class="">기본 파라미터를 지정한 경우 <code>result1</code>을 보면 선택적 파라미터처럼</p><p id="f1308c5f-360e-4b3b-9b2a-e2f067238db1" class="">파라미터를 넘기지 않아도 되는 것을 알 수 있음</p><p id="54376d9d-2cd5-433a-b939-0607ed161d6d" class=""><strong>= 선택적 파라미터와 동일하게 </strong><strong><code>firstName: string, lastName?: string =&gt; string</code></strong><strong> 타입을 가짐</strong></p><figure id="4ee8bf42-da79-4692-a27f-b61883fb8085" class="image"><a href="03%20Functions%20bc9388cefa1746168802494861c41882/Untitled%203.png"><img style="width:1362px" src="03%20Functions%20bc9388cefa1746168802494861c41882/Untitled%203.png"/></a></figure><p id="f77309e1-c154-4713-b1a2-a0f197a3784b" class="">선택적 파라미터와 다른 점은 꼭 맨 뒤에 위치하지 않아도 됨</p><h2 id="bc965aee-1fb4-4f13-92bd-96a9e46bd740" class="">Rest 파라미터</h2><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="d147d65d-c395-4ea6-922c-b864b83dbfe2" class="code"><code><span class="token keyword">interface</span> <span class="token class-name">somtt</span> <span class="token punctuation">{</span>
+   <span class="token punctuation">[</span>asdfasdf<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token builtin">boolean</span> <span class="token operator">|</span> <span class="token builtin">string</span> <span class="token operator">|</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="8db76b2f-943d-4473-bfc5-dd417a3005cd" class="code"><code><span class="token keyword">function</span> <span class="token function">buildName</span><span class="token punctuation">(</span><span class="token parameter">firstName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token operator">...</span>restOfName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> firstName <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> restOfName<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> employeeName <span class="token operator">=</span> <span class="token function">buildName</span><span class="token punctuation">(</span><span class="token string">"Joseph"</span><span class="token punctuation">,</span> <span class="token string">"Samuel"</span><span class="token punctuation">,</span> <span class="token string">"Lucas"</span><span class="token punctuation">,</span> <span class="token string">"MacKinzie"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p id="1f7c37f6-c186-4fe2-a600-049689935e85" class=""><code>...</code>으로 rest 파라미터를 추가할 수 있고, 그 타입은 배열형의 타입을 지정하듯이 하면 됨</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="9ed5c98c-eb50-41ca-9866-83e549ab1464" class="code"><code><span class="token keyword">function</span> <span class="token function">buildName</span><span class="token punctuation">(</span><span class="token parameter">firstName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token operator">...</span>restOfName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> firstName <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> restOfName<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> <span class="token function-variable function">buildNameFun</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">fname<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token operator">...</span>rest<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token builtin">string</span> <span class="token operator">=</span> buildName<span class="token punctuation">;</span></code></pre><p id="28d5081a-55f8-4f68-94f5-234058a47545" class="">함수 타입을 만들 때도 똑같이 사용할 수 있음</p><h2 id="3f31ea46-43bd-45d5-bb37-76e34db245c7" class="">this</h2><h3 id="898c8257-7b2b-430b-b175-d633c3474b20" class="">this와 화살표 함수</h3><p id="04e79473-c6bb-4e04-8ae0-07a54cbac2ae" class="">자바스크립트에서 <code>this</code>는 함수가 호출될 때 설정됨</p><p id="316c13fd-ab94-4a6f-9e31-c16f8dc3e31b" class="">이런 바인딩이 강력하고 유연하지만 함수가 호출되는 context를 항상 잘 알아야하는 어려움이 있음</p><p id="c58c6149-5728-4a02-b51f-4afbfbad0dea" class="">특히 함수를 파라미터로 넘기거나 반환하는 경우에 혼란을 유발할 수 있음</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="4b44e7f9-6552-478e-a448-ad9c2886dfdd" class="code"><code><span class="token keyword">let</span> deck <span class="token operator">=</span> <span class="token punctuation">{</span>
+  suits<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"hearts"</span><span class="token punctuation">,</span> <span class="token string">"spades"</span><span class="token punctuation">,</span> <span class="token string">"clubs"</span><span class="token punctuation">,</span> <span class="token string">"diamonds"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  cards<span class="token operator">:</span> <span class="token function">Array</span><span class="token punctuation">(</span><span class="token number">52</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">createCardPicker</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> pickedCard <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">52</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">let</span> pickedSuit <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>pickedCard <span class="token operator">/</span> <span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">return</span> <span class="token punctuation">{</span> 
+        suit<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>suits<span class="token punctuation">[</span>pickedSuit<span class="token punctuation">]</span><span class="token punctuation">,</span> 
+        card<span class="token operator">:</span> pickedCard <span class="token operator">%</span> <span class="token number">13</span> 
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> cardPicker <span class="token operator">=</span> deck<span class="token punctuation">.</span><span class="token function">createCardPicker</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> pickedCard <span class="token operator">=</span> <span class="token function">cardPicker</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"card: "</span> <span class="token operator">+</span> pickedCard<span class="token punctuation">.</span>card <span class="token operator">+</span> <span class="token string">" of "</span> <span class="token operator">+</span> pickedCard<span class="token punctuation">.</span>suit<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><ul id="d5d60c7b-21e1-44de-9905-18e9dd398b92" class="bulleted-list"><li>위 예제를 실행하면 결과 출력 대신에 오류가 발생할 것<p id="790cf815-2ed6-440b-bfcc-bd955eb63dbe" class=""><code>cardPicker</code> 의 실행에서 <code>this</code>는 전역 객체를 가리키고 있기 때문에</p><p id="6c0681c3-e1e2-4766-b7c3-8bebfe24c0dd" class=""><code>this.suits</code>는 <code>undefined</code>가 됨</p></li></ul><ul id="62421e6c-6d4c-460d-88fb-4fcc795c8701" class="bulleted-list"><li><strong>짚고 넘어갈 것</strong> : 여기에서 <code>this</code>는 any 타입을 가짐</li></ul><ul id="06c0c941-fff6-4d4f-8e53-1373acd1cce3" class="bulleted-list"><li>위에서 <code>createCardPicker</code>의 반환하는 함수를 화살표 함수로 만들어서<p id="44d94729-c6d6-44cd-8b31-d38425091d79" class=""><code>this</code>가 의도한대로 deck 객체를 가리키도록 할 수 있음</p></li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="7a808e7a-1926-473d-a692-83e426ca5df0" class="code"><code><span class="token keyword">let</span> deck <span class="token operator">=</span> <span class="token punctuation">{</span>
+  suits<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"hearts"</span><span class="token punctuation">,</span> <span class="token string">"spades"</span><span class="token punctuation">,</span> <span class="token string">"clubs"</span><span class="token punctuation">,</span> <span class="token string">"diamonds"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  cards<span class="token operator">:</span> <span class="token function">Array</span><span class="token punctuation">(</span><span class="token number">52</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">createCardPicker</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> pickedCard <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">52</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">let</span> pickedSuit <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>pickedCard <span class="token operator">/</span> <span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">return</span> <span class="token punctuation">{</span> suit<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>suits<span class="token punctuation">[</span>pickedSuit<span class="token punctuation">]</span><span class="token punctuation">,</span> card<span class="token operator">:</span> pickedCard <span class="token operator">%</span> <span class="token number">13</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> cardPicker <span class="token operator">=</span> deck<span class="token punctuation">.</span><span class="token function">createCardPicker</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> pickedCard <span class="token operator">=</span> <span class="token function">cardPicker</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"card: "</span> <span class="token operator">+</span> pickedCard<span class="token punctuation">.</span>card <span class="token operator">+</span> <span class="token string">" of "</span> <span class="token operator">+</span> pickedCard<span class="token punctuation">.</span>suit<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p id="e9192291-8339-46a5-8828-192d91472e7f" class="">타입스크립트에서 <code>--noImplicitThis</code> 옵션을 컴파일러에 전달하면 위 경우 경고를 띄움</p><figure id="be30ea15-745b-475f-95de-fd6a5bd20a1d" class="image"><a href="03%20Functions%20bc9388cefa1746168802494861c41882/Untitled%204.png"><img style="width:2106px" src="03%20Functions%20bc9388cefa1746168802494861c41882/Untitled%204.png"/></a></figure><h3 id="6e7c17c6-b4e8-4ebf-bf54-54b4dc9af3df" class="">this 파라미터</h3><p id="72c551a1-807a-4aaf-8365-13f3306f73d2" class="">위의 예제에서 <code>this</code>의 타입은 여전히 <code>any</code>임 (deck를 가리키니까 타입도 deck였으면 좋겠는데 아님)</p><p id="42bbaa65-2518-4b84-94fc-fce4f3f34f49" class="">이유는 객체 리터럴 내부에 있는 함수에서 시작된 것이기 때문</p><p id="cf5c7ffa-943a-44e0-b3dd-14171eed8084" class="">→ 이 문제를 해결하기 위해서 <strong>명시적으로 </strong><strong><code>this</code></strong><strong> 파라미터를 전달</strong>할 수 있음</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="a5334cf5-1868-4cbf-9611-6f24bc805be1" class="code"><code><span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">this</span><span class="token operator">:</span> <span class="token keyword">void</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 독립형 함수에서 `this`를 사용할 수 없는 것을 확인함</span>
+<span class="token punctuation">}</span></code></pre><ul id="f88c05bf-c80f-437f-aaf1-26f2f462a171" class="bulleted-list"><li>this parameters are fake parameters that come first in the parameter list of a function:<p id="7f92e780-bf12-402f-adc5-3dd4965f5cb1" class=""><code>this</code> 파라미터는 함수의 파라미터 목록 제일 처음에 오는 가짜 파라미터임 (?)</p></li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="fc33cb9f-2883-4384-9d17-39270e4538c2" class="code"><code><span class="token keyword">interface</span> <span class="token class-name">Card</span> <span class="token punctuation">{</span>
+  suit<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  card<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Deck</span> <span class="token punctuation">{</span>
+  suits<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  cards<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token function">createCardPicker</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">:</span> Deck<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> Card<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> deck<span class="token operator">:</span> Deck <span class="token operator">=</span> <span class="token punctuation">{</span>
+  suits<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"hearts"</span><span class="token punctuation">,</span> <span class="token string">"spades"</span><span class="token punctuation">,</span> <span class="token string">"clubs"</span><span class="token punctuation">,</span> <span class="token string">"diamonds"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  cards<span class="token operator">:</span> <span class="token function">Array</span><span class="token punctuation">(</span><span class="token number">52</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token comment">// callee가 Deck 타입이어야 함을 명시함</span>
+  <span class="token function-variable function">createCardPicker</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">this</span><span class="token operator">:</span> Deck</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> pickedCard <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">52</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">let</span> pickedSuit <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>pickedCard <span class="token operator">/</span> <span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">return</span> <span class="token punctuation">{</span> 
+        suit<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>suits<span class="token punctuation">[</span>pickedSuit<span class="token punctuation">]</span><span class="token punctuation">,</span> 
+        card<span class="token operator">:</span> pickedCard <span class="token operator">%</span> <span class="token number">13</span> 
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre><ul id="c8fae8cb-4ad5-44a9-addb-62e9ae6027f5" class="bulleted-list"><li>이제 컴파일러는 함수 내에서 참조하고 있는 <code>this</code>가 Deck 타입이라는 것을 알기 때문에<p id="35062f7e-63cf-4264-a826-1203f21a434d" class=""><code>--noImplicitThis</code>으로 실행해도 오류가 발생하지 않음</p></li></ul><h3 id="b4ea096d-653a-4bf5-94bd-7a794288adca" class="">callback 함수에서의 this 파라미터</h3><p id="16c0efde-8ea4-43a1-a3e2-234c5c5b80b5" class="">사용하는 라이브러리에서 나중에 호출할 수 있도록 콜백함수를 전달할 때도</p><p id="385bc804-d877-41ca-bded-a5cb0d57ec9d" class=""><code>this</code>로 인한 오류가 발생할 수 있음</p><p id="2749702a-961c-4112-a225-dfb22864c706" class="">→ 라이브러리에서 콜백함수를 일반 함수처럼 호출해서 <code>this</code>가 <code>undefined</code>가 될 수 있음</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="0f36cd6f-0868-480e-8181-f2d0f31811db" class="code"><code><span class="token keyword">interface</span> <span class="token class-name">UIElement</span> <span class="token punctuation">{</span>
+	<span class="token function">addClickEventListener</span><span class="token punctuation">(</span><span class="token function-variable function">onclick</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">this</span><span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">,</span> e<span class="token operator">:</span> Event</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><ul id="3f08a4eb-7afe-4984-a7bd-e6a9b202ce0d" class="bulleted-list"><li><strong><code>this: void</code></strong><strong>의 의미</strong> : addClickEventListener는 함수 타입인 <code>onclick</code>을 파라미터로 받는데,<p id="98cfd410-9c26-41f2-88fc-8bf90370e744" class="">이 <code>onclick</code> 함수에서는 <code>this</code>를 사용하지 않음</p></li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="2c9b9f6b-3509-4ac1-ba18-fa1fc023b4ba" class="code"><code><span class="token comment">/* 나쁜 예제 */</span>
+<span class="token keyword">class</span> <span class="token class-name">Handler</span> <span class="token punctuation">{</span>
+  info<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  <span class="token function">onClickBad</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">this</span><span class="token operator">:</span> Handler<span class="token punctuation">,</span> e<span class="token operator">:</span> Event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 여기에서 this를 사용했으니 runtime 호출 시에 오류가 날 것</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>info <span class="token operator">=</span> e<span class="token punctuation">.</span>message<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> h <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Handler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+uiElement<span class="token punctuation">.</span><span class="token function">addClickListener</span><span class="token punctuation">(</span>h<span class="token punctuation">.</span>onClickBad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">/* 좋은 예제 */</span>
+<span class="token keyword">class</span> <span class="token class-name">Handler</span> <span class="token punctuation">{</span>
+  info<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  <span class="token function">onClickGood</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">this</span><span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">,</span> e<span class="token operator">:</span> Event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// this는 void 타입이기 때문에 이 함수 내부에서 this를 이렇게 안써야 함</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"clicked!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> h <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Handler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+uiElement<span class="token punctuation">.</span><span class="token function">addClickListener</span><span class="token punctuation">(</span>h<span class="token punctuation">.</span>onClickGood<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p id="ea0a8945-6fc0-4731-b0e2-29f2cccc3015" class=""><code>this</code>를 쓰고 싶다면 화살표 함수를 이용해야 함</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="28432a5d-9401-4253-9efe-8ee0db07026d" class="code"><code><span class="token keyword">class</span> <span class="token class-name">Handler</span> <span class="token punctuation">{</span>
+	info<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+	<span class="token function-variable function">onClickGood</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">e<span class="token operator">:</span> Event</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>info <span class="token operator">=</span> e<span class="token punctuation">.</span>message<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><ul id="ff94dfa4-ed3b-482d-8e35-39333a23648c" class="bulleted-list"><li>화살표 함수는 outer this를 사용하기 때문에, <code>this: void</code>를 기대하는 곳에 해당 함수를 전달할 수 있음</li></ul><ul id="4f00ffd6-73c7-4d32-971f-db55fde162ca" class="bulleted-list"><li>화살표 함수 사용의 단점은 핸들러 타입의 각 객체마다 함수를 각각 만든다는 것 (함수 여러개 생성)<p id="e89630ab-e155-402f-84bd-2727c0d03a89" class="">메서드는 한 번만 생성되고, Handler 객체의 <code>prototype</code>에 저장됨 (Handler 객체간 공유)</p><ul id="4d849a46-012b-4c8b-afb6-0009c448969b" class="toggle"><li><details open=""><summary>ref: <a href="https://velog.io/@raram2/%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98%EB%A5%BC-%EB%82%A8%EC%9A%A9%ED%95%98%EB%A9%B4-%EC%95%88%EB%90%98%EB%8A%94-%EC%9D%B4%EC%9C%A0">화살표 함수를 남용하면 안되는 이유</a></summary><ul id="4942445e-f869-4f75-ae8f-1f857cf8419e" class="bulleted-list"><li>자신이 호출되면서 생성된 실행 콘텍스트에서 <code>thisBinding</code> 정보를 생성하지 않음</li></ul><ul id="f4faba37-05ee-4d47-88b4-5596ee563df1" class="bulleted-list"><li><code>this</code>가 위치한 스코프에서 <code>this</code>가 무엇인지 찾고, 해당 스코프에 <code>this</code>가 없다면 스코프 체인을 타고 올라가며 가장 가까운 <code>this</code>를 참조함</li></ul><ul id="adb1fc47-1f81-4a21-9262-fb5ada97267a" class="bulleted-list"><li>화살표 함수는 <strong><code>prototype</code></strong><strong>이 존재하지 않음</strong><p id="3b1db074-6d1f-4afc-b87b-476e885c6351" class="">→ 화살표 함수로 선언된 함수를 new와 함께 호출하더라도, <code>prototype</code> 객체가 없기 때문에 자신의 인스턴스 객체가 만들어질 수 없음</p><p id="2762d9ac-b0a8-4655-a0c7-f7964f2a6f24" class="">→ 생성자로 사용할 수 없음 </p></li></ul><ul id="d6949054-e76e-4a9f-b7c1-1afa51f562bd" class="bulleted-list"><li><code>arguments</code> 프로퍼티를 생성하지 않음<p id="83cb0acd-5e60-4597-9ad6-2499eb40293e" class="">→ 화살표 함수 내에서 <code>arguments</code>를 참조하면 ReferenceError 발생하거나 상위 실행 콘텍스트가 있다면 스코프상의 <code>arguments</code> 객체를 참조</p></li></ul></details></li></ul></li></ul><h2 id="4eca9cdf-ee99-4d1d-aec0-0acf7f569198" class="">Overload</h2><p id="f07f5510-48e7-4abb-92e0-d903a490d594" class="">자바스크립트는 선천적으로 매우 동적인 언어로,</p><p id="730c791e-191b-4c8d-bd8c-208395e6fb8c" class="">하나의 자바스크립트 함수가 파라미터에 따라서 다른 타입의 객체를 반환하는 것은 흔한 일임</p><h3 id="f52071ea-73b6-4e2d-a081-8d162c791fdb" class="">자바스크립트에는 오버로드가 없다</h3><ul id="95b33c37-c560-42ee-be40-cccd8ed0a912" class="bulleted-list"><li>JavaScript function definitions do not specify data types for parameters.</li></ul><ul id="39262bf4-5add-49b0-a795-0d2ca55a2495" class="bulleted-list"><li>JavaScript functions do not perform type checking on the passed arguments.</li></ul><ul id="c66ba61a-38f2-4287-9069-634cd8e46197" class="bulleted-list"><li>JavaScript functions do not check the number of arguments received.</li></ul><p id="3a8857b1-de11-4dd3-976f-c302ca8246c2" class=""><mark class="highlight-gray"><em>ref. </em></mark><mark class="highlight-gray"><em><a href="https://kevinkreuzer.medium.com/typescript-method-overloading-c256dd63245a">https://kevinkreuzer.medium.com/typescript-method-overloading-c256dd63245a</a></em></mark></p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="5e163bb1-14c8-424d-b4ef-ace420d5e72b" class="code"><code><span class="token keyword">let</span> suits <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"hearts"</span><span class="token punctuation">,</span> <span class="token string">"spades"</span><span class="token punctuation">,</span> <span class="token string">"clubs"</span><span class="token punctuation">,</span> <span class="token string">"diamonds"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">pickCard</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token operator">:</span> <span class="token builtin">any</span></span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">any</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> x <span class="token operator">==</span> <span class="token string">"object"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> pickedCard <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> x<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> pickedCard<span class="token punctuation">;</span>                                  <span class="token comment">// number</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> x <span class="token operator">==</span> <span class="token string">"number"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> pickedSuit <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>x <span class="token operator">/</span> <span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span> suit<span class="token operator">:</span> suits<span class="token punctuation">[</span>pickedSuit<span class="token punctuation">]</span><span class="token punctuation">,</span> card<span class="token operator">:</span> x <span class="token operator">%</span> <span class="token number">13</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>   <span class="token comment">// object</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> myDeck <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> suit<span class="token operator">:</span> <span class="token string">"diamonds"</span><span class="token punctuation">,</span> card<span class="token operator">:</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> suit<span class="token operator">:</span> <span class="token string">"spades"</span><span class="token punctuation">,</span> card<span class="token operator">:</span> <span class="token number">10</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> suit<span class="token operator">:</span> <span class="token string">"hearts"</span><span class="token punctuation">,</span> card<span class="token operator">:</span> <span class="token number">4</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> pickedCard1 <span class="token operator">=</span> myDeck<span class="token punctuation">[</span><span class="token function">pickCard</span><span class="token punctuation">(</span>myDeck<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"card: "</span> <span class="token operator">+</span> pickedCard1<span class="token punctuation">.</span>card <span class="token operator">+</span> <span class="token string">" of "</span> <span class="token operator">+</span> pickedCard1<span class="token punctuation">.</span>suit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> pickedCard2 <span class="token operator">=</span> <span class="token function">pickCard</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"card: "</span> <span class="token operator">+</span> pickedCard2<span class="token punctuation">.</span>card <span class="token operator">+</span> <span class="token string">" of "</span> <span class="token operator">+</span> pickedCard2<span class="token punctuation">.</span>suit<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p id="0e444477-2747-459a-b7ca-2ea149b96622" class="">파라미터로 넘긴 값에 따라서 <code>pickCard</code>가 리턴하는 값의 타입이 달라짐</p><ul id="f645bf99-6bd0-415f-811a-c622049ea9dc" class="bulleted-list"><li>숫자를 넘기면 : 해당하는 카드의 정보를 알려줌</li></ul><ul id="f8dee942-f209-4707-8484-f19db5252346" class="bulleted-list"><li>카드를 넘기면 : 해당 카드의 숫자를 알려줌</li></ul><p id="b8eaa1b5-f3a2-43ce-bee3-316fab64aa48" class="">이것을 어떻게 타입 시스템으로 표현할 것인가..</p><p id="ccfc4e6b-f709-41d7-9ef3-c5eb7e3efcd6" class="">→ 같은 이름의 함수를 여러 개 제공하면 됨 (오버로드)</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="f76ab3ae-5356-46ca-b449-c43617292e5f" class="code"><code><span class="token keyword">let</span> suits <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"hearts"</span><span class="token punctuation">,</span> <span class="token string">"spades"</span><span class="token punctuation">,</span> <span class="token string">"clubs"</span><span class="token punctuation">,</span> <span class="token string">"diamonds"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">pickCard</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token operator">:</span> <span class="token punctuation">{</span> suit<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span> card<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token punctuation">}</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">pickCard</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token operator">:</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">{</span> suit<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span> card<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">pickCard</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token operator">:</span> <span class="token builtin">any</span></span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">any</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> x <span class="token operator">==</span> <span class="token string">"object"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> pickedCard <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> x<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> pickedCard<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> x <span class="token operator">==</span> <span class="token string">"number"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> pickedSuit <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>x <span class="token operator">/</span> <span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span> suit<span class="token operator">:</span> suits<span class="token punctuation">[</span>pickedSuit<span class="token punctuation">]</span><span class="token punctuation">,</span> card<span class="token operator">:</span> x <span class="token operator">%</span> <span class="token number">13</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> myDeck <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> suit<span class="token operator">:</span> <span class="token string">"diamonds"</span><span class="token punctuation">,</span> card<span class="token operator">:</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> suit<span class="token operator">:</span> <span class="token string">"spades"</span><span class="token punctuation">,</span> card<span class="token operator">:</span> <span class="token number">10</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> suit<span class="token operator">:</span> <span class="token string">"hearts"</span><span class="token punctuation">,</span> card<span class="token operator">:</span> <span class="token number">4</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> pickedCard1 <span class="token operator">=</span> myDeck<span class="token punctuation">[</span><span class="token function">pickCard</span><span class="token punctuation">(</span>myDeck<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"card: "</span> <span class="token operator">+</span> pickedCard1<span class="token punctuation">.</span>card <span class="token operator">+</span> <span class="token string">" of "</span> <span class="token operator">+</span> pickedCard1<span class="token punctuation">.</span>suit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> pickedCard2 <span class="token operator">=</span> <span class="token function">pickCard</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"card: "</span> <span class="token operator">+</span> pickedCard2<span class="token punctuation">.</span>card <span class="token operator">+</span> <span class="token string">" of "</span> <span class="token operator">+</span> pickedCard2<span class="token punctuation">.</span>suit<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><ul id="1850ccb2-227e-4f6a-8e2e-2d8360360a98" class="bulleted-list"><li>오버로드 목록에서 순차적으로 맞는 오버로드 함수를 찾고, 찾은 경우 해당 함수를 호출하므로<p id="c2bbadc2-12e2-4d67-8d76-1d6457d9aa8f" class="">가장 구체적인 케이스를 먼저 두어야 함</p></li></ul><ul id="e23dd8be-deda-4968-a374-9955727b1da2" class="bulleted-list"><li>위 예제에서 any 는 오버로드 목록에 들어가지 않음 → 오버로드 함수는 총 2개</li></ul><ul id="6ec107fa-a6d9-422c-8cbf-e714a2bdb6ba" class="bulleted-list"><li>객체와 숫자 외에 다른 방식으로 <code>pickCard</code> 호출을 시도하면 오류가 발생함</li></ul><p id="d3344d9f-8b6b-4d76-af6b-54470308a17a" class="">
+</p></div></article></body></html>

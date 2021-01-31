@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typescript Study</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Ubuntu', sans-serif;
+        }
+        main {
+            max-width: 600px;
+            margin: 50px auto 0;
+        }
+        .title { 
+            text-align: center; 
+            margin-bottom: 50px;
+        }
+        .summary { margin-bottom: 50px; }
+        .summary li {
+            margin-bottom: 5px;
+        }
+        .chapters { 
+            list-style: none;
+            counter-reset: my-awesome-counter;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-column-gap: 15px;
+            grid-row-gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+        }
+        .chapters li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 150px;
+            padding: 10px;
+            text-align: center;
+            counter-increment: my-awesome-counter;
+            margin-bottom: 0.5rem;
+            border-radius: 5px;
+        }
+        .chapters li::before {
+            content: "0" counter(my-awesome-counter);
+            font-weight: bold;
+            font-size: 3rem;
+            margin-right: 0.5rem;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+        .chapters li:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            transition: 0.2s;
+        }
+        .chapters a {
+            color: #000;
+            text-decoration: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .author {
+            margin-top: 5px;
+            font-size: 15px;
+            letter-spacing: -1px;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <h1 class="title">Typescript Study 🚦</h1>
+    <ul class="summary">
+        <li><strong>주제 📍</strong> : 타입스크립트 공식문서 번역/정리 스터디</li>
+        <li><strong>스터디원 🙋🏻‍♂️🙋🏼‍♀️</strong> : 진창엽, 조민지, 이소영</li>
+        <li><strong>스터디 기간 📆</strong> : 2021년 1월 31일 ~ 진행중</li>
+    </ul>
+    <ol class="chapters">
+        <li style="background: #47b8e0;">
+            <a href="./03 Functions.html">
+                Basic Types
+                <div class="author">진창엽</div>
+            </a>
+        </li>
+        <li style="background: #ffc952;">
+            <a href="./03 Functions.html">
+                Interface
+                <div class="author">조민지</div>
+            </a>
+        </li>
+        <li style="background: #ff7473;">
+            <a href="./03 Functions.html">
+                Functions
+                <div class="author">이소영</div>
+            </a>
+        </li>
+    </ol>
+</main>
+</body>
+</html>
