@@ -1,0 +1,706 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>기본 타입</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="182bf6e1-5aca-4b0a-b00b-1cb51e674150" class="page sans"><header><h1 class="page-title">기본 타입</h1></header><div class="page-body"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e3c68f94-fa21-41e3-abc4-d6976e59786d"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">기본적인 데이터 타입 정리하기</div></figure><p id="e8f20877-271c-4049-8edf-0e48f3a33306" class="">공식 문서에서 자바스크립트와 동일하지 않거나 새로 나온 부분만 정리</p><p id="e0d8d7e1-89b3-4c38-947d-573509db0b78" class="">
+</p><p id="4a689022-700c-4241-80e7-ab02d209996a" class=""><strong>불리언</strong></p><p id="637710f8-41bb-4d14-8a68-d2b02b05838f" class="">
+</p><p id="f6093add-7495-483f-9b2d-a1bb21cda6fe" class=""><strong>숫자</strong></p><ul id="6097cc99-e143-40d0-b4f5-2f16f1748ab9" class="bulleted-list"><li>자바스크립트와 동일하게<mark class="highlight-blue"> </mark><mark class="highlight-blue"><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Data_structures">모든 숫자는 부동 소수 값</a></mark></li></ul><ul id="57e80caa-ecb0-4a9c-8898-e62dcdd1b0cb" class="bulleted-list"><li>16진수, 10진수 뿐만 아닌 2진수와 8진수 리터럴까지 지원</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="fad60863-47c7-42e6-84eb-d8181d5b43b8" class="code"><code><span class="token keyword">let</span> decimal<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">6</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> hex<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">0xf00d</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> binary<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">0b1010</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> octal<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">0o744</span><span class="token punctuation">;</span></code></pre><p id="6ed2af6e-1eaa-4abf-9e32-9c286253baf7" class="">
+</p><p id="cc4683a1-3ae9-49bc-9ede-01f0207e04ee" class=""><strong>문자열</strong></p><p id="4f5a03a9-d5f3-488e-aae0-0c35e2d190c4" class="">
+</p><p id="26065666-08d5-459c-a7a1-0361d00a6149" class=""><strong>배열</strong></p><ul id="1511c5ce-d024-48a6-97ab-6219371e09ca" class="bulleted-list"><li>자바스크립트의 배열과 동일</li></ul><ul id="0b4f999b-5d32-4b54-9855-58835c3aca77" class="bulleted-list"><li>사용방법에는 두 가지가 있다<ol id="12becaac-0c5e-4add-a86c-aa6dc0a1670e" class="numbered-list" start="1"><li>배열 요소들의 타입 + []<style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="8e712c18-6552-4522-bcc4-9cc3a277213f" class="code"><code><span class="token keyword">let</span> list<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre><p id="0047ce11-c4ee-4373-94e3-869180708a34" class="">
+</p></li></ol><ol id="249c08f3-f631-4359-8289-5b71a3ecfeca" class="numbered-list" start="2"><li>제네릭 배열 타입<style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="f824b35b-c9bc-4104-b46f-a31d5737baaf" class="code"><code><span class="token keyword">let</span> list<span class="token operator">:</span> <span class="token builtin">Array</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>number</span><span class="token punctuation">></span></span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre><p id="e9409c54-9dc6-495d-ad02-241831eb6ed0" class="">
+</p></li></ol></li></ul><p id="d72df59f-f2dc-45ee-bb4e-50de0715c799" class="">
+</p><p id="aa6d7616-58f0-4525-8b0b-a0f711b0261e" class=""><strong>튜플</strong></p><ol id="f2cb7881-f935-413d-8df3-e0a61e6cd06d" class="numbered-list" start="1"><li>요소의 타입과 개수가 고정된 배열을 표현 가능<ul id="1ad6f67c-9852-4278-bb05-491e5bfd89db" class="bulleted-list"><li>요소들의 타입이 모두 같을 필요는 없음</li></ul></li></ol><ol id="c31c8919-3218-41b0-9b0c-356c342c97b3" class="numbered-list" start="2"><li>정해진 인덱스의 요소는 미리 정의된 타입을 반환 함 <ul id="cd40f6fd-f23d-4300-ac59-4fe45034a987" class="bulleted-list"><li>예를 들어 넘버로 정의한 인덱스에 string 의 split 같은 함수를 호출하려하면 에러가 발생한다는 뜻</li></ul></li></ol><ol id="a13b5d94-b5fd-407a-933c-888084976397" class="numbered-list" start="3"><li>배열과 다르게 정해진 인덱스가 아닌 곳에 접근하면 에러 발생</li></ol><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="644de236-cac6-49c5-951a-d02a1c5362c7" class="code"><code><span class="token comment">// 1 튜플 타입으로 선언</span>
+<span class="token keyword">let</span> x<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">number</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">// 초기화</span>
+x <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"hello"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// 성공</span>
+<span class="token comment">// 잘못된 초기화</span>
+x <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token string">"hello"</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// 오류</span>
+
+<span class="token comment">// 2</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 성공</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 오류, 'number'에는 'substring' 이 없습니다.</span>
+
+<span class="token comment">// 3</span>
+x<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"world"</span><span class="token punctuation">;</span> <span class="token comment">// 오류, '[string, number]' 타입에는 프로퍼티 '3'이 없습니다.</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// '[string, number]' 타입에는 프로퍼티 '5'가 없습니다.</span></code></pre><p id="db58908d-2e57-4411-891c-ef2109821bb0" class="">
+</p><p id="bf9d31a2-d108-441f-a9cb-4e56cc3290e1" class=""><strong>열거형 (Enum)</strong></p><ul id="8c56e608-1692-44ad-ba10-dd9bdf992ba5" class="bulleted-list"><li>값의 집합에 더 나은 이름을 붙여줄 수 있다.</li></ul><ul id="dfd35c55-507a-4c67-a661-e5978f753d62" class="bulleted-list"><li>기본적으로 enum 은 0 부터 시작해 멤버들의 번호를 매긴다.</li></ul><ul id="60ef3f8b-b79f-44c6-936c-b417a80a7257" class="bulleted-list"><li>모든 값을 수동으로 설정할 수 있다.</li></ul><ul id="a770b0cf-d682-4211-8623-28e9eb9bcf41" class="bulleted-list"><li>인덱스로 접근하면 enum 멤버의 이름을 알아낼 수 있다.</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="2bddc427-d1c8-40d3-b3b4-7d40195b10f0" class="code"><code><span class="token comment">// 사용 방법</span>
+<span class="token keyword">enum</span> Color <span class="token punctuation">{</span>Red<span class="token punctuation">,</span> Green<span class="token punctuation">,</span> Blue<span class="token punctuation">}</span>
+<span class="token keyword">let</span> c<span class="token operator">:</span> Color <span class="token operator">=</span> Color<span class="token punctuation">.</span>Green<span class="token punctuation">;</span></code></pre><ul id="f8d7f487-c3ea-412f-9029-1718593c8d4a" class="bulleted-list"><li>사용 시 주의할 점<ul id="787f37d3-c09f-44f6-bfae-973ab5c897f2" class="bulleted-list"><li>enum 은 자바스크립트에는 없고 ts에서 생긴 스펙임<p id="cad1ee2f-113f-4912-9184-788967e1b341" class="">⇒ 트랜스파일링 하면 JS에서 즉시 실행함수로 변경된다.</p></li></ul><ul id="b4e4f00e-feb4-4b95-99fd-72e561ab2d40" class="bulleted-list"><li>그래서 웹팩과 같은 번들링 툴이 사용되지 않는 enum 을 제대로 트리쉐이킹 못 해준다는 단점이 있음</li></ul><ul id="2047722f-2fcd-447d-ae58-07ea77fef40b" class="bulleted-list"><li>해당 글 <a href="https://engineering.linecorp.com/ko/blog/typescript-enum-tree-shaking/">참고</a></li></ul></li></ul><p id="37d04fd9-2a6c-4299-9df5-d9a004723b31" class="">
+</p><p id="d06c8a3c-beb5-4188-8327-8caa9c2e5061" class=""><strong>UnKnown</strong></p><ul id="f77ef2bc-6050-4839-bd90-70ee95199c52" class="bulleted-list"><li>애플리케이션 구현 시 알지 못하는 타입을 표현해야 할 때 사용<ul id="0cd2e120-9b1a-4918-91ae-14ff76f880b8" class="bulleted-list"><li>사용자로부터 받은 데이터 혹은 서드 파티 라이브러리 등의 동적인 컨텐츠</li></ul></li></ul><ul id="1c5f1ef5-d3af-4298-9643-abfb7149e8ae" class="bulleted-list"><li>이 경우 컴파일러와 추후 코드를 읽는 사람에게 이 값은 어떤 것 이든 될 수 있다고 표시하는 타입</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="3e7ab729-e103-4c96-99fc-6f6e1ffc274a" class="code"><code><span class="token keyword">let</span> notSure<span class="token operator">:</span> unknown <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+notSure <span class="token operator">=</span> <span class="token string">"maybe a string instead"</span><span class="token punctuation">;</span>
+
+<span class="token comment">// OK, definitely a boolean</span>
+notSure <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span></code></pre><ul id="6e5372a7-b93d-49e2-a695-53ce4bb1d344" class="bulleted-list"><li>unknown 은 typeof 체크, comparison check 등의 타입 체크 기법으로 특정 타입을 의미하도록 할 수 있다.<ul id="5d263175-7973-4671-bce1-7017ae050e6f" class="bulleted-list"><li>이후에 다룰 내용</li></ul></li></ul><p id="a21573a0-9eb1-45ea-ae89-8be049bafe5d" class="">
+</p><p id="f7ca0a88-a10b-48b7-93e4-95186dfe8321" class="">
+</p><p id="67753aaf-c8da-42ae-b8e0-65566d4b3570" class=""><strong>Any</strong></p><ul id="33badf54-b198-4063-82e6-6238add49a1a" class="bulleted-list"><li>어떤 상황에서는, 모든 타입을 정의 하기가 불가능 하거나 부적절 하리만큼 많은 노력이 드는 경우가 있다.</li></ul><ul id="3e01d626-0ee1-42d9-9bc3-af7a3c788c51" class="bulleted-list"><li>이는 보통 TS 로 작성되지 않은 코드나 서드 파티 라이브러리 때문인데, 이 경우 에 any 를 사용한다</li></ul><ul id="291f5124-2678-4358-a0a6-bcde148338d9" class="bulleted-list"><li>Unknown 과는 다르게 any 에서는 존재하지 않는 속성을 사용할 수 있다.<ul id="6b21bfae-0c21-4b8e-8d39-b3259f0d7287" class="bulleted-list"><li>TS 에서는 any 가 이 속성을 갖는지 검사하지 않는다</li></ul></li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="99a62219-aced-42a0-b1ba-460bbf3f664c" class="code"><code><span class="token keyword">let</span> looselyTyped<span class="token operator">:</span> any <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+<span class="token comment">// OK, 런타임에는 ifItExists 라는 속성이 있을수도 있음!</span>
+looselyTyped<span class="token punctuation">.</span><span class="token function">ifItExists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// OK, toFixed 가 존재하므로 컴파일 성공 (하지만 실제로 컴파일러는 체크하지 않는다)</span>
+looselyTyped<span class="token punctuation">.</span><span class="token function">toFixed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> strictlyTyped<span class="token operator">:</span> unknown <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+strictlyTyped<span class="token punctuation">.</span><span class="token function">toFixed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Error, Object is of type 'unknown'.</span></code></pre><ul id="9e1f6b84-f8a1-442c-98c4-cadbf35a10b3" class="bulleted-list"><li>Any 는 객체를 통해 전파 될 수도 있음</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="d7deed78-78bf-4bf6-8f10-9c2d1e84dd23" class="code"><code><span class="token keyword">let</span> looselyTyped<span class="token operator">:</span> any <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> d <span class="token operator">=</span> looselyTyped<span class="token punctuation">.</span>a<span class="token punctuation">.</span>b<span class="token punctuation">.</span>c<span class="token punctuation">.</span>d<span class="token punctuation">;</span>
+<span class="token comment">//  ^ = let d: any</span></code></pre><ul id="a19c8fd2-8386-4fe7-af86-95699cfa5b43" class="bulleted-list"><li>주의할 점 : 이 타입을 사용함으로 얻는 편리함은 타입 안전성을 잃는데서 나오는 것 이라는 점을 기억할 것.<ul id="3c9e8eaf-9aab-4665-89c3-8a65c5dcf037" class="bulleted-list"><li>그리고 타입 안정성은 타입스크립트를 사용하는 주요 동기 중 하나임</li></ul></li></ul><p id="cfe1c000-0044-463c-9689-8bc0c259953c" class="">
+</p><p id="e6adf9d9-05b3-46e5-beda-3a69744b6820" class=""> any 와 unknown 의 차이</p><p id="6991aaee-d224-4025-8cc3-a02cb0abba94" class="">
+</p><figure id="5c976d3d-74af-4be9-9233-af50ef8bd255" class="image"><a href="%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%20%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8%205c976d3d74af4be99233af50ef8bd255/Untitled.png"><img style="width:1478px" src="%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%20%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8%205c976d3d74af4be99233af50ef8bd255/Untitled.png"/></a></figure><p id="a69bde3e-a274-4720-a812-b380e326cf3d" class="">
+</p><p id="81d20492-e822-4018-b70b-ee2f26d5b276" class=""><strong>Void</strong></p><ul id="05966cac-bcbc-4d1f-a359-8169c1a68311" class="bulleted-list"><li>void는 어떤 타입도 존재할 수 없음을 나타냄</li></ul><ul id="156a3cf4-5964-47ff-96e4-3785198473e2" class="bulleted-list"><li>void는 보통 함수에서 반환 값이 없을 때 반환 타입을 표현하기 위해 쓰이는 것을 볼 수 있다</li></ul><ul id="cd2fbe61-7a44-44a2-a089-85d1888bdafd" class="bulleted-list"><li>void를 타입 변수로 선언하는 것은 유용하지 않음<ul id="11e63840-599e-4f37-8161-45f8e6503e7a" class="bulleted-list"><li>그 변수에는 null(--strictNullChecks을 사용하지 않을 때만 해당, 자세한 건 다음 섹션을 참고)또는 undefined 만 할당할 수 있음</li></ul><ul id="863922ed-8543-450e-8eda-a5b2a53b27c9" class="bulleted-list"><li>❓잘 써먹을 만한 방법이 없을까?</li></ul></li></ul><p id="eabbc292-2ba6-4a48-8032-80d835924ad9" class="">
+</p><p id="4862961a-ad47-42b8-8e8c-7db279520e9e" class="">
+</p><p id="24668ddd-3378-4753-9d17-33f2c7e697af" class=""><strong>Null and Undefined</strong></p><ul id="0a095033-533a-45b4-b0a9-714005c25c7f" class="bulleted-list"><li>TypeScript는 <code>undefined</code> 과 <code>null</code> 둘 다 각각 자신의 타입 이름으로 <code>undefined</code> , <code>null</code>로 사용</li></ul><ul id="fba04ca4-1231-449e-a765-6fa1e98f590c" class="bulleted-list"><li><code>void</code> 처럼 그 자체로 유용한 경우는 거의 없다</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="62c370ef-e0c2-48a1-aefe-a52f8e8a0465" class="code"><code><span class="token comment">// 이 밖에 이 변수들에 할당할 수 있는 값이 없음</span>
+<span class="token keyword">let</span> u<span class="token operator">:</span> <span class="token keyword">undefined</span> <span class="token operator">=</span> <span class="token keyword">undefined</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> n<span class="token operator">:</span> <span class="token keyword">null</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span></code></pre><p id="8aa1fa0d-bc2d-47f2-8e1f-edd29ebe53d0" class="">
+</p><ul id="e8d9747f-3ea5-4cc3-b162-9908569e88ad" class="bulleted-list"><li>기본적으로 <code>null</code> 과 <code>undefined</code>는 다른 모든 타입의 하위 타입이다. </li></ul><ul id="f212c2f4-a631-4c1b-9bcf-a39c16b8829e" class="bulleted-list"><li>이건, null과 undefined를 <code>number</code> 같은 타입에 할당할 수 있다는 것을 의미</li></ul><ul id="217c5aed-24d5-4c53-a693-5952d0a66122" class="bulleted-list"><li>하지만, <code>--strictNullChecks</code>를 사용하면, <code>null</code>과 <code>undefined</code>는 오직 <code>any</code>와 각자 자신들 타입에만 할당 가능 (예외적으로 <code>undefined</code>는 <code>void</code>에 할당 가능합니다) <ul id="6dbf3ac7-cdc9-4dfc-b29b-b5627d4679a4" class="bulleted-list"><li>이건 많은 일반적인 에러를 방지하는 데 도움을 준다.</li></ul><ul id="47016cea-fb47-4fe2-bf07-e9966786e8ae" class="bulleted-list"><li>이 경우, <code>string</code> 또는 <code>null</code> 또는 <code>undefined</code>를 허용하고 싶은 경우 유니언 타입인 <code>string | null | undefined</code>를 사용할 수 있다. (유니언 타입은 상급 주제로, 이후 챕터에서 다룸)</li></ul></li></ul><p id="2e5dc20c-e6a3-421d-a174-3ad0fecff325" class="">
+</p><p id="676dc5eb-5de5-404f-a98e-a9c0e7e9fcb7" class="">
+</p><p id="6ca2608b-4533-437d-8da1-0543f02e047d" class=""><strong>Never</strong></p><ul id="675fc247-aec5-467a-a5e0-e36cac2e234b" class="bulleted-list"><li>never 타입은 절대 발생할 수 없는 타입을 나타냄</li></ul><ul id="8c87e737-216e-4e7b-9d8e-f0f107be1d5e" class="bulleted-list"><li>예를 들어, never는 함수 표현식이나 화살표 함수 표현식에서 항상 오류를 발생시키거나 절대 반환하지 않는 반환 타입으로 쓰임. </li></ul><ul id="642f3e84-6ed4-4eb5-89f5-5b921cead99a" class="bulleted-list"><li>변수 또한 타입 가드에 의해 아무 타입도 얻지 못하게 좁혀지면 never 타입을 얻게 될 수 있다</li></ul><ul id="6c2c1526-91fe-4b8d-9779-e8c38050bdcf" class="bulleted-list"><li>never타입은 모든 타입에 할당 가능한 하위 타입</li></ul><ul id="4fbc528e-edfc-4417-9e8f-5a7455f749ee" class="bulleted-list"><li>하지만 어떤 타입도 never에 할당할 수 있거나, 하위 타입이 아님 (never 자신은 제외)<ul id="3dfd429a-95ff-4586-9645-a09c0c6dfa17" class="bulleted-list"><li>심지어 any 도 never에 할당할 수 없다.</li></ul></li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="be7b2139-fd81-4ea0-8187-299e0d83f6b7" class="code"><code><span class="token comment">// never를 반환하는 함수는 함수의 마지막에 도달할 수 없다.</span>
+<span class="token keyword">function</span> <span class="token function">error</span><span class="token punctuation">(</span><span class="token parameter">message<span class="token operator">:</span> string</span><span class="token punctuation">)</span><span class="token operator">:</span> never <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 반환 타입이 never로 추론된다.</span>
+<span class="token keyword">function</span> <span class="token function">fail</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"Something failed"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// never를 반환하는 함수는 함수의 마지막에 도달할 수 없다.</span>
+<span class="token keyword">function</span> <span class="token function">infiniteLoop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> never <span class="token punctuation">{</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre><p id="69dab9ea-7675-462c-8117-9fc3702b4e4e" class="">
+</p><p id="1a5ce810-4a36-4b83-8675-75109b51212e" class=""><strong>Object</strong></p><ul id="3ef2956f-f5a9-4226-859b-09f64c6424de" class="bulleted-list"><li>object는 원시 타입이 아닌 타입을 나타낸다</li></ul><ul id="576aa2b0-4939-493f-8155-d6ea14b86b9f" class="bulleted-list"><li>number, string, boolean, bigint, symbol, null, 또는 undefined 가 아닌 나머지</li></ul><p id="7e6c7c0e-5110-426e-a29e-c8baf88aa31a" class="">
+</p><p id="f8289843-fc89-48cb-b83b-9d3b648244f8" class="">
+</p><p id="b607c4cf-8c8a-4005-bd86-c08de4a7b83b" class="">
+</p><p id="0695bdac-265f-4643-8bd2-b9d901bf1dce" class=""><strong>Type assertions</strong></p><p id="6ac57ab4-7b83-410e-b4e0-a3d44c06ab9f" class="">
+</p><ul id="3208aa72-7986-45c8-813d-7938d2ec2e90" class="bulleted-list"><li>가끔, TypeScript보다 개발자가 값에 대해 더 잘 알고 있을 때가 있다. </li></ul><ul id="e6528f55-cce3-4e66-bd89-337b59276abe" class="bulleted-list"><li>대개, 이런 경우는 어떤 엔티티의 실제 타입이 현재 타입보다 더 구체적일 때 발생<p id="ad8bfbba-2587-4204-8ae9-6e3c515c81e7" class="">
+</p></li></ul><ul id="b0bd8a55-997a-4831-b365-32a1d6d2c0be" class="bulleted-list"><li><em>타입 단언(Type assertions)</em> 은 컴파일러에게 &quot;날 믿어, 난 내가 뭘 하고 있는지 알아&quot;라고 말해주는 방법</li></ul><ul id="297be84e-c493-48f9-b550-f057b1f9ed96" class="bulleted-list"><li> <code>타입 단언</code>은 다른 언어의 타입 변환(형 변환)과 유사하지만, 다른 특별한 검사를 하거나 데이터를 재구성하지는 않는다. 이는 런타임에 영향을 미치지 않으며, 온전히 컴파일러만 이를 사용함,</li></ul><ul id="b02b7935-dd35-4e17-944b-4e98b7b8e504" class="bulleted-list"><li>타입 스크립트는 개발자가 필요한 어떤 특정 검사를 수행했다고 인지<ul id="91c52ee1-9622-43f1-bf55-3cd0aa79b1ca" class="bulleted-list"><li>다시 말해 사용하려면 특정 타입 검사를 하라는 의미로도 볼 수 있음</li></ul></li></ul><ul id="e538c849-0ee4-4146-b341-aa1ea3746206" class="bulleted-list"><li>타입 단언의 형태 2가지<ol id="a3006a7f-4b5a-4381-bb94-3bb519f2b3cd" class="numbered-list" start="1"><li> angle-bracket<style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="c7f38e5f-7c30-4dcd-b6bc-8412da3d779e" class="code code-wrap"><code><span class="token keyword">let</span> someValue<span class="token operator">:</span> <span class="token builtin">any</span> <span class="token operator">=</span> <span class="token string">"this is a string"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> strLength<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>string</span><span class="token punctuation">></span></span>someValue<span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span></code></pre><p id="c064ee2e-42f1-4fab-8d24-5ec10355d536" class="">
+</p></li></ol><ol id="78e43d5d-6b84-4190-a64e-c5f111b44721" class="numbered-list" start="2"><li><code>as</code>-문법<style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="22236137-7a11-4cf8-8010-76c5adb95e72" class="code code-wrap"><code><span class="token keyword">let</span> someValue<span class="token operator">:</span> <span class="token builtin">any</span> <span class="token operator">=</span> <span class="token string">"this is a string"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> strLength<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token punctuation">(</span>someValue <span class="token keyword">as</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span></code></pre></li></ol></li></ul><ul id="943dc62a-7384-4769-bf3c-5179bee32610" class="bulleted-list"><li>위 두 예제는 기능상 완전히 동일하지만 TypeScript를 JSX와 함께 사용할 때는, <code>as</code>-스타일의 단언만 허용</li></ul><p id="b9c68591-1f34-4398-88c5-2d407bb8afa5" class="">
+</p><p id="bf14cca3-641f-4425-aaeb-459d6336dcce" class=""><strong>About Number, String, Boolean, Symbol and Object</strong></p><ul id="593f93c3-38d5-42dd-b2af-5f673545414c" class="bulleted-list"><li>Number, String, Boolean, Symbol, Object 와 같이 대문자로 시작하는 타입들이 위의 소문자 타입들과 같다고 생각하기 쉽다.</li></ul><ul id="ced10138-244d-4ef1-ab01-275ff5790de3" class="bulleted-list"><li>하지만 이 타입들은 primitive language 를 참조하지 않으며, 따라서 절대 타입으로 사용되서는 안 된다.</li></ul><ul id="462d7e79-a606-432a-87ec-b0989458c369" class="bulleted-list"><li>대신 소문자로 된 타입을 쓰라고 권함 </li></ul></div></article></body></html>
