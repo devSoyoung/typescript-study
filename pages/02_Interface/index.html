@@ -1,0 +1,859 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Interface</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="795396c9-6b59-4165-995d-6658c4bcc559" class="page sans"><header><h1 class="page-title">Interface</h1></header><div class="page-body"><ul id="2f6b805d-9ee5-4eca-9a97-f234fcc8f124" class="bulleted-list"><li>TypeScript의 핵심 원리 중 하나<ul id="f462eb4c-4b06-42e8-a0c8-d6d54e8c6a78" class="bulleted-list"><li>타입 검사 시 값이 가지는 <strong>형태</strong>에 초점을 맞춘다 (structural subtyping)</li></ul><ul id="10d5cf1b-0674-4d8b-a087-ce01a77b1170" class="bulleted-list"><li>컴파일 후 사라짐</li></ul></li></ul><ul id="87519ec8-2361-4ec8-b06d-7bd8bb9dbb54" class="bulleted-list"><li>선언과 구현 중, 선언만 존재<ul id="2141b629-d7c3-4f27-bb86-950bee4c813b" class="bulleted-list"><li>객체의 변수 및 메소드 집합이 객체의 타입을 결정하는 것</li></ul><ul id="6d9a1e77-34f4-4693-8de4-76cb58635be2" class="bulleted-list"><li>클래스에서 구현부가 빠졌다고 이해하면 편함</li></ul><ul id="6c283a2d-3ad3-42ae-8144-d299a73f11e2" class="bulleted-list"><li>실질적인 구현은 구현한다고 선언한 클래스에 맡김</li></ul><p id="f99bae0d-5458-43e0-b54c-071837aa2b76" class="">
+</p></li></ul><hr id="1ec69b05-3f03-4c33-8ead-ca7dcfe9b342"/><h2 id="0ad974a5-7db9-4c84-a21c-4477485d030c" class=""><strong>1) 첫번째 인터페이스 (Our First Interface)</strong></h2><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="8930fa34-a9c4-4c02-a282-019c66b097b1" class="code code-wrap"><code><span class="token comment">/* 1. 인터페이스 사용 X */</span>
+<span class="token keyword">function</span> <span class="token function">printLabel</span><span class="token punctuation">(</span><span class="token parameter">labelledObj<span class="token operator">:</span> <span class="token punctuation">{</span> label<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>labelledObj<span class="token punctuation">.</span>label<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> myObj <span class="token operator">=</span> <span class="token punctuation">{</span> size<span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span> label<span class="token operator">:</span> <span class="token string">"Size 10 Object"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token function">printLabel</span><span class="token punctuation">(</span>myObj<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token comment">// OK. 필요한 속성이 '최소한' 있고 타입이 맞는지 체크.</span></code></pre><ul id="a5fb9ae6-4e02-4892-98ec-cd645fb1e9d6" class="bulleted-list"><li>실제로 더 많은 프로퍼티를 갖고 있어도 컴파일러는 <strong>최소한 필요한 프로퍼티가 있는지와 타입이 잘 맞는지</strong>만 검사</li></ul><p id="34097ca7-aaf1-4cee-84e6-98f1bcf38b8a" class="">
+</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="b9040119-6d68-440d-9f5f-95bba8c20a15" class="code"><code><span class="token comment">/* 2. 인터페이스 사용 O */</span>
+<span class="token keyword">interface</span> <span class="token class-name">LabelledValue</span> <span class="token punctuation">{</span>
+  label<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">printLabel</span><span class="token punctuation">(</span><span class="token parameter">labelledObj<span class="token operator">:</span> LabelledValue</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>labelledObj<span class="token punctuation">.</span>label<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Error!</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> myObj <span class="token operator">=</span> <span class="token punctuation">{</span> size<span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span> label<span class="token operator">:</span> <span class="token string">"Size 10 Object"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token function">printLabel</span><span class="token punctuation">(</span>myObj<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><ul id="aeaa02ac-dccf-473e-8cd9-cc18841d07ca" class="bulleted-list"><li>함수에 전달된 객체가 나열된 요구 조건을 충족하면 허용된다</li></ul><ul id="04fd3c03-f9b8-42fd-a5d1-68a0f208c515" class="bulleted-list"><li>인터페이스를 여러 곳에서 재사용 가능
+</li></ul><hr id="faac3518-b2e0-4de3-a3b2-0d034c187b32"/><h2 id="b39eda73-ab4b-4a95-b8ff-e9dbfb02c75b" class=""><strong>2) 선택적 프로퍼티 (Optional Properties)</strong></h2><ul id="e6cb9f15-d340-418b-9f37-72f78cf515fc" class="bulleted-list"><li>필수가 아니지만, 사용가능한 프로퍼티를 나타낼 때</li></ul><ul id="372ee4e1-bd4e-472e-b6e3-75645d73d700" class="bulleted-list"><li>인터페이스에 속하지 않는 프로퍼티의 사용을 방지</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="0bfb3a63-6b56-45d8-b121-1162fffb8e40" class="code"><code><span class="token keyword">interface</span> <span class="token class-name">SquareConfig</span> <span class="token punctuation">{</span>
+  color<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span> <span class="token comment">// 선택적 프로퍼티</span>
+  width<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">createSquare</span><span class="token punctuation">(</span><span class="token parameter">config<span class="token operator">:</span> SquareConfig</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">{</span> color<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span> area<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token punctuation">}</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> newSquare <span class="token operator">=</span> <span class="token punctuation">{</span> color<span class="token operator">:</span> <span class="token string">"white"</span><span class="token punctuation">,</span> area<span class="token operator">:</span> <span class="token number">100</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span>color<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    newSquare<span class="token punctuation">.</span>color <span class="token operator">=</span> config<span class="token punctuation">.</span>color<span class="token punctuation">;</span>
+    <span class="token comment">// newSquare.color = config.clor; // 오류!</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span>width<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    newSquare<span class="token punctuation">.</span>area <span class="token operator">=</span> config<span class="token punctuation">.</span>width <span class="token operator">*</span> config<span class="token punctuation">.</span>width<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> newSquare<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> mySquare <span class="token operator">=</span> <span class="token function">createSquare</span><span class="token punctuation">(</span><span class="token punctuation">{</span> color<span class="token operator">:</span> <span class="token string">"black"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p id="68debaee-953e-47ba-aecb-50e651c565be" class="">
+</p><hr id="64f834a6-43f3-4598-8e0d-a3cd25879532"/><h2 id="798ec5a5-8923-4127-b6f4-ff9d816e7931" class=""><strong>3) 읽기 전용 프로퍼티 (Readonly properties)</strong></h2><ul id="7ae75dcc-f022-4a19-bc19-008a4a340a2e" class="bulleted-list"><li>객체 생성 시 값을 할당한 후, 읽기만 가능</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="15ee4163-1f9a-4d5a-b0f1-cf9b63e5f02b" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">Point</span> <span class="token punctuation">{</span>
+  <span class="token keyword">readonly</span> x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span> <span class="token comment">// 읽기 전용 프로퍼티</span>
+  <span class="token keyword">readonly</span> y<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> p1<span class="token operator">:</span> Point <span class="token operator">=</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span> y<span class="token operator">:</span> <span class="token number">20</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+p1<span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span> <span class="token comment">// 오류!</span></code></pre><p id="feed970e-a4db-47b7-9518-6caf478c1825" class="">
+</p><p id="173b3cd0-efc9-4b3b-9aaf-5bae0be8bec6" class=""><code><strong>ReadonlyArray</strong></code><strong> 타입</strong></p><ul id="6c4985d2-c54a-4d6b-8c08-543a51f959c7" class="bulleted-list"><li>생성 후 변경할 수 없는 배열!</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="e4f9af98-e991-401a-bae3-2dc68dc0eb70" class="code code-wrap"><code><span class="token keyword">let</span> a<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> ra<span class="token operator">:</span> ReadonlyArray<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>number</span><span class="token punctuation">></span></span> <span class="token operator">=</span> a<span class="token punctuation">;</span>
+
+ra<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">12</span><span class="token punctuation">;</span> <span class="token comment">// 오류!</span>
+ra<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 오류!</span>
+ra<span class="token punctuation">.</span>length <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span> <span class="token comment">// 오류!</span>
+
+a <span class="token operator">=</span> ra<span class="token punctuation">;</span> <span class="token comment">// 오류! => 일반 배열에 다시 할당하는 것도 불가능</span>
+
+a <span class="token operator">=</span> ra <span class="token keyword">as</span> <span class="token builtin">number</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// 가능! => 타입 단언(assertion)을 통해 오버라이드</span></code></pre><p id="179f511b-9a9c-46a0-80e3-58d8efcf1b92" class="">
+</p><p id="6d230755-b934-467a-b31d-2b17084c2dba" class=""><code><strong>readonly</strong></code><strong> vs </strong><code><strong>const</strong></code></p><ul id="a7759246-ba4a-40a2-852b-06fb8bc66ff2" class="bulleted-list"><li>변수에서 사용할 때 -&gt; <code>const</code></li></ul><ul id="8f778508-5ead-45fa-8e40-464b1b676cf3" class="bulleted-list"><li>프로퍼티에서 사용할 때 -&gt; <code>readonly</code></li></ul><p id="e37641ba-df7d-4985-b2c3-c3b8b08939d2" class="">
+</p><hr id="86a32117-edc4-4aa8-bb1f-3757643a5955"/><h2 id="a6f72e41-74fb-4421-9e87-29e73c99e2cf" class=""><strong>4) 프로퍼티 초과 체크 (Excess Property Checks)</strong></h2><ul id="7e7c1ca5-ef7f-4cfb-a1f7-49cb7e6d3aec" class="bulleted-list"><li>프로퍼티 초과 체크란?<ul id="a3e87f0a-d9ef-4a6e-b088-ef33fbd2128a" class="bulleted-list"><li>&quot;대상 타입&quot;에 없는 프로퍼티 =&gt; 오류</li></ul></li></ul><ul id="269480ca-50e3-49f7-8cc4-9eabb397e488" class="bulleted-list"><li>체크하는 케이스?<ul id="ef2e1e8e-c7bb-4ec8-9d6f-973dc48061f9" class="bulleted-list"><li>다른 변수에 <strong>할당</strong>하거나 <strong>매개변수로 전달</strong>할 때</li></ul></li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="9685ebc7-5eba-47d4-9f55-82e868c6de6c" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">SquareConfig</span> <span class="token punctuation">{</span>
+  color<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  width<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">createSquare</span><span class="token punctuation">(</span><span class="token parameter">config<span class="token operator">:</span> SquareConfig</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token punctuation">{</span> color<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span> area<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token punctuation">}</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> mySquare <span class="token operator">=</span> <span class="token function">createSquare</span><span class="token punctuation">(</span><span class="token punctuation">{</span> colour<span class="token operator">:</span> <span class="token string">"red"</span><span class="token punctuation">,</span> width<span class="token operator">:</span> <span class="token number">100</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 오류 : 'colour'는 'SquareConfig' 타입에서 필요하지 않습니다.</span></code></pre><p id="3e37abf7-dbb9-4dfe-a85a-7a54612dbdef" class="">
+</p><h3 id="497aee0c-ae32-4cad-964f-7a3518e7a372" class=""><strong>프로퍼티 초과 체크를 피하는 3가지 방법</strong></h3><ul id="e7ae55c8-e893-4268-be62-41f1c88e8b3a" class="bulleted-list"><li>1번째 : 타입 단언(type assertion)을 사용</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="c85ee836-1f0c-4bf0-8577-3634f5e4f016" class="code code-wrap"><code><span class="token keyword">let</span> mySquare2 <span class="token operator">=</span> <span class="token function">createSquare</span><span class="token punctuation">(</span><span class="token punctuation">{</span> borderColor<span class="token operator">:</span> <span class="token string">"red"</span><span class="token punctuation">,</span> width<span class="token operator">:</span> <span class="token number">100</span> <span class="token punctuation">}</span> <span class="token keyword">as</span> SquareConfig<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><ul id="b1ea9b17-c3b6-4d2c-b4c2-9ee61eed5b83" class="bulleted-list"><li>2번째 (더 나은 방법) : 추가 프로퍼티가 있는 것이 확실한 경우, 문자열 인덱스 시그니처(string index signature)을 추가</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="ab2cf7df-b903-467a-a076-a0f0dd512ab9" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">SquareConfig</span> <span class="token punctuation">{</span> 
+	color<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span> 
+	width<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span> 
+	<span class="token punctuation">[</span>propName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span></code></pre><ul id="03d9451a-6cef-4cb8-af4e-7e04881e52a1" class="bulleted-list"><li>3번째 : 객체를 다른 변수에 할당</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="49048cf6-e6ed-4f26-a8a1-425e30baa578" class="code"><code><span class="token keyword">interface</span> <span class="token class-name">SquareConfig</span> <span class="token punctuation">{</span> 
+	color<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span> 
+	width<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> squareOptions <span class="token operator">=</span> <span class="token punctuation">{</span> colour<span class="token operator">:</span> <span class="token string">"red"</span><span class="token punctuation">,</span> width<span class="token operator">:</span> <span class="token number">100</span> <span class="token punctuation">}</span><span class="token punctuation">;</span> 
+<span class="token comment">// quareOptions가 추가 프로퍼티 검사를 받지 않기 때문에, 에러X</span>
+<span class="token keyword">let</span> mySquare <span class="token operator">=</span> <span class="token function">createSquare</span><span class="token punctuation">(</span>squareOptions<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p id="6fe7fda6-baae-4d53-ae47-75df78830704" class="">위의 예제는 <code>squareOptions</code>와 <code>SquareConfig</code> 사이에 공통 프로퍼티(width)가 있기 때문에 에러 발생하지 않은 것.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="f8605598-6133-4eb1-8b22-83b525fb7c4c" class="code"><code><span class="token keyword">let</span> squareOptions <span class="token operator">=</span> <span class="token punctuation">{</span> colour<span class="token operator">:</span> <span class="token string">"red"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> mySquare <span class="token operator">=</span> <span class="token function">createSquare</span><span class="token punctuation">(</span>squareOptions<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Error!</span></code></pre><p id="e201ded1-89e3-437a-aa2c-cb1738ebcb1d" class="">위처럼 간단한 코드의 경우, 이 검사를 &quot;피하는&quot; 방법을 시도하지 않는 것이 좋습니다. 메서드가 있고 상태를 가지는 등 더 복잡한 객체 리터럴에서 이 방법을 생각해볼 수 있습니다. 하지만 초과 프로퍼티 에러의 대부분은 실제 버그입니다. 그 말은, 만약 옵션 백 같은 곳에서 초과 프로퍼티 검사 문제가 발생하면, 타입 정의를 수정해야 할 필요가 있습니다. 예를 들어, 만약 createSquare에 color나 colour 모두 전달해도 괜찮다면, squareConfig가 이를 반영하도록 정의를 수정해야 합니다.</p><p id="dbacc96c-1aff-44ca-9f8e-a2f9a6661104" class="">
+</p><hr id="585ec235-4066-4c77-99d9-85b108d60364"/><h2 id="5ba29be8-ee29-43fb-b100-ade01e477840" class=""><strong>5) 함수 타입 (Function Types)</strong></h2><ul id="8f388593-663b-4f92-98a4-a6bf80e52630" class="bulleted-list"><li>함수 타입의 표현을 위해 호출 시그니쳐(call signature)를 제공</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="71553876-06f0-4853-9865-76021e5fe575" class="code"><code><span class="token keyword">interface</span> <span class="token class-name">SearchFunc</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">(</span>source<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> subString<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span> <span class="token comment">// 호출 시그니쳐(call signature)</span>
+<span class="token punctuation">}</span></code></pre><ul id="916bdf94-b8b9-482b-bf3f-569f55d86ecb" class="bulleted-list"><li>매개변수 이름은 같을 필요 없음</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="73afdea7-33c3-4a82-9c90-61caf8a35b95" class="code"><code><span class="token keyword">let</span> mySearch<span class="token operator">:</span> SearchFunc<span class="token punctuation">;</span>
+<span class="token function-variable function">mySearch</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">src<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> sub<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">boolean</span> <span class="token punctuation">{</span> <span class="token comment">// 매개변수 이름은 같을 필요 없음</span>
+    <span class="token keyword">let</span> result <span class="token operator">=</span> src<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span>sub<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> result <span class="token operator">></span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><ul id="575f14fe-2bc8-4db0-95de-fe5e0076694f" class="bulleted-list"><li><code>SearchFunc</code> 타입의 변수로 직접 함수 값이 할당되었기 때문에 TypeScript의 문맥상 타이핑 (contextual typing)이 인수 타입을 추론할 수 있다</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="4433d0e5-fb4e-456c-a6ae-c816cd7109f5" class="code"><code><span class="token keyword">let</span> mySearch<span class="token operator">:</span> SearchFunc<span class="token punctuation">;</span>
+<span class="token function-variable function">mySearch</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">src<span class="token punctuation">,</span> sub</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 매개변수 타입 지정 안해줘도 contextual typing으로 추론</span>
+    <span class="token keyword">let</span> result <span class="token operator">=</span> src<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span>sub<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> result <span class="token operator">></span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p id="117bac3a-4aab-4140-b424-3684fb94c1fb" class="">
+</p><hr id="445fa4de-9007-451e-8a59-3b195815f1fa"/><h2 id="9b070b78-dfd6-4879-b0e5-bd3909228627" class=""><strong>6) 인덱싱 가능 타입(Indexable Types)</strong></h2><ul id="f33cb429-7bbf-4bdc-b1b9-a5312549edaf" class="bulleted-list"><li><code>a[10]</code> 또는 <code>ageMap[&quot;daniel&quot;]</code>처럼 타입을 <strong>인덱스</strong>로 기술</li></ul><ul id="aba52aa2-85f7-4e7d-9b03-fe35f719505e" class="bulleted-list"><li>인덱서블 타입은 타입을 기술하는 인덱스 시그니처 (index signature)를 가지고 있다</li></ul><ul id="523b4f95-6468-4f29-8727-d7270a71ec11" class="bulleted-list"><li>Index signature는 2가지 타입만 가능: 문자열, 숫자</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="41b44d9e-cddf-4893-ac59-fe7a81655bbb" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">StringArray</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">[</span>index<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span> <span class="token comment">// 인덱스 시그니처(index signature)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> myArray<span class="token operator">:</span> StringArray<span class="token punctuation">;</span>
+myArray <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Bob"</span><span class="token punctuation">,</span> <span class="token string">"Fred"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> myStr<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> myArray<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// Bob</span></code></pre><h3 id="5d4a3b97-535f-4b1f-ae3e-59b6153da92f" class=""><strong>인덱싱 타입 혼합 (문자열 + 숫자)</strong></h3><ul id="405c6811-b3e4-4e39-8a05-61bdd1a3bd49" class="bulleted-list"><li>숫자 인덱서에서 반환된 형태는 문자열 인덱서에서 반환된 형태의 하위 형태여야 함</li></ul><ul id="9683469f-dcaa-4d50-9b8a-7aa8ab81829e" class="bulleted-list"><li>number를 사용하여 색인을 생성할 때 JavaScript가 객체로 색인하기 전에 문자열로 변환하기 때문</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="180c1952-5966-4ab7-8da7-0769804e6279" class="code code-wrap"><code><span class="token keyword">class</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Dog</span> <span class="token keyword">extends</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+    breed<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">NotOkay</span> <span class="token punctuation">{</span> 
+    <span class="token punctuation">[</span>stringIndex<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">]</span><span class="token operator">:</span> Dog<span class="token punctuation">;</span>
+    <span class="token punctuation">[</span>numberIndex<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">]</span><span class="token operator">:</span> Animal<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h3 id="50482597-1413-498c-9ff1-7d6197d5916e" class=""><strong>읽기전용 Index signature</strong></h3><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="865eda01-fb81-45ac-aa5d-c40761e80235" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">ReadonlyStringArray</span> <span class="token punctuation">{</span>
+    <span class="token keyword">readonly</span> <span class="token punctuation">[</span>index<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> myArray<span class="token operator">:</span> ReadonlyStringArray <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Alice"</span><span class="token punctuation">,</span> <span class="token string">"Bob"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+myArray<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Mallory"</span><span class="token punctuation">;</span> <span class="token comment">// 오류!</span></code></pre><p id="56f588cd-9ee8-47e0-9788-ad7dee9dd870" class="">
+</p><hr id="c328e492-8d9e-45fd-9344-50b651556c8d"/><h2 id="923e05eb-3206-40a6-a88c-670b9e94ed73" class=""><strong>7) 클래스 타입 (Class Types)</strong></h2><ul id="b6e33cf6-9e70-402b-8fe4-a29c9b525922" class="bulleted-list"><li><code>implements</code>로 Class에 적용</li></ul><ul id="31aba43c-2460-4a46-90a1-50806008312a" class="bulleted-list"><li>public만 기술 가능<ul id="0c8f3808-1fea-4461-9955-52f0f6799e86" class="bulleted-list"><li>클래스 인스턴스의 private에 특정 타입이 있는지 확인X</li></ul></li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="145d4111-114f-40b6-a660-7bd82bb33957" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">ClockInterface</span> <span class="token punctuation">{</span>
+  currentTime<span class="token operator">:</span> Date<span class="token punctuation">;</span>
+  <span class="token function">setTime</span><span class="token punctuation">(</span>d<span class="token operator">:</span> Date<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Clock</span> <span class="token keyword">implements</span> <span class="token class-name">ClockInterface</span> <span class="token punctuation">{</span>
+  currentTime<span class="token operator">:</span> Date<span class="token punctuation">;</span>
+  <span class="token function">setTime</span><span class="token punctuation">(</span><span class="token parameter">d<span class="token operator">:</span> Date</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>currentTime <span class="token operator">=</span> d<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">h<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> m<span class="token operator">:</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><h3 id="37735755-8eb2-4e44-84bf-707585d625dd" class=""><strong>클래스의 Static과 Instance의 차이점</strong></h3><ul id="91d3df2a-ca0d-4a27-9b11-c3de97e495c4" class="bulleted-list"><li>클래스는 두 가지 타입 : 스태틱 타입, 인스턴스 타입</li></ul><p id="3e2798d7-d9a7-40a0-8da1-57ee20ef3721" class=""><a href="https://stackoverflow.com/questions/58399613/what-is-exactly-the-static-side-and-the-instance-side-in-typescript">https://stackoverflow.com/questions/58399613/what-is-exactly-the-static-side-and-the-instance-side-in-typescript</a></p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="e8464916-0aa8-4c35-9ef5-1b332ad4143c" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">ClockConstructor</span> <span class="token punctuation">{</span>
+    <span class="token keyword">new</span> <span class="token punctuation">(</span>hour<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> minute<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Construct signature</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Error! 인터페이스를 Implements할 때 클래스의 Instance적인 면만 검사.</span>
+<span class="token keyword">class</span> <span class="token class-name">Clock</span> <span class="token keyword">implements</span> <span class="token class-name">ClockConstructor</span> <span class="token punctuation">{</span>
+    currentTime<span class="token operator">:</span> Date<span class="token punctuation">;</span>
+    <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">h<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> m<span class="token operator">:</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre><ul id="4aaea35b-bf95-44b2-a55d-af7edd284c20" class="bulleted-list"><li>생성 시그니처 (construct signature)로 인터페이스를 생성하고, 클래스를 생성하려고 한다면, 인터페이스를 implements 할 때, 에러가 발생하는 것을 확인할 수 있다</li></ul><p id="28c65fa6-3d5d-4c56-be8e-96155d990231" class="">
+</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="65868dbb-8a53-4921-8750-0b7dce596059" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">ClockConstructor</span> <span class="token punctuation">{</span>
+    <span class="token keyword">new</span> <span class="token punctuation">(</span>hour<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> minute<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token operator">:</span> ClockInterface<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">interface</span> <span class="token class-name">ClockInterface</span> <span class="token punctuation">{</span> <span class="token comment">// 인스턴스 인터페이스</span>
+    <span class="token function">tick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">createClock</span><span class="token punctuation">(</span><span class="token parameter">ctor<span class="token operator">:</span> ClockConstructor<span class="token punctuation">,</span> hour<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> minute<span class="token operator">:</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span><span class="token operator">:</span> ClockInterface <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ctor</span><span class="token punctuation">(</span>hour<span class="token punctuation">,</span> minute<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">DigitalClock</span> <span class="token keyword">implements</span> <span class="token class-name">ClockInterface</span> <span class="token punctuation">{</span>
+    <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">h<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> m<span class="token operator">:</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+    <span class="token function">tick</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"beep beep"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">AnalogClock</span> <span class="token keyword">implements</span> <span class="token class-name">ClockInterface</span> <span class="token punctuation">{</span>
+    <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">h<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> m<span class="token operator">:</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+    <span class="token function">tick</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"tick tock"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> digital <span class="token operator">=</span> <span class="token function">createClock</span><span class="token punctuation">(</span>DigitalClock<span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">17</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> analog <span class="token operator">=</span> <span class="token function">createClock</span><span class="token punctuation">(</span>AnalogClock<span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><ul id="8d514cc1-9a1e-477b-a38d-e90895f0c8b7" class="bulleted-list"><li>ClockConstructor는 생성자를 정의하고, ClockInterface는 인스턴스 메서드를 정의하는 두 인터페이스를 정의합니다. 그리고, 편의를 위해, 전달된 타입의 인스턴스를 생성하는 createClock 생성자 함수를 정의합니다</li></ul><ul id="e44b85bc-a67a-419c-994f-315c47869701" class="bulleted-list"><li>createClock의 첫 번째 매개변수는 createClock(AnalogClock, 7, 32)안에 ClockConstructor 타입이므로, AnalogClock이 올바른 생성자 시그니처를 갖고 있는지 검사합니다.</li></ul><p id="a06231c6-6ca5-4f21-9a2e-6d718fea3570" class="">
+</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="7e41956a-168c-409f-a9ea-4b1666090872" class="code"><code><span class="token keyword">interface</span> <span class="token class-name">ClockConstructor</span> <span class="token punctuation">{</span>
+  <span class="token keyword">new</span> <span class="token punctuation">(</span>hour<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> minute<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">ClockInterface</span> <span class="token punctuation">{</span>
+  <span class="token function">tick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> Clock<span class="token operator">:</span> ClockConstructor <span class="token operator">=</span> <span class="token keyword">class</span> <span class="token class-name">Clock</span> <span class="token keyword">implements</span> <span class="token class-name">ClockInterface</span> <span class="token punctuation">{</span>
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">h<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> m<span class="token operator">:</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token function">tick</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"beep beep"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre><ul id="af5801c0-0ac0-4b8a-b789-2918fe0c0748" class="bulleted-list"><li>클래스 표현을 사용하는 것도 간단한 방법</li></ul><p id="ebcc70ed-14c6-4271-9a75-6ff03154aa13" class="">
+</p><hr id="252c486e-aa87-478f-a23c-5d9e384c25c2"/><h2 id="a197c9e9-3d25-4a1d-a276-4cf0b9fa3b8c" class=""><strong>8) 인터페이스 확장 (Extending Interfaces)</strong></h2><ul id="a4af916f-3cdf-408e-b04e-9c59fba83665" class="bulleted-list"><li>인터페이스는 서로를 extends 가능</li></ul><ul id="bd3a40ae-b26e-425d-a97e-a3e4d48554d5" class="bulleted-list"><li>인터페이스 자체를 재사용 가능한 구성요소로 분리하여 유연하게 사용</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="ff5c3e3f-1fb2-46eb-973a-e364beacd8c1" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">Shape</span> <span class="token punctuation">{</span>
+  color<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">PenStroke</span> <span class="token punctuation">{</span>
+  penWidth<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 여러 인터페이스 확장</span>
+<span class="token keyword">interface</span> <span class="token class-name">Square</span> <span class="token keyword">extends</span> <span class="token class-name">Shape</span><span class="token punctuation">,</span> PenStroke <span class="token punctuation">{</span>
+  sideLength<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// let square = &lt;Square>{};</span>
+<span class="token keyword">let</span> square <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token keyword">as</span> Square<span class="token punctuation">;</span>
+square<span class="token punctuation">.</span>color <span class="token operator">=</span> <span class="token string">"blue"</span><span class="token punctuation">;</span>
+square<span class="token punctuation">.</span>sideLength <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+square<span class="token punctuation">.</span>penWidth <span class="token operator">=</span> <span class="token number">5.0</span><span class="token punctuation">;</span></code></pre><p id="8a2c27c1-31ca-426e-8614-da9dc39496dc" class="">
+</p><hr id="fbb2dd22-8b33-4b35-851c-4aa90bc6c9cb"/><h2 id="1f2cdcd3-845d-47c6-92a6-3dad780cb848" class=""><strong>9) 하이브리드 타입 (Hybrid Types)</strong></h2><ul id="346b4abc-3d17-49c6-9f9f-05facb1527ed" class="bulleted-list"><li>함수이기도 하면서, 객체이기도 한 인터페이스가 존재할 수 있음<ul id="52509c03-9227-4bda-b656-1daf71217474" class="bulleted-list"><li>ex) jQuery의 $</li></ul></li></ul><ul id="de09f54c-46c8-43a4-83d1-2436dfe74a93" class="bulleted-list"><li>호출 시그니쳐와 속성 타입 정의가 동시에 가능</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="86a544c6-8288-4fc8-8c18-2998cb0273d1" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">jQueryElement</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">jQueryInterface</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">(</span><span class="token builtin">string</span><span class="token operator">:</span> query<span class="token punctuation">)</span><span class="token operator">:</span> jQueryElement<span class="token punctuation">;</span>
+  each<span class="token operator">:</span> <span class="token builtin">Function</span><span class="token punctuation">;</span>
+  ajax<span class="token operator">:</span> <span class="token builtin">Function</span><span class="token punctuation">;</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> listItem <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'.list-item'</span><span class="token punctuation">)</span>
+$<span class="token punctuation">.</span><span class="token function">each</span><span class="token punctuation">(</span>listItem<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">index<span class="token punctuation">,</span> item</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre><p id="9fc74e4a-5375-4f83-9fb6-0c414835eabc" class="">
+</p><hr id="3e1fad3a-c90e-41d1-8122-45c50b249e44"/><h2 id="948452e8-7957-4a67-849a-aeab0d7f9a7b" class=""><strong>10) 클래스 확장 인터페이스</strong></h2><ul id="ce58365b-e93a-4e77-a5b3-54039649a11b" class="bulleted-list"><li>인터페이스 타입이 클래스 타입을 확장하면, 클래스의 멤버는 상속받지만 구현은 상속받지 않는다 (= 클래스 멤버 모두를 선언한 것과 마찬가지)</li></ul><ul id="9daf470d-35fe-4726-82c6-7d8acacb2289" class="bulleted-list"><li>인터페이스는 기초 클래스의 private과 protected 멤버도 상속받는다 (= private 혹은 protected 멤버를 포함한 클래스를 확장할 수 있다)</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="aa1fc652-e7fa-4e56-8df0-1a92cb05129c" class="code code-wrap"><code><span class="token keyword">class</span> <span class="token class-name">Control</span> <span class="token punctuation">{</span>
+  <span class="token keyword">private</span> state<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 클래스를 상속받은 인터페이스</span>
+<span class="token keyword">interface</span> <span class="token class-name">SelectableControl</span> <span class="token keyword">extends</span> <span class="token class-name">Control</span> <span class="token punctuation">{</span>
+  <span class="token function">select</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Button</span> <span class="token keyword">extends</span> <span class="token class-name">Control</span> <span class="token keyword">implements</span> <span class="token class-name">SelectableControl</span> <span class="token punctuation">{</span>
+  <span class="token function">select</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">TextBox</span> <span class="token keyword">extends</span> <span class="token class-name">Control</span> <span class="token punctuation">{</span>
+  <span class="token function">select</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 오류: 'Image' 타입의 'state' 프로퍼티가 없습니다.</span>
+<span class="token keyword">class</span> <span class="token class-name">Image</span> <span class="token keyword">implements</span> <span class="token class-name">SelectableControl</span> <span class="token punctuation">{</span>
+	<span class="token keyword">private</span> state<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">;</span>
+  <span class="token function">select</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Location</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span></code></pre><p id="86a5035b-b9cd-42f2-a4b3-1a31db1abdc1" class="">
+</p></div></article></body></html>

@@ -42,8 +42,16 @@
             padding: 10px;
             text-align: center;
             counter-increment: my-awesome-counter;
-            margin-bottom: 0.5rem;
             border-radius: 5px;
+        }
+        .chapters li.red {
+            background: #ff7473;
+        }
+        .chapters li.yellow {
+            background: #ffc952;
+        }
+        .chapters li.green {
+            background: #cbe86b;
         }
         .chapters li::before {
             content: "0" counter(my-awesome-counter);
@@ -79,45 +87,57 @@
         <li><strong>스터디 기간 📆</strong> : 2021년 1월 31일 ~ 진행중</li>
     </ul>
     <ol class="chapters">
-        <li style="background: #47b8e0;">
+        <li class="red">
             <a href="pages/01_BasicTypes">
                 Basic Types
                 <div class="author">진창엽</div>
             </a>
         </li>
-        <li style="background: #ffc952;">
-            <a href="pages/03_Functions">
+        <li class="yellow">
+            <a href="pages/02_Interface">
                 Interface
                 <div class="author">조민지</div>
             </a>
         </li>
-        <li style="background: #ff7473;">
+        <li class="green">
             <a href="pages/03_Functions">
                 Functions
                 <div class="author">이소영</div>
             </a>
         </li>
-        <li style="background: #47b8e0;">
+        <li class="red">
             <a href="pages/04_LiteralNarrowing">
                 Literal 좁히기
                 <div class="author">진창엽</div>
             </a>
         </li>
-        <li style="background: #ff7473;">
+        <li class="yellow">
+            <a href="pages/05_UnionsAndIntersectionTypes">
+                Union과 타입 교차
+                <div class="author">조민지</div>
+            </a>
+        </li>
+        <li class="green">
             <a href="pages/06_Class">
-                Functions
+                Class
                 <div class="author">이소영</div>
             </a>
         </li>
-        <li style="background: #47b8e0;">
+        <li class="red">
             <a href="pages/07_EnumTypes">
                 열거형
                 <div class="author">진창엽</div>
             </a>
         </li>
-        <li style="background: #ff7473;">
+        <li class="yellow">
+            <a href="pages/08_Generic">
+                Generic
+                <div class="author">조민지</div>
+            </a>
+        </li>
+        <li class="green">
             <a href="pages/09_AdvancedTypes">
-                Functions
+                Advanced Types
                 <div class="author">이소영</div>
             </a>
         </li>

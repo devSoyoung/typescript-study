@@ -1,0 +1,781 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Unions and Intersection Types</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a56f1ad4-029f-4be3-8fbd-ba0353c08ae8" class="page sans"><header><h1 class="page-title">Unions and Intersection Types</h1></header><div class="page-body"><ul id="4a9bf2c9-262f-4e67-a014-8d513af2026c" class="bulleted-list"><li> <mark class="highlight-yellow_background"><strong>이미 존재하는 타입을 구성하거나 결합하는 방법</strong></mark></li></ul><ul id="40f9a62f-19d3-4c69-a0d2-991effb3090e" class="bulleted-list"><li>교차 타입과 유니언 타입은 <mark class="highlight-yellow_background"><strong>타입을 구성할 수 있는 방법</strong></mark> 중 하나</li></ul><h1 id="df1c5f1e-84d4-49ca-93d0-a3b6963f2435" class=""><strong>유니언 타입 (Union Types)</strong></h1><p id="ecbe2cd0-62e0-486a-8e7a-308d212c656a" class=""><code>number</code>나 <code>string</code>을 매개변수로 기대하는 라이브러리를 사용한다면</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="1c93fd30-0110-4d5f-9e47-fc6a02318d8d" class="code code-wrap"><code><span class="token comment">/**
+ * 문자열을 받고 왼쪽에 "padding"을 추가합니다.
+ * 만약 'padding'이 문자열이라면, 'padding'은 왼쪽에 더해질 것입니다.
+ * 만약 'padding'이 숫자라면, 그 숫자만큼의 공백이 왼쪽에 더해질 것입니다.
+ */</span>
+<span class="token keyword">function</span> <span class="token function">padLeft</span><span class="token punctuation">(</span><span class="token parameter">value<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> padding<span class="token operator">:</span> <span class="token builtin">any</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> padding <span class="token operator">===</span> <span class="token string">"number"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">Array</span><span class="token punctuation">(</span>padding <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span> <span class="token operator">+</span> value<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> padding <span class="token operator">===</span> <span class="token string">"string"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> padding <span class="token operator">+</span> value<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Expected string or number, got '</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>padding<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">'.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">padLeft</span><span class="token punctuation">(</span><span class="token string">"Hello world"</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "Hello world"를 반환합니다.</span>
+</code></pre><p id="e7fb7500-3c9b-4baf-8cb5-c51d67706c80" class="">위 예제에서 <code>padding</code>이 <code>any</code> 타입으로 되어있으므로 <code>number</code>나 <code>string</code> 둘 다 아닌 인수로 함수를 호출할 수 있다.</p><p id="fef4141b-48b3-49fb-bc82-848fabda78fb" class=""><code>any</code> 대신에, <mark class="highlight-yellow_background">유니언 타입</mark>을 매개변수 <code>padding</code>에 사용한다면</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="9389a57b-fd4a-4b0e-96f5-172f66f10850" class="code code-wrap"><code><span class="token comment">// @errors: 2345</span>
+<span class="token comment">/**
+ * 문자열을 받고 왼쪽에 "padding"을 추가합니다.
+ * 만약 'padding'이 문자열이라면, 'padding'은 왼쪽에 더해질 것입니다.
+ * 만약 'padding'이 숫자라면, 그 숫자만큼의 공백이 왼쪽에 더해질 것입니다.
+ */</span>
+<span class="token keyword">function</span> <span class="token function">padLeft</span><span class="token punctuation">(</span><span class="token parameter">value<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> padding<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token operator">|</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> indentedString <span class="token operator">=</span> <span class="token function">padLeft</span><span class="token punctuation">(</span><span class="token string">"Hello world"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p id="28af2313-13ac-4753-8c19-a98e559c2046" class="">유니언 타입은 여러 타입 중 하나가 될 수 있는 값을 의미합니다. 세로 막대 (<code>|</code>)로 각 타입을 구분하여, <code>number | string | boolean</code>은 값의 타입이 <code>number</code>, <code>string</code> 혹은 <code>boolean</code>이 될 수 있음을 의미한다.</p><h2 id="8e9b5ff4-9dca-4762-831d-ab90f459dcf1" class=""><strong>공통 필드를 갖는 유니언 (Unions with Common Fields)</strong></h2><p id="a3c9f7e7-744a-414e-a42a-320ad925c2d9" class="">유니언 타입인 값이 있으면, <mark class="highlight-yellow_background"><strong>유니언에 있는 모든 타입에 공통인 멤버들에만 접근</strong></mark>할 수 있다.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="0d503597-908b-43d4-b1b9-3e17cba4d342" class="code code-wrap"><code><span class="token comment">// @errors: 2339</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Bird</span> <span class="token punctuation">{</span>
+  <span class="token function">fly</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+  <span class="token function">layEggs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Fish</span> <span class="token punctuation">{</span>
+  <span class="token function">swim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+  <span class="token function">layEggs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">declare</span> <span class="token keyword">function</span> <span class="token function">getSmallPet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> Fish <span class="token operator">|</span> Bird<span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> pet <span class="token operator">=</span> <span class="token function">getSmallPet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+pet<span class="token punctuation">.</span><span class="token function">layEggs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 두 개의 잠재적인 타입 중 하나에서만 사용할 수 있습니다.</span>
+pet<span class="token punctuation">.</span><span class="token function">swim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><ul id="8dc13ecc-e08b-4540-9211-18d86f0b2943" class="bulleted-list"><li>만약 값이 <code>A | B</code> 타입을 갖고 있으면, <strong>확신할 수 있는 것은 그 값이 </strong><strong><code>A</code></strong><strong><em>와</em></strong><strong><code>B</code></strong><strong> 둘 다 가지고 있는 멤버들을 갖고 있다는 것뿐</strong></li></ul><ul id="b5b00663-1c93-493e-a48d-aa8531dcf8e9" class="bulleted-list"><li>이 예제에서, <code>Bird</code>는 <code>fly</code>라는 멤버를 갖고 있지만 <code>Fish</code>는  <code>fly</code>라는 멤버를 갖고 있다고 확신할 수 없다.</li></ul><ul id="b6c8a69d-099c-4a9b-9760-43989bd8cfcc" class="bulleted-list"><li>따라서 <code>Bird | Fish</code>로 타입이 지정된 변수가 <code>fly</code> 메서드를 가지고 있는지 확신할 수 없다. (만약 변수가 실제로 런타임에 <code>Fish</code>이면, <code>pet.fly()</code>를 호출하는 것은 오류)</li></ul><figure id="46bd911a-5b1c-4b25-b482-274652a00b98" class="image"><a href="Unions%20and%20Intersection%20Types%2046bd911a5b1c4b25b482274652a00b98/Untitled.png"><img style="width:1096px" src="Unions%20and%20Intersection%20Types%2046bd911a5b1c4b25b482274652a00b98/Untitled.png"/></a></figure><p id="f3f11146-7cbf-4d26-80d3-efc542a702fb" class="">
+</p><h2 id="8ec73e58-07d8-4587-aedd-e1488f9be034" class=""><strong>유니언 구별하기 (Discriminating Unions)</strong></h2><p id="e616cb55-837f-4947-80be-776c0fcbf3b6" class="">유니언을 사용하는 데 있어서 일반적인 기술은 TypeScript가 현재 가능한 <strong>타입 추론의 범위를 좁혀나가게</strong> 해줄 수 있는 리터럴 타입을 갖는 <mark class="highlight-yellow_background"><strong>단일 필드</strong></mark>를 사용하는 것이다. </p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="f76edb57-9d93-4c3e-a022-3adf3ce0c54a" class="code code-wrap"><code><span class="token keyword">type</span> NetworkLoadingState <span class="token operator">=</span> <span class="token punctuation">{</span>
+  state<span class="token operator">:</span> <span class="token string">"loading"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">type</span> NetworkFailedState <span class="token operator">=</span> <span class="token punctuation">{</span>
+  state<span class="token operator">:</span> <span class="token string">"failed"</span><span class="token punctuation">;</span>
+  code<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">type</span> NetworkSuccessState <span class="token operator">=</span> <span class="token punctuation">{</span>
+  state<span class="token operator">:</span> <span class="token string">"success"</span><span class="token punctuation">;</span>
+  response<span class="token operator">:</span> <span class="token punctuation">{</span>
+    title<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+    duration<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    summary<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 위 타입들 중 단 하나를 대표하는 타입을 만들었지만,</span>
+<span class="token comment">// 그것이 무엇에 해당하는지 아직 확실하지 않습니다.</span>
+<span class="token keyword">type</span> NetworkState <span class="token operator">=</span>
+  <span class="token operator">|</span> NetworkLoadingState
+  <span class="token operator">|</span> NetworkFailedState
+  <span class="token operator">|</span> NetworkSuccessState<span class="token punctuation">;</span></code></pre><p id="63dc17e3-5238-44a7-81da-4998fe808578" class="">위 타입들은 모두 <code>state</code>라는 필드를 갖고 있으며, 그들 각자만의 필드도 갖고 있다</p><figure id="68b8d62f-ee41-4ada-972e-73fa504d1adc" class="image"><a href="Unions%20and%20Intersection%20Types%2046bd911a5b1c4b25b482274652a00b98/Untitled%201.png"><img style="width:1302px" src="Unions%20and%20Intersection%20Types%2046bd911a5b1c4b25b482274652a00b98/Untitled%201.png"/></a></figure><ul id="39bca56e-4fd7-455d-8a80-3fc0dc7fa4f3" class="bulleted-list"><li><code>state</code> 필드가 <code>NetworkState</code> 안의 모든 타입에 공통으로 존재하므로 존재 여부를 체크하지 않고도 접근할 수 있다.</li></ul><ul id="fb3543c0-8bd3-4552-bcd2-699e04d5aa66" class="bulleted-list"><li>리터럴 타입으로서 <code>state</code>를 갖고 있다면, <code>state</code>의 값은 대응하는 동일한 문자열과 대조되고 TypeScript는 현재 어떤 타입이 사용되고 있는지 알 것이</li></ul><figure id="78f999e2-2b94-49dc-95e6-68a90207b773" class="image"><a href="Unions%20and%20Intersection%20Types%2046bd911a5b1c4b25b482274652a00b98/Untitled%202.png"><img style="width:1278px" src="Unions%20and%20Intersection%20Types%2046bd911a5b1c4b25b482274652a00b98/Untitled%202.png"/></a></figure><p id="4130744f-6c73-4630-b6db-09d85b72fc83" class="">
+</p><p id="eda27414-0446-472b-a730-196f95770856" class="">이 경우, 런타임에 나타나는 타입의 범위를 좁히기 위하여 <code>switch</code>문을 사용할 수 있다.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="fbbee9ee-eff4-4873-ab63-50464ea3f551" class="code code-wrap"><code><span class="token keyword">type</span> NetworkLoadingState <span class="token operator">=</span> <span class="token punctuation">{</span>
+  state<span class="token operator">:</span> <span class="token string">"loading"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">type</span> NetworkFailedState <span class="token operator">=</span> <span class="token punctuation">{</span>
+  state<span class="token operator">:</span> <span class="token string">"failed"</span><span class="token punctuation">;</span>
+  code<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">type</span> NetworkSuccessState <span class="token operator">=</span> <span class="token punctuation">{</span>
+  state<span class="token operator">:</span> <span class="token string">"success"</span><span class="token punctuation">;</span>
+  response<span class="token operator">:</span> <span class="token punctuation">{</span>
+    title<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+    duration<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    summary<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// ---생략---</span>
+<span class="token keyword">type</span> NetworkState <span class="token operator">=</span>
+  <span class="token operator">|</span> NetworkLoadingState
+  <span class="token operator">|</span> NetworkFailedState
+  <span class="token operator">|</span> NetworkSuccessState<span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">networkStatus</span><span class="token punctuation">(</span><span class="token parameter">state<span class="token operator">:</span> NetworkState</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 현재 TypeScript는 셋 중 어떤 것이</span>
+  <span class="token comment">// state가 될 수 있는 잠재적인 타입인지 알 수 없습니다.</span>
+
+  <span class="token comment">// 모든 타입에 공유되지 않는 프로퍼티에 접근하려는 시도는</span>
+  <span class="token comment">// 오류를 발생시킵니다.</span>
+  state<span class="token punctuation">.</span>code<span class="token punctuation">;</span>
+
+  <span class="token comment">// state에 swtich문을 사용하여, TypeScript는 코드 흐름을 분석하면서</span>
+  <span class="token comment">// 유니언 타입을 좁혀나갈 수 있습니다.</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>state<span class="token punctuation">.</span>state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">"loading"</span><span class="token operator">:</span>
+      <span class="token keyword">return</span> <span class="token string">"Downloading..."</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"failed"</span><span class="token operator">:</span>
+      <span class="token comment">// 여기서 타입은 NetworkFailedState일 것이며,</span>
+      <span class="token comment">// 따라서 `code` 필드에 접근할 수 있습니다.</span>
+      <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Error </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>state<span class="token punctuation">.</span>code<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> downloading</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"success"</span><span class="token operator">:</span>
+      <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Downloaded </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>state<span class="token punctuation">.</span>response<span class="token punctuation">.</span>title<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> - </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>state<span class="token punctuation">.</span>response<span class="token punctuation">.</span>summary<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><h1 id="4de37054-a726-489d-82ab-dd2b0cd72d0a" class=""><strong>교차 타입 (Intersection Types)</strong></h1><p id="7c526379-6a3d-4a64-a874-bacdf462040f" class="">교차 타입은 유니언 타입과 밀접한 관련이 있지만, 사용 방법은 매우 다르다. </p><ul id="8c563ef6-cfe2-43fc-b5c3-62720b702707" class="bulleted-list"><li>교차 타입은 여러 타입을 하나로 <mark class="highlight-yellow_background"><strong>결합</strong></mark>합니다.</li></ul><ul id="2bdbf47f-e71e-40d9-9555-ee13b7da59e5" class="bulleted-list"><li><mark class="highlight-yellow_background"><strong>기존 타입을 합쳐 필요한 기능을 모두 가진 단일 타입을 얻을 수 있다.</strong></mark> </li></ul><p id="1f97816a-f98e-47cf-a4ec-4bb63628bb06" class="">예를 들어, <code>Person &amp; Serializable &amp; Loggable</code>은 <code>Person</code> ∪ <code>Serializable</code> ∪ <code>Loggable</code>. 즉, 이 타입의 객체는 <mark class="highlight-yellow_background"><strong>세 가지 타입의 모든 멤버를 갖는다.</strong></mark></p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="bcfc9316-ac44-4ef9-a247-41e69852aa38" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">ErrorHandling</span> <span class="token punctuation">{</span>
+  success<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span>
+  error<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">{</span> message<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">ArtworksData</span> <span class="token punctuation">{</span>
+  artworks<span class="token operator">:</span> <span class="token punctuation">{</span> title<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">}</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">ArtistsData</span> <span class="token punctuation">{</span>
+  artists<span class="token operator">:</span> <span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">}</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 이 인터페이스들은</span>
+<span class="token comment">// 하나의 에러 핸들링과 자체 데이터로 구성됩니다.</span>
+
+<span class="token keyword">type</span> ArtworksResponse <span class="token operator">=</span> ArtworksData <span class="token operator">&amp;</span> ErrorHandling<span class="token punctuation">;</span>
+<span class="token comment">// interface ArtworksResponse {</span>
+<span class="token comment">// 	artworks: { title: string }[];</span>
+<span class="token comment">//   success: boolean;</span>
+<span class="token comment">//   error?: { message: string };</span>
+<span class="token comment">// }</span>
+
+<span class="token keyword">type</span> ArtistsResponse <span class="token operator">=</span> ArtistsData <span class="token operator">&amp;</span> ErrorHandling<span class="token punctuation">;</span>
+<span class="token comment">// interface ArtworksResponse {</span>
+<span class="token comment">// 	artists: { name: string }[];</span>
+<span class="token comment">//   success: boolean;</span>
+<span class="token comment">//   error?: { message: string };</span>
+<span class="token comment">// }</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">handleArtistsResponse</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">response<span class="token operator">:</span> ArtistsResponse</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>response<span class="token punctuation">.</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>error<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>artists<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p id="600faa52-d7cb-4f57-bdf5-f8fa854f8a8b" class="">
+</p><h2 id="c51c062b-59b1-4472-8e0f-2f13fde824f2" class="">Difference between extending and intersecting interfaces in TypeScript?</h2><p id="acf51bed-a8ca-4d93-aaa6-38e01bc07d2e" class=""><a href="https://stackoverflow.com/questions/52681316/difference-between-extending-and-intersecting-interfaces-in-typescript">https://stackoverflow.com/questions/52681316/difference-between-extending-and-intersecting-interfaces-in-typescript</a></p><p id="c904d3ed-e9df-4d0f-a861-b6be15bc1f43" class="">찐으로 합집합이였던거임...!</p><p id="d935c82a-e5ea-43b5-8e41-0caf3b7040a1" class="">
+</p></div></article></body></html>

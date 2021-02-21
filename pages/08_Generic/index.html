@@ -1,0 +1,743 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Generic</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="87745620-32c0-466b-bea2-aee88113b67b" class="page sans"><header><h1 class="page-title">Generic</h1></header><div class="page-body"><h1 id="a270e58c-0445-48c0-b7a1-01a1aa12a3f3" class=""><strong>소개 (Introduction)</strong></h1><ul id="59f3c88e-a1e9-4ece-a7bc-69e360d668fc" class="bulleted-list"><li>재사용 가능한 컴포넌트를 생성하는 도구상자의 주요 도구 중 하나는 제네릭이다</li></ul><ul id="993caab6-14a4-4e38-8d2d-130988928266" class="bulleted-list"><li><mark class="highlight-yellow_background"><strong>단일 타입이 아닌 다양한 타입에서 작동하는 컴포넌트</strong></mark>를 작성할 수 있다</li></ul><ul id="e447185d-fafa-453f-91c8-38a0febee10c" class="bulleted-list"><li>사용자는 제네릭을 통해 여러 타입의 컴포넌트나 자신만의 타입을 사용할 수 있다</li></ul><p id="e699c0eb-24ad-4259-80eb-cf269c744ee4" class="">
+</p><h1 id="28a4ebca-f4b5-44f7-8ffc-e023f91401c7" class=""><strong>제네릭의 Hello World (Hello World of Generics)</strong></h1><p id="0a5539b4-8b00-4f18-b714-87747beda275" class="">identity 함수는 인수로 무엇이 오던 그대로 반환하는 함수이다. 제네릭이 없다면, identity 함수에 특정 타입을 주어야 합니다:</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="4e215fa9-5f8a-4e84-b5b3-76c97561c5e4" class="code code-wrap"><code><span class="token keyword">function</span> <span class="token function">identity</span><span class="token punctuation">(</span><span class="token parameter">arg<span class="token operator">:</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">number</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> arg<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p id="3b3cf8ed-9bfd-44d4-ab01-4cb3dd3cec67" class="">또는 <code>any</code> 타입을 사용하여 identity 함수를 기술할 수 있다</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="78de7c68-be68-48ac-a642-370960212f87" class="code code-wrap"><code><span class="token keyword">function</span> <span class="token function">identity</span><span class="token punctuation">(</span><span class="token parameter">arg<span class="token operator">:</span> <span class="token builtin">any</span></span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">any</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> arg<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p id="e0e5d495-bab3-47cd-abdf-bf0d40608fef" class=""><code>any</code>를 쓰는 것은 함수의 <code>arg</code>가 어떤 타입이든 받을 수 있다는 점에서 제네릭이지만, 실제로 함수가 반환할 때 어떤 타입인지에 대한 정보는 잃게 된다. 만약 number 타입을 넘긴다고 해도 any 타입이 반환된다는 정보만 얻을 수 있다.</p><p id="af0c209f-d632-4e18-9d9a-9117a2a44d0d" class="">따라서 무엇이 반환되는지 표시하기 위해 인수의 타입을 캡처해야 한다. 그러므로 값이 아닌 타입에 적용되는 <mark class="highlight-yellow_background"><strong>타입 변수</strong></mark> 를 사용하자!</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="9b2c0f2f-b299-41c1-a795-2fc1de05985c" class="code code-wrap"><code><span class="token keyword">function</span> identity<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">T</span></span><span class="token punctuation">></span></span><span class="token punctuation">(</span>arg<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> arg<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p id="3e4a5f0f-62bd-401f-b378-c55a7bc4c574" class=""><code>T</code>는 유저가 준 인수의 타입을 캡처하고, 이 정보를 나중에 사용할 수 있게 한다. 여기에서는 <code>T</code>를 반환 타입으로 다시 사용하여 인수와 반환 타입이 같은 타입을 사용하도록 한다. 이를 통해 타입 정보를 함수의 한쪽에서 다른 한쪽으로 운반할 수 있게끔 한다.</p><p id="d4b7a74e-ff59-4828-9f58-9a8494c06fde" class="">이 버전의 identity 함수는 타입을 불문하고 동작하므로 제네릭이라 할 수 있다. <code>any</code>를 쓰는 것과는 다르게 인수와 반환 타입에 number를 사용한 첫 번째 <code>identity</code> 함수만큼 정확하다. (즉, 어떤 정보도 잃지 않는다)</p><p id="bb794bce-0979-44fe-ab1e-aae9c29e712f" class="">
+</p><p id="47df99e2-bd0a-441c-ae17-abd57d59df69" class="">일단 제네릭 <code>identity</code> 함수를 작성하고 나면, 두 가지 방법 중 하나로 호출할 수 있다. </p><ol id="67ec8da9-a510-4adf-a8ce-2a2469393714" class="numbered-list" start="1"><li>함수에 타입 인수를 포함한 모든 인수를 전달하는 방법</li></ol><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="136c8290-9f73-492a-8166-a4e43676fd71" class="code code-wrap"><code><span class="token keyword">let</span> output <span class="token operator">=</span> identity<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>string</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token string">"myString"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 출력 타입은 'string'입니다.</span></code></pre><p id="ff74be80-a51c-4d06-8187-0355a913eb8b" class="">여기서 우리는 함수를 호출할 때의 인수 중 하나로써 <code>T</code>를 <code>string</code>으로 명시해 주었다.</p><p id="8c7ff41e-0646-4d18-b130-1667160c259d" class="">  2. 타입 인수 추론 : 우리가 전달하는 인수에 따라서 컴파일러가 <code>T</code>의 값을 자동으로 정하게 하는 것</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="8b2f58b9-7e7f-479f-b141-869b52db7a9d" class="code code-wrap"><code><span class="token keyword">let</span> output <span class="token operator">=</span> <span class="token function">identity</span><span class="token punctuation">(</span><span class="token string">"myString"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//출력 타입은 'string'입니다.</span></code></pre><p id="6fb33f20-314e-4774-b1c2-bd473316ba64" class="">타입 인수를 꺾쇠괄호(<code>&lt;&gt;</code>)에 담아 명시적으로 전달해 주지 않았지만 컴파일러는 <code>&quot;myString&quot;</code>를 보고 그것의 타입으로 <code>T</code>를 정한다. 인수 추론은 코드를 간결하고 가독성 있게 하는 데 있어 유용하지만 더 복잡한 예제에서 컴파일러가 타입을 유추할 수 없는 경우엔 명시적인 타입 인수 전달이 필요할 수도 있다.</p><p id="05c43e1e-9d96-4269-82d9-b2e1bb5d962b" class="">
+</p><h1 id="25e8d288-6af9-4e85-a965-cfba01499684" class=""><strong>제네릭 타입 변수 작업 (Working with Generic Type Variables)</strong></h1><p id="b3703878-6d68-42c4-be7e-69f6ababbb68" class="">제네릭을 사용하기 시작하면, 제네릭 함수를 만들 때 컴파일러가 함수 본문에 제네릭 타입화된 매개변수를 쓰도록 강요한다. 즉, 이 매개변수들은 실제로 <code>any</code> 나 모든 타입이 될 수 있는 것처럼 취급된다.</p><p id="071ad2cf-e6c3-4fd9-ad3a-3d7b7faa2f00" class="">
+</p><p id="8d5491b6-026f-4e84-b404-cc353a619352" class="">함수 호출 시마다 인수 <code>arg</code>의 길이를 로그에 찍으려고 시도한다면....</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="3eb0423d-0bd3-4dd3-a61b-be116adcb3e1" class="code code-wrap"><code><span class="token keyword">function</span> loggingIdentity<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">T</span></span><span class="token punctuation">></span></span><span class="token punctuation">(</span>arg<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span> <span class="token punctuation">{</span>
+  <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arg<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 오류: T에는 .length 가 없습니다.</span>
+  <span class="token keyword">return</span> arg<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p id="170e4834-b311-4a0b-bf8d-edddce06f0a3" class=""><code>arg</code>가 <code>length</code>라는 멤버가 있다는 것이 명시되어 있지 않으므로 오류가 발생한다. 제너릭 변수 타입은 <code>any</code>나 모든 타입을 의미하므로 <code>loggingIdentity</code> 함수에  <code>.length</code> 멤버가 없는 <code>number</code>가 넘어올 수도 있다.</p><p id="7d30e5f6-963b-4064-8c8b-d89b476819c5" class="">
+</p><p id="a3a64191-9237-40bf-ab68-d8a791887cc1" class="">실제로 이 함수가 <code>T</code>가 아닌 <code>T</code>의 배열에서 동작하도록 의도했다면 배열로 사용하기 때문에 <code>.length</code> 멤버는 사용 가능합니다. 이를 통하여 다른 타입들의 배열을 만드는 것처럼 표현할 수 있다.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="a051a293-3b94-486b-b72c-aee86557770a" class="code code-wrap"><code><span class="token keyword">function</span> loggingIdentity<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">T</span></span><span class="token punctuation">></span></span><span class="token punctuation">(</span>arg<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>
+  <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arg<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 배열은 .length를 가지고 있습니다. 따라서 오류는 없습니다.</span>
+  <span class="token keyword">return</span> arg<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p id="3d98f8d4-b1db-4b3a-9410-cf17fb421ccf" class=""><code>loggingIdentity</code>의 타입을 &quot;제너릭 함수 <code>loggingIdentity</code>는 타입 매개변수 <code>T</code>와 <code>T</code> 배열인 인수 <code>arg</code>를 취하고 <code>T</code> 배열을 반환한다.&quot;라고 읽을 수 있습니다. 만약 우리가 number 배열을 넘기면 <code>T</code>가 <code>number</code>에 바인딩 되므로 함수는 number 배열을 얻게 됩니다. 전체 타입변수를 쓰는 것보다 하나의 타입으로써 제네릭 타입변수 <code>T</code>를 사용하는 것은 굉장한 유연함을 제공합니다.</p><p id="00e659dd-e3f2-4092-aade-19d6853860cb" class="">위 예제를 이렇게도 대체할 수 있습니다.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="2c852ba0-6eaf-4a0c-894f-302970558aff" class="code code-wrap"><code><span class="token keyword">function</span> loggingIdentity<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">T</span></span><span class="token punctuation">></span></span><span class="token punctuation">(</span>arg<span class="token operator">:</span> <span class="token builtin">Array</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">T</span></span><span class="token punctuation">></span></span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Array</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">T</span></span><span class="token punctuation">></span></span> <span class="token punctuation">{</span>
+  <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arg<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 배열은 .length를 가지고 있습니다. 따라서 오류는 없습니다.</span>
+  <span class="token keyword">return</span> arg<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p id="f56b3f93-b07f-45db-9812-f771070c5033" class="">
+</p><h1 id="21b7781d-99a2-4a87-8903-ac449c268f49" class=""><strong>제네릭 타입 (Generic Types)</strong></h1><p id="e0a63d3b-eac8-4ab0-8bf7-fb0e398ae7ab" class="">이전 섹션에서 우리는 타입을 초월한 제네릭 함수 <code>identity</code>를 만들었습니다. 이번 섹션에서는 <mark class="highlight-yellow_background"><strong>함수 자체의 타입과 제네릭 인터페이스</strong></mark>를 만드는 방법에 대해 살펴보겠습니다.</p><p id="3f315d1f-ae5a-4282-abbc-8d0c3ca74e32" class="">제네릭 함수의 타입은 함수 선언과 유사하게 타입 매개변수가 먼저 나열되는, 비-제네릭 함수의 타입과 비슷합니다.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="66e3ac44-7c7d-43f4-8cb5-095e36068e67" class="code code-wrap"><code><span class="token keyword">function</span> identity<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">T</span></span><span class="token punctuation">></span></span><span class="token punctuation">(</span>arg<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> arg<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> myIdentity<span class="token operator">:</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">T</span></span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token parameter">arg<span class="token operator">:</span> <span class="token constant">T</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token constant">T</span> <span class="token operator">=</span> identity<span class="token punctuation">;</span></code></pre><p id="03bdcf98-2cc5-4c7c-a860-f1291dd37f5c" class="">
+</p><p id="d64a166e-1235-4afc-ba7c-44896f8e099a" class="">
+</p><figure id="00d48505-ba2d-4383-a77a-7066adad7e8b" class="image"><a href="Generic%2000d48505ba2d4383a77a7066adad7e8b/Untitled.png"><img style="width:1010px" src="Generic%2000d48505ba2d4383a77a7066adad7e8b/Untitled.png"/></a></figure><p id="5c801195-b9e8-402d-8057-e90aadfbea2c" class="">
+</p><p id="1b14a8ab-25f4-43c4-b621-bdd38f84593b" class="">또한 타입 변수의 수와 타입 변수가 사용되는 방식에 따라 타입의 제네릭 타입 매개변수에 다른 이름을 사용할 수도 있습니다.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="9a12f59e-35b8-40fb-9099-0d50f3c5d5a6" class="code code-wrap"><code><span class="token keyword">function</span> identity<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">T</span></span><span class="token punctuation">></span></span><span class="token punctuation">(</span>arg<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> arg<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> myIdentity<span class="token operator">:</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">U</span></span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token parameter">arg<span class="token operator">:</span> <span class="token constant">U</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token constant">U</span> <span class="token operator">=</span> identity<span class="token punctuation">;</span></code></pre><p id="5089a524-4c5a-493b-a631-115b1eb4936d" class="">제네릭 타입을 <mark class="highlight-yellow_background"><strong>객체 리터럴 타입의 함수 호출 시그니처</strong></mark>로 작성할 수도 있습니다:</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="ec2203a6-f907-4548-afb9-c0cfacc4c67d" class="code code-wrap"><code><span class="token keyword">function</span> identity<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">T</span></span><span class="token punctuation">></span></span><span class="token punctuation">(</span>arg<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> arg<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> myIdentity<span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">T</span></span><span class="token punctuation">></span></span><span class="token punctuation">(</span>arg<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span> <span class="token punctuation">}</span> <span class="token operator">=</span> identity<span class="token punctuation">;</span></code></pre><p id="bdbe790c-4ee5-4682-97ac-b8878deff9d2" class="">이것들로 첫 번째 제네릭 인터페이스를 작성할 수 있습니다. 앞서 예제의 객체 리터럴을 인터페이스로 가져옵니다:</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="5aedc855-faac-4fb0-bc04-ca8f5bcd769a" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">GenericIdentityFn</span> <span class="token punctuation">{</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">T</span></span><span class="token punctuation">></span></span><span class="token punctuation">(</span>arg<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> identity<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">T</span></span><span class="token punctuation">></span></span><span class="token punctuation">(</span>arg<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> arg<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> myIdentity<span class="token operator">:</span> GenericIdentityFn <span class="token operator">=</span> identity<span class="token punctuation">;</span></code></pre><p id="52a98336-30bd-4770-9109-e0b0bedc4910" class="">비슷한 예제에서, 제네릭 매개변수를 전체 인터페이스의 매개변수로 옮기고 싶을지도 모릅니다. 이를 통해 제네릭 타입을 확인할 수 있습니다 (예 - <code>Dictionary</code> 가 아닌 <code>Dictionary&lt;string&gt;</code>). 이렇게 하면 인터페이스의 다른 모든 멤버가 타입 매개변수를 볼 수 있습니다.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="befcc34e-5a91-4055-a752-67966967e420" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">GenericIdentityFn</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">T</span></span><span class="token punctuation">></span></span> <span class="token punctuation">{</span>
+  <span class="token punctuation">(</span>arg<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> identity<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">T</span></span><span class="token punctuation">></span></span><span class="token punctuation">(</span>arg<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> arg<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> myIdentity<span class="token operator">:</span> GenericIdentityFn<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>number</span><span class="token punctuation">></span></span> <span class="token operator">=</span> identity<span class="token punctuation">;</span></code></pre><p id="fe047cd4-8ec2-466e-b394-5edf0acab1ce" class="">예제에 아주 작은 변화가 있었습니다. 제네릭 함수를 작성하는 것 대신 제네릭 타입의 일부인 비-제네릭 함수 시그니처를 가집니다. <code>GenericIdentityFn</code> 함수를 사용할 때, 시그니처가 사용할 것을 효과적으로 제한할 특정한 타입 인수가 필요합니다 (여기서는 <code>number</code>). 타입 매개변수를 호출 시그니처에 바로 넣을 때와 인터페이스 자체에 넣을 때를 이해하는 것은 타입의 제네릭 부분을 설명하는 데 도움이 됩니다.</p><p id="d9e1e7bf-e131-48ef-976b-6d5b4e81d290" class="">제네릭 인터페이스 외에도 제네릭 클래스를 만들 수 있습니다. 제네릭 열거형과 네임스페이스는 만들 수 없습니다.</p><p id="d46a4dca-37d8-4a23-b952-e794cc8678d5" class="">
+</p><h1 id="d8b8031d-72fa-4f63-81d5-f62399056579" class=""><strong>제네릭 클래스 (Generic Classes)</strong></h1><p id="21b41733-356b-41ae-8913-4dc45417ea16" class="">제네릭 클래스는 클래스 이름 뒤에 꺾쇠괄호(<code>&lt;&gt;</code>) 안쪽에 제네릭 타입 매개변수 목록을 가집니다.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="ffdf7aa2-81c2-4112-8fff-1376f9620256" class="code code-wrap"><code><span class="token keyword">class</span> <span class="token class-name">GenericNumber</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">T</span></span><span class="token punctuation">></span></span> <span class="token punctuation">{</span>
+    zeroValue<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">;</span>
+    <span class="token function-variable function">add</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">x<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">,</span> y<span class="token operator">:</span> <span class="token constant">T</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token constant">T</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> myGenericNumber <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GenericNumber</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>number</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myGenericNumber<span class="token punctuation">.</span>zeroValue <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+myGenericNumber<span class="token punctuation">.</span><span class="token function-variable function">add</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">,</span> y</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> x <span class="token operator">+</span> y<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p id="37508434-da7f-4f52-a255-eb563633f6cd" class="">이것은 <code>GenericNumber</code> 클래스의 문자 그대로 사용하지만 <code>number</code> 타입만 쓰도록 제한하는 것은 없습니다. 대신 <code>string</code>이나 훨씬 복잡한 객체를 사용할 수 있습니다.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="6d45d214-0281-4e4d-90c3-9c82f490815c" class="code code-wrap"><code><span class="token keyword">let</span> stringNumeric <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GenericNumber</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>string</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+stringNumeric<span class="token punctuation">.</span>zeroValue <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+stringNumeric<span class="token punctuation">.</span><span class="token function-variable function">add</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">,</span> y</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> x <span class="token operator">+</span> y<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>stringNumeric<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>stringNumeric<span class="token punctuation">.</span>zeroValue<span class="token punctuation">,</span> <span class="token string">"test"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "test"</span></code></pre><p id="06f33642-e207-447e-9134-c1f540fcc6d0" class="">인터페이스와 마찬가지로 클래스 자체에 타입 매개변수를 넣으면 클래스의 모든 프로퍼티가 동일한 타입으로 동작하는 것을 확인할 수 있습니다.</p><p id="a9fafbbd-21ba-4838-895e-2a6ad0d0af6c" class=""><a href="https://typescript-kr.github.io/pages/classes.html">클래스</a>에서 다뤘던 것처럼 클래스는 두 가지 타입을 가집니다: 정적 측면과 인스턴스 측면. 제네릭 클래스는 정적 측면이 아닌 인스턴스 측면에서만 제네릭이므로 클래스로 작업할 때 정적 멤버는 클래스의 타입 매개변수를 쓸 수 없습니다.</p><p id="b80ea301-5112-4288-b4d4-ed15dd136ed5" class="">
+</p><h1 id="e5b98d57-8cce-4d93-a2bb-fcd3cc4ca40d" class=""><strong>제네릭 제약조건 (Generic Constraints)</strong></h1><p id="ddbc1478-59cf-477b-af8f-349ba5b394c6" class="">앞서 <code>loggingIdentity</code> 예제에서 <code>arg</code>의 프로퍼티 <code>.length</code>에 접근하기를 원했지만, 컴파일러는 모든 타입에서 <code>.length</code> 프로퍼티를 가짐을 증명할 수 없으므로 에러를 발생시킨다.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="eb82181e-f7e2-4838-aea2-f8ef2f5edf79" class="code code-wrap"><code><span class="token keyword">function</span> loggingIdentity<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">T</span></span><span class="token punctuation">></span></span><span class="token punctuation">(</span>arg<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arg<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 오류: T에는 .length가 없습니다.</span>
+    <span class="token keyword">return</span> arg<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p id="e69be4b6-4c3e-4b39-958e-57d06e831560" class="">any와 모든 타입에서 동작하는 대신에, <code>.length</code> 프로퍼티가 있는 any와 모든 타입들에서 작동하는 것으로 제한하고자 한다면 <code>T</code>에는 최소한 <code>.length</code> 가 있어야 합니다. 그렇게 하려면 <code>T</code> 가 무엇이 될 수 있는지에 대한 제약 조건을 나열해야 한다.</p><p id="4b1550d3-b529-48fd-9510-28d4f37e77cf" class="">이를 위해 우리의 제약조건을 명시하는 인터페이스를 만든다. 여기 <code>length</code> 프로퍼티를 가진 인터페이스를 생성하였고, 이러한 제약사항을 <code>extends</code> 키워드로 표현한 인터페이스를 이용해 명시한다.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="55dc6e7e-16e1-436b-930b-cb57a412c158" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">Lengthwise</span> <span class="token punctuation">{</span>
+    length<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> loggingIdentity<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">T</span></span> <span class="token attr-name">extends</span> <span class="token attr-name">Lengthwise</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>arg<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arg<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 이제 .length 프로퍼티가 있는 것을 알기 때문에 더 이상 오류가 발생하지 않습니다.</span>
+    <span class="token keyword">return</span> arg<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p id="ead73162-ce8c-41fb-b47e-6f2677506206" class="">제네릭 함수는 이제 제한되어 있기 때문에 모든 타입(any)에 대해서는 동작하지 않는다:</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="18fa10ff-137d-456c-bd8d-7d625b4a3c86" class="code code-wrap"><code><span class="token function">loggingIdentity</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 오류, number는 .length 프로퍼티가 없습니다.</span></code></pre><p id="654d518c-1098-45d3-b5a8-adcc3eb8430c" class="">대신 필요한 프로퍼티들이 있는 타입의 값을 전달해야 합니다:</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="dc47a472-cd3c-4716-8f44-2fb299f56799" class="code code-wrap"><code><span class="token function">loggingIdentity</span><span class="token punctuation">(</span><span class="token punctuation">{</span>length<span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p id="5416af3f-26b1-473b-ae0a-342e4c2e954a" class="">
+</p><h2 id="0bd16416-3abc-40ff-9721-4161cafe6254" class=""><strong>제네릭 제약조건에서 타입 매개변수 사용 (Using Type Parameters in Generic Constraints)</strong></h2><p id="978bf550-b4b6-4f10-8f79-271a2189a0bd" class="">다른 타입 매개변수로 제한된 타입 매개변수를 선언할 수 있습니다. 이름이 있는 객체에서 프로퍼티를 가져오고 싶은 경우를 예로 들어 봅시다. 실수로 <code>obj</code>에 존재하지 않는 프로퍼티를 가져오지 않도록 하기 위해 두 가지 타입에 제약조건을 두었습니다.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="ebae262d-0981-4d77-b69a-2836b332ede3" class="code code-wrap"><code><span class="token keyword">function</span> getProperty<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token punctuation">,</span> <span class="token constant">K</span> <span class="token keyword">extends</span> <span class="token class-name">keyof</span> <span class="token constant">T</span><span class="token operator">></span><span class="token punctuation">(</span>obj<span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">,</span> key<span class="token operator">:</span> <span class="token constant">K</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> obj<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token punctuation">{</span> a<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> b<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span> c<span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span> d<span class="token operator">:</span> <span class="token number">4</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token function">getProperty</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 성공</span>
+<span class="token function">getProperty</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token string">"m"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 오류: 인수의 타입 'm' 은 'a' | 'b' | 'c' | 'd'에 해당되지 않음.</span>
+</code></pre><p id="b7b40456-cf15-4199-ab41-3303762d85ab" class=""><a href="https://stackoverflow.com/questions/53099089/difference-between-of-k-extends-keyof-t-vs-directly-using-keyof-t">Difference between of “K extends keyof T” vs. directly using “keyof T”?</a></p><p id="1b0a2c03-5608-4a4b-9522-5d73a0e0278f" class="">
+</p><h2 id="e8ef6293-d3a5-460c-bd61-c60245188fe0" class=""><strong>제네릭에서 클래스 타입 사용 (Using Class Types in Generics)</strong></h2><p id="fdcfe531-dbb6-4125-9a47-64dbb6215d08" class="">제네릭을 사용하는 TypeScript에서 팩토리를 생성할 때 <mark class="highlight-yellow_background"><strong>생성자 함수로 클래스 타입을 참조</strong></mark>해야 합니다. 예를 들면:</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="97f4d134-2547-4515-803a-f5fdb5de4cda" class="code code-wrap"><code><span class="token keyword">function</span> create<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">T</span></span><span class="token punctuation">></span></span><span class="token punctuation">(</span>c<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token keyword">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">T</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">c</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p id="93753a25-41bf-4815-95c5-03361909a810" class="">고급 예제에서는 prototype 프로퍼티를 사용하여 생성자 함수와 클래스 타입의 인스턴스 사이의 관계를 유추하고 제한합니다.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="28ccee7e-3b53-4b47-8ace-9c3887123166" class="code code-wrap"><code><span class="token keyword">class</span> <span class="token class-name">BeeKeeper</span> <span class="token punctuation">{</span>
+    hasMask<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ZooKeeper</span> <span class="token punctuation">{</span>
+    nametag<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+    numLegs<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Bee</span> <span class="token keyword">extends</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+    keeper<span class="token operator">:</span> BeeKeeper<span class="token punctuation">;</span>
+    <span class="token comment">// numLegs: number;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Lion</span> <span class="token keyword">extends</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+    keeper<span class="token operator">:</span> ZooKeeper<span class="token punctuation">;</span>
+    <span class="token comment">// numLegs: number;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> createInstance<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">A</span></span> <span class="token attr-name">extends</span> <span class="token attr-name">Animal</span><span class="token punctuation">></span></span><span class="token punctuation">(</span>c<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token constant">A</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token constant">A</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">c</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">createInstance</span><span class="token punctuation">(</span>Lion<span class="token punctuation">)</span><span class="token punctuation">.</span>keeper<span class="token punctuation">.</span>nametag<span class="token punctuation">;</span>  <span class="token comment">// 타입검사!</span>
+<span class="token function">createInstance</span><span class="token punctuation">(</span>Bee<span class="token punctuation">)</span><span class="token punctuation">.</span>keeper<span class="token punctuation">.</span>hasMask<span class="token punctuation">;</span>   <span class="token comment">// 타입검사!</span></code></pre></div></article></body></html>
