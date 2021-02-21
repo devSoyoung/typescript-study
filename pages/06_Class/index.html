@@ -1,0 +1,1105 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>06. Class</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a738fdc5-60dd-41da-b47c-57f663686773" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">✔️</span></div><h1 class="page-title">06. Class</h1></header><div class="page-body"><p id="4859e0db-509b-47fc-9c34-f2eced65d9e9" class="">자바스크립트는 함수와 prototype 기반의 상속을 이용해서 재사용 가능한 컴포넌트를 만듦</p><p id="7d815818-46d9-4caf-a505-b6fd0f9bfc75" class="">그러나 이런 방법은 클래스 방식의 객체지향 접근법에 익숙한 프로그래머에게는 다소 이상하게 느껴질 수 있음</p><p id="693bbc5e-6294-4c9a-80fb-ef54de58f6db" class="">ES6부터는 자바스크립트에서도 <a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes">class 기반의 객체지향 접근법</a>을 사용할 수 있게 됨</p><p id="60b95ad2-299c-4e05-af5b-d24cc18403ae" class="">타입스크립트에서는 새 버전의 자바스크립트를 사용하지 않아도 </p><p id="9a6ce81e-acf7-46d8-a4d9-b9a006a55517" class="">이러한 문법을 지원함과 동시에 주요 브라우저와 플랫폼에 사용 가능한 형태로 컴파일해줌</p><h1 id="a731ebbf-58fa-4bec-817c-74febf342c5f" class=""><a href="https://www.typescriptlang.org/docs/handbook/classes.html#classes">Classes</a></h1><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="3d3d97de-7b57-4315-a57d-64edca62255f" class="code"><code><span class="token keyword">class</span> <span class="token class-name">Greeter</span> <span class="token punctuation">{</span>
+  greeting<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">message<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>greeting <span class="token operator">=</span> message<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">"Hello, "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>greeting<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> greeter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Greeter</span><span class="token punctuation">(</span><span class="token string">"world"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="6254a800-3ba1-4b72-83a9-374bdd8778cb" class="code"><code><span class="token comment">// target: es5</span>
+<span class="token keyword">var</span> Greeter <span class="token operator">=</span> <span class="token comment">/** @class */</span> <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">function</span> <span class="token function">Greeter</span><span class="token punctuation">(</span><span class="token parameter">message</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>greeting <span class="token operator">=</span> message<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token class-name">Greeter</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">greet</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"Hello, "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>greeting<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> Greeter<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> greeter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Greeter</span><span class="token punctuation">(</span><span class="token string">"world"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="47d00b60-e250-4189-a026-c91b06478cee" class="code"><code><span class="token comment">// target: es6</span>
+<span class="token keyword">class</span> <span class="token class-name">Greeter</span> <span class="token punctuation">{</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">message</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>greeting <span class="token operator">=</span> message<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"Hello, "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>greeting<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">let</span> greeter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Greeter</span><span class="token punctuation">(</span><span class="token string">"world"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><h1 id="1b5803c3-0f9c-441a-b14e-12c1dd427e26" class=""><a href="https://www.typescriptlang.org/docs/handbook/classes.html#inheritance">Inheritance</a></h1><h2 id="d764ce24-8354-44d1-ae10-bced5f6334ea" class="">아주 기초적인 예제로 살펴보기</h2><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="0cf27e73-6a91-4f2b-8b29-8fbe5651e3fe" class="code"><code><span class="token keyword">class</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+  <span class="token function">move</span><span class="token punctuation">(</span><span class="token parameter">distanceInMeters<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">0</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Animal moved </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>distanceInMeters<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">m.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Dog</span> <span class="token keyword">extends</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+  <span class="token function">bark</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Woof! Woof!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> dog <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dog<span class="token punctuation">.</span><span class="token function">bark</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dog<span class="token punctuation">.</span><span class="token function">move</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dog<span class="token punctuation">.</span><span class="token function">bark</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><ul id="df6e445b-c47f-4049-b42d-d15626a0c827" class="toggle"><li><details open=""><summary><code>target: es5</code>로 컴파일된 버전 보기</summary><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="a6d4f69a-7cd6-4132-a2e8-65db6e8a21fd" class="code"><code><span class="token keyword">var</span> __extends <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>__extends<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> <span class="token function-variable function">extendStatics</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">d<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        extendStatics <span class="token operator">=</span> Object<span class="token punctuation">.</span>setPrototypeOf <span class="token operator">||</span>
+            <span class="token punctuation">(</span><span class="token punctuation">{</span> __proto__<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">}</span> <span class="token keyword">instanceof</span> <span class="token class-name">Array</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">d<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> d<span class="token punctuation">.</span>__proto__ <span class="token operator">=</span> b<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">||</span>
+            <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">d<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> p <span class="token keyword">in</span> b<span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">)</span> d<span class="token punctuation">[</span>p<span class="token punctuation">]</span> <span class="token operator">=</span> b<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token function">extendStatics</span><span class="token punctuation">(</span>d<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">d<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">extendStatics</span><span class="token punctuation">(</span>d<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">function</span> <span class="token function">__</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">this</span><span class="token punctuation">.</span>constructor <span class="token operator">=</span> d<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        d<span class="token punctuation">.</span>prototype <span class="token operator">=</span> b <span class="token operator">===</span> <span class="token keyword">null</span> <span class="token operator">?</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token punctuation">(</span><span class="token class-name">__</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> b<span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">__</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> Animal <span class="token operator">=</span> <span class="token comment">/** @class */</span> <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">function</span> <span class="token function">Animal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+    <span class="token class-name">Animal</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">move</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">distanceInMeters</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>distanceInMeters <span class="token operator">===</span> <span class="token keyword">void</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> distanceInMeters <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Animal moved "</span> <span class="token operator">+</span> distanceInMeters <span class="token operator">+</span> <span class="token string">"m."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> Animal<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> Dog <span class="token operator">=</span> <span class="token comment">/** @class */</span> <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">_super</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">__extends</span><span class="token punctuation">(</span>Dog<span class="token punctuation">,</span> _super<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">function</span> <span class="token function">Dog</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> _super <span class="token operator">!==</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token function">_super</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> arguments<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token class-name">Dog</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">bark</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Woof! Woof!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> Dog<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">(</span>Animal<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> dog <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dog<span class="token punctuation">.</span><span class="token function">bark</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dog<span class="token punctuation">.</span><span class="token function">move</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dog<span class="token punctuation">.</span><span class="token function">bark</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></details></li></ul><ul id="5e39df62-0f4c-41af-ad16-325f94d3d582" class="bulleted-list"><li><code>extends</code> 키워드를 사용해서 다른 클래스를 상속할 수 있음<ul id="03bf5e2e-94c0-4a2e-b8b4-09c96631e2b7" class="bulleted-list"><li><mark class="highlight-gray">추억 돋는 C++ 상속 방법 보기 - </mark><mark class="highlight-gray"><a href="https://blog.hexabrain.net/173">https://blog.hexabrain.net/173</a></mark></li></ul></li></ul><ul id="0a6387d3-6a2c-47c7-862a-72f68afbd1b1" class="bulleted-list"><li>클래스는 base 클래스의 프로퍼티와 메서드를 상속함<p id="08dd8445-2654-40d0-9660-5abbe2a59369" class="">= <code>Animal</code>을 상속한 <code>Dog</code>는 bark와 move 메서드를 둘 다 가짐</p></li></ul><ul id="b2f5b274-8248-47e4-a26d-736a5d58a6fd" class="bulleted-list"><li>상속 받은 클래스 = <strong>subclass</strong>, 상속 하는 클래스 = <strong>superclass</strong> 라고 부름</li></ul><h2 id="37cc6e6b-7795-4a12-bf2f-05b9b7a7541a" class="">조금 더 복잡한 예제로 살펴보기</h2><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="72f38702-384b-4a57-8a2f-529320b95634" class="code"><code><span class="token keyword">class</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">theName<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> theName<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">move</span><span class="token punctuation">(</span><span class="token parameter">distanceInMeters<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">0</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> moved </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>distanceInMeters<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">m.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Snake</span> <span class="token keyword">extends</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">move</span><span class="token punctuation">(</span><span class="token parameter">distanceInMeters <span class="token operator">=</span> <span class="token number">5</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Slithering..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">move</span><span class="token punctuation">(</span>distanceInMeters<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Horse</span> <span class="token keyword">extends</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">move</span><span class="token punctuation">(</span><span class="token parameter">distanceInMeters <span class="token operator">=</span> <span class="token number">45</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Galloping..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">move</span><span class="token punctuation">(</span>distanceInMeters<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> sam <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Snake</span><span class="token punctuation">(</span><span class="token string">"Sammy the Python"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> tom<span class="token operator">:</span> Animal <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Horse</span><span class="token punctuation">(</span><span class="token string">"Tommy the Palomino"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+sam<span class="token punctuation">.</span><span class="token function">move</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+tom<span class="token punctuation">.</span><span class="token function">move</span><span class="token punctuation">(</span><span class="token number">34</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><ul id="668e9e23-23af-4377-a1c2-3e68bfa504a2" class="toggle"><li><details open=""><summary><code>target: es5</code>로 컴파일된 버전 보기</summary><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="14232be5-46ac-4482-8210-e5d24d266124" class="code"><code><span class="token keyword">var</span> __extends <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>__extends<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> <span class="token function-variable function">extendStatics</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">d<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        extendStatics <span class="token operator">=</span> Object<span class="token punctuation">.</span>setPrototypeOf <span class="token operator">||</span>
+            <span class="token punctuation">(</span><span class="token punctuation">{</span> __proto__<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">}</span> <span class="token keyword">instanceof</span> <span class="token class-name">Array</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">d<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> d<span class="token punctuation">.</span>__proto__ <span class="token operator">=</span> b<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">||</span>
+            <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">d<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> p <span class="token keyword">in</span> b<span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">)</span> d<span class="token punctuation">[</span>p<span class="token punctuation">]</span> <span class="token operator">=</span> b<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token function">extendStatics</span><span class="token punctuation">(</span>d<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">d<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">extendStatics</span><span class="token punctuation">(</span>d<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">function</span> <span class="token function">__</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token keyword">constructor</span> <span class="token operator">=</span> d<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        d<span class="token punctuation">.</span>prototype <span class="token operator">=</span> b <span class="token operator">===</span> <span class="token keyword">null</span> <span class="token operator">?</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token punctuation">(</span><span class="token class-name">__</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> b<span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">__</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> Animal <span class="token operator">=</span> <span class="token comment">/** @class */</span> <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">function</span> <span class="token function">Animal</span><span class="token punctuation">(</span><span class="token parameter">theName</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> theName<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token class-name">Animal</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">move</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">distanceInMeters</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>distanceInMeters <span class="token operator">===</span> <span class="token keyword">void</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> distanceInMeters <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">" moved "</span> <span class="token operator">+</span> distanceInMeters <span class="token operator">+</span> <span class="token string">"m."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> Animal<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> Snake <span class="token operator">=</span> <span class="token comment">/** @class */</span> <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">_super</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">__extends</span><span class="token punctuation">(</span>Snake<span class="token punctuation">,</span> _super<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">function</span> <span class="token function">Snake</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">_super</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token class-name">Snake</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">move</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">distanceInMeters</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>distanceInMeters <span class="token operator">===</span> <span class="token keyword">void</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> distanceInMeters <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Slithering..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">_super</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">move</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> distanceInMeters<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> Snake<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">(</span>Animal<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> Horse <span class="token operator">=</span> <span class="token comment">/** @class */</span> <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">_super</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">__extends</span><span class="token punctuation">(</span>Horse<span class="token punctuation">,</span> _super<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">function</span> <span class="token function">Horse</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">_super</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token class-name">Horse</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">move</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">distanceInMeters</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>distanceInMeters <span class="token operator">===</span> <span class="token keyword">void</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> distanceInMeters <span class="token operator">=</span> <span class="token number">45</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+        <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Galloping..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">_super</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">move</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> distanceInMeters<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> Horse<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">(</span>Animal<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> sam <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Snake</span><span class="token punctuation">(</span><span class="token string">"Sammy the Python"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> tom <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Horse</span><span class="token punctuation">(</span><span class="token string">"Tommy the Palomino"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+sam<span class="token punctuation">.</span><span class="token function">move</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+tom<span class="token punctuation">.</span><span class="token function">move</span><span class="token punctuation">(</span><span class="token number">34</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></details></li></ul><ul id="236f859d-8507-4b51-8d3e-f466c9aa0428" class="bulleted-list"><li><code>super()</code> : base 클래스의 생성자를 호출하는 함수 (타입스크립트가 강제하는 rule)<ul id="cb947904-0b41-46b4-9d61-afca5de54172" class="toggle"><li><details open=""><summary>상속받은 클래스의 생성자에서 <code>super()</code>를 호출하지 않으면 오류가 발생함</summary><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="eff25370-aa1c-4dac-b531-33c0f9a2d35d" class="code"><code><span class="token keyword">class</span> <span class="token class-name">Character</span> <span class="token punctuation">{</span>
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+     <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'invoke character'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Hero</span> <span class="token keyword">extends</span> <span class="token class-name">Character</span><span class="token punctuation">{</span>
+ <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+     <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// exception thrown here when not called</span>
+     <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'invoke hero'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> hero <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Hero</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p id="b05fbf82-a4ab-490c-a02a-5a7baf42f3f7" class="">좀 더 찾아보니까 이는 타입스크립트에서 강제하는 룰이 아니라, <a href="https://stackoverflow.com/a/31079103">자바스크립트의 규칙을 따라</a>가는 것</p><ol id="76df0ba2-5012-483d-9796-efa61f9cd58a" class="numbered-list" start="1"><li>In a child class constructor, <code>this</code> cannot be used until <code>super</code> is called.</li></ol><ol id="5f288ed7-7103-4203-9c7b-0936f29ede25" class="numbered-list" start="2"><li>ES6 class constructors MUST call <code>super</code> if they are subclasses, or they must explicitly return some object to take the place of the one that was not initialized.</li></ol></details></li></ul></li></ul><ul id="2c9b3111-6ee3-4f55-9adc-907e19126e85" class="bulleted-list"><li>subclass에서 superclass의 메서드를 오버라이드(재정의) 할 수 있음<style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="cc084769-5799-432d-b096-5200fa26ac0c" class="code"><code># 실행 결과물
+
+Slithering...
+Sammy the Python moved 5m.     → Snake에서 재정의 됨
+Galloping...
+Tommy the Palomino moved 34m.  → Horse에서 재정의 됨</code></pre></li></ul><h1 id="fc5870a5-92fd-41bc-b11c-de0bd9c7b7ee" class=""><a href="https://www.typescriptlang.org/docs/handbook/classes.html#public-private-and-protected-modifiers">Public, private, and protected modifiers</a></h1><h2 id="ac58a2af-b836-477d-8cdd-047eeabe03e6" class=""><a href="https://www.typescriptlang.org/docs/handbook/classes.html#public-by-default">public (by default)</a></h2><p id="9fb8d6ee-00fb-4787-b277-81c22b72517e" class="">일반적으로 다른 프로그래밍 언어에서는 superclass의 속성에 접근하려면</p><p id="aee80132-4485-4a45-afd1-24640de6cef4" class=""><code>public</code> 키워드를 명시해줘야하는데, 위 예제에서는 그런 키워드 없이 접근하고 있는 것을 알 수 있음 </p><p id="44deaa15-55e9-499a-97b8-519a1a61987f" class="">= 각 멤버들은 <code>public</code>을 기본 상태로 가짐</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="c9118613-a0d4-4865-967b-95cfb5578462" class="code"><code><span class="token keyword">class</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span> name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">theName<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> theName<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token function">move</span><span class="token punctuation">(</span><span class="token parameter">distanceInMeters<span class="token operator">:</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> moved </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>distanceInMeters<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">m.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre><p id="fd69ce34-d38b-469d-ace3-003d8baebb00" class="">이렇게 <code>public</code> 키워드를 명시해도 됨</p><h2 id="bd8d726a-4084-40c1-aaa8-5f8ee9c8ff67" class=""><a href="https://www.typescriptlang.org/docs/handbook/classes.html#ecmascript-private-fields">ECMAScript Private Fields</a></h2><p id="d9a2106e-dfaf-469b-b606-c5c0cb60d65d" class="">typescript 3.8 에서는 <code>#</code> prefix를 붙여서 네이밍하면 private 식별자가 됨</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="27339809-b977-4eca-b7b1-f04a3960f53e" class="code"><code><span class="token keyword">class</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+  #name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">theName<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>#name <span class="token operator">=</span> theName<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">new</span> <span class="token class-name">Animal</span><span class="token punctuation">(</span><span class="token string">"Cat"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>#name<span class="token punctuation">;</span></code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f07fad0b-4cae-43a4-9051-abeba83a143f"><div style="font-size:1.5em"><span class="icon">🚨</span></div><div style="width:100%">Property &#x27;#name&#x27; is not accessible outside class &#x27;Animal&#x27; because it has a private identifier.</div></figure><ul id="676482eb-011c-4bb3-9b9d-9413069d2fd0" class="toggle"><li><details open=""><summary><code>target: es6</code>로 컴파일된 버전 보기</summary><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="e7629dc1-de3f-4f60-8c2d-9a024c6ee984" class="code"><code><span class="token keyword">var</span> __classPrivateFieldSet <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>__classPrivateFieldSet<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">receiver<span class="token punctuation">,</span> privateMap<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>privateMap<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>receiver<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">TypeError</span><span class="token punctuation">(</span><span class="token string">"attempted to set private field on non-instance"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    privateMap<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>receiver<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> value<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> _name<span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+    <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">theName</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        _name<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">__classPrivateFieldSet</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> _name<span class="token punctuation">,</span> theName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+_name <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeakMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></details></li></ul><figure id="c950d649-aba2-4578-926f-81244e86c2a0" class="image"><a href="06%20Class%20c950d649aba24578926f81244e86c2a0/Untitled.png"><img style="width:1676px" src="06%20Class%20c950d649aba24578926f81244e86c2a0/Untitled.png"/></a></figure><p id="cb1325c0-3d51-42a9-8fff-085fad2877e7" class=""><code>target: es5</code>일 때 어떻게 변환하는지 궁금해서 써봤더니 이런 오류가 뜸.. = 못씀</p><p id="78609ecd-3f28-47dc-b777-44e64cbd6b19" class="">왜 안되냐면 그것은 ES6에 새로 등장한 특성(정확히는 stage 3 proposal)이기 때문..</p><p id="560f0ef4-63e5-49b3-bc0a-6148d12a874f" class=""><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields</a></p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="a38e1039-ea8c-441f-8507-4abc35445a0e" class="code"><code><span class="token keyword">class</span> <span class="token class-name">ClassWithPrivateField</span> <span class="token punctuation">{</span>
+  #privateField
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ClassWithPrivateMethod</span> <span class="token punctuation">{</span>
+  <span class="token function">#privateMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'hello world'</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ClassWithPrivateStaticField</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> #<span class="token constant">PRIVATE_STATIC_FIELD</span>
+<span class="token punctuation">}</span></code></pre><h2 id="f9d2cb52-37eb-480e-8327-a23c56fd0125" class=""><a href="https://www.typescriptlang.org/docs/handbook/classes.html#understanding-typescripts-private">private</a></h2><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="00167407-673d-406d-8fcc-c552ce101538" class="code"><code><span class="token keyword">class</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+  <span class="token keyword">private</span> name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">theName<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> theName<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">new</span> <span class="token class-name">Animal</span><span class="token punctuation">(</span><span class="token string">"Cat"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name<span class="token punctuation">;</span></code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="7bf33353-7894-45d5-ac2a-a53fc1533fb7"><div style="font-size:1.5em"><span class="icon">🚨</span></div><div style="width:100%">Property &#x27;name&#x27; is private and only accessible within class &#x27;Animal&#x27;.</div></figure><ul id="a40e9403-10cc-43ae-98d2-9cc6bdc0c501" class="bulleted-list"><li><code>private</code> 키워드를 명시해서 멤버를 private로 만들 수 있는데,<p id="44c1025e-c55f-4c3b-82bc-c16bc3d29579" class="">이 경우 클래스 외부에서 해당 멤버에 접근할 수 없음</p></li></ul><ul id="ba272c66-4f95-4411-a9dd-93b316244973" class="bulleted-list"><li>타입스크립트는 <strong>구조형(structural) 타입 시스템</strong>으로 두 가지 타입을 비교할 때<p id="1b496065-8a5f-4467-a425-7b89f04951e3" class="">각각이 어디에서 왔는지와 관계 없이 모든 멤버의 타입이 호환 가능하면 두 타입이 호환 가능하다고 봄</p></li></ul><ul id="389ca773-9bff-4548-b6ff-384ae2b9ea24" class="bulleted-list"><li><code>private</code>, <code>protected</code> 멤버가 있는 타입을 비교하는 경우 이런 타입을 다르게 처리함<p id="8a44db1e-3957-4e01-9bca-94aa09cc196f" class="">두 타입이 호환 가능하려면</p><ul id="a8852781-7641-426b-a6d5-c0221916b2c0" class="bulleted-list"><li>하나가 <code>private</code>이라면, 다른 멤버도 <strong>동일한 선언에서 비롯한</strong> <code>private</code>을 가져야 함</li></ul><ul id="cb018467-1fc1-4df3-b2d8-c625ce2d7659" class="bulleted-list"><li><code>protected</code>에 대해서도 위와 동일한 rule이 적용됨</li></ul></li></ul><p id="aace0165-bd91-42c8-9033-338099f5fb39" class=""><em>아래 예제에서 Animal과 Employee의 name이 public 이면 두 타입은 호환 가능함</em></p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="2ff64915-ac77-4c11-a501-f00d3406f693" class="code"><code><span class="token keyword">class</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+  <span class="token keyword">private</span> name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">theName<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> theName<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Rhino</span> <span class="token keyword">extends</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token string">"Rhino"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Employee</span> <span class="token punctuation">{</span>
+  <span class="token keyword">private</span> name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">theName<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> theName<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> animal <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Animal</span><span class="token punctuation">(</span><span class="token string">"Goat"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> rhino <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Rhino</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> employee <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Employee</span><span class="token punctuation">(</span><span class="token string">"Bob"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+animal <span class="token operator">=</span> rhino<span class="token punctuation">;</span>
+animal <span class="token operator">=</span> employee<span class="token punctuation">;</span></code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="83388576-81ba-4b17-b37c-8a46bf50873e"><div style="font-size:1.5em"><span class="icon">🚨</span></div><div style="width:100%">Type &#x27;Employee&#x27; is not assignable to type &#x27;Animal&#x27;.
+Types have separate declarations of a private property &#x27;name&#x27;.</div></figure><ul id="fc458fc4-bdc9-4b70-9c75-ee08cb8493a7" class="bulleted-list"><li><code>Animal</code>과 <code>Rhino</code> 클래스가 있고 <code>Rhino</code>는 <code>Animal</code>의 subclass</li></ul><ul id="cce4cff1-d99a-4040-9a8c-94ab4dd38567" class="bulleted-list"><li><code>Animal</code>과 형태가 동일한 <code>Employee</code> 클래스도 있음</li></ul><p id="48cf9a8d-404d-4905-8058-a343e2281593" class="">각 클래스의 인스턴스를 만들고 서로에게 할당해서 어떤 일이 일어나는지 살펴봄</p><ul id="d315d987-db5f-413a-9836-0ea861e35e03" class="bulleted-list"><li><code>Animal</code>과 <code>Rhino</code>는 <code>Animal</code>의 <code>private name: string</code>을 공유하기 때문에 호환 가능함</li></ul><ul id="17524b84-bb3a-4818-ae81-17f2184ba978" class="bulleted-list"><li><code>Employee</code>에 선언된 <code>private name: string</code>은 <code>Animal</code>에 선언된 것이 아니기 때문에 호환 불가능함</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="e2efae71-fa96-490f-9c28-ea87fb920c48" class="code"><code><span class="token comment">// target: es6로 컴파일된 버전</span>
+<span class="token keyword">class</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+    <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">theName</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> theName<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Rhino</span> <span class="token keyword">extends</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+    <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token string">"Rhino"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Employee</span> <span class="token punctuation">{</span>
+    <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">theName</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> theName<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre><h2 id="30c5c9f2-7c6a-4354-8a35-b08699a7777a" class=""><a href="https://www.typescriptlang.org/docs/handbook/classes.html#understanding-protected">protected</a></h2><p id="98c18299-2ecd-477b-a790-1bf277e4aa9b" class="">protected로 명시된 멤버는 <strong>상속된 클래스 내에서</strong> 사용할 수 있음</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="e120715f-9577-4e94-aacc-332732da8f4c" class="code"><code><span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+  <span class="token keyword">protected</span> name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Employee</span> <span class="token keyword">extends</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+  <span class="token keyword">private</span> department<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> department<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>department <span class="token operator">=</span> department<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token function">getElevatorPitch</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Hello, my name is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> and I work in </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>department<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> howard <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Employee</span><span class="token punctuation">(</span><span class="token string">"Howard"</span><span class="token punctuation">,</span> <span class="token string">"Sales"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>howard<span class="token punctuation">.</span><span class="token function">getElevatorPitch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>howard<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="deb63d00-592b-48f7-b1d2-b764a3743050"><div style="font-size:1.5em"><span class="icon">🚨</span></div><div style="width:100%">Property &#x27;name&#x27; is protected and only accessible within class &#x27;Person&#x27; and its subclasses.</div></figure><ul id="1fbf3f6d-49f3-4fab-9776-7ff3a2c8011a" class="bulleted-list"><li><code>Person</code>의 protected인 <code>name</code>은 상속된 <code>Employee</code> 내에서 접근(<code>getElevatorPitch</code>) 할 수 있지만<p id="109c9b01-46b3-405e-8038-4aa2620de41f" class="">바깥에서는(마지막 줄) 접근할 수 없음</p></li></ul><h3 id="6846916a-f492-4ef4-ac22-56de0afe6bba" class="">protected 생성자</h3><p id="b84dbb43-9b72-4920-83ac-28925e76f2f2" class="">생성자도 protected로 표시될 수 있음</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="c0821694-6839-4e48-b00f-e8bde561bee1" class="code"><code><span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+  <span class="token keyword">protected</span> name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  <span class="token keyword">protected</span> <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">theName<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> theName<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Employee can extend Person</span>
+<span class="token keyword">class</span> <span class="token class-name">Employee</span> <span class="token keyword">extends</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+  <span class="token keyword">private</span> department<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> department<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>department <span class="token operator">=</span> department<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token function">getElevatorPitch</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Hello, my name is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> and I work in </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>department<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> howard <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Employee</span><span class="token punctuation">(</span><span class="token string">"Howard"</span><span class="token punctuation">,</span> <span class="token string">"Sales"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> john <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"John"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="148ef110-c70d-4806-8d3a-7ebb6ed8408b"><div style="font-size:1.5em"><span class="icon">🚨</span></div><div style="width:100%">Constructor of class &#x27;Person&#x27; is protected and only accessible within the class declaration.</div></figure><p id="bf0c2da7-69f2-4960-a82f-a56575d171fe" class="">해당 클래스를 상속하는 클래스 바깥에서는 초기화될 수 없지만 실행할 수는 있음</p><h2 id="5af2326b-8a61-4510-aa18-3d2585f88d66" class=""><a href="https://www.typescriptlang.org/docs/handbook/classes.html#readonly-modifier">Readonly modifier</a></h2><p id="dc9e5cc8-ac67-4fb3-9a5b-07fb0ad89131" class=""><code>readonly</code> 키워드를 이용해서 프로퍼티를 읽기 전용 속성으로 만들 수 있음 </p><p id="efada1ee-add9-4820-a622-2c8041aa3fb2" class=""><code>readonly</code> 프로퍼티는 선언될 때 혹은 생성자에서 반드시 초기화되어야 함</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="4b42ccf4-1bb4-4190-a051-b34cece41c8e" class="code"><code><span class="token keyword">class</span> <span class="token class-name">Octopus</span> <span class="token punctuation">{</span>
+  <span class="token keyword">readonly</span> name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  <span class="token keyword">readonly</span> numberOfLegs<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">theName<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> theName<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> dad <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Octopus</span><span class="token punctuation">(</span><span class="token string">"Man with the 8 strong legs"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dad<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"Man with the 3-piece suit"</span><span class="token punctuation">;</span></code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="6fa6299d-5cbb-498e-954b-3fad3c240db0"><div style="font-size:1.5em"><span class="icon">🚨</span></div><div style="width:100%">Cannot assign to &#x27;name&#x27; because it is a read-only property.</div></figure><h2 id="83523fc7-0b00-441c-9c76-c73695045c78" class=""><a href="https://www.typescriptlang.org/docs/handbook/classes.html#parameter-properties">Parameter properties</a></h2><p id="5f8edd42-3ae5-4c36-9e22-d9c95583d851" class="">파라미터 프로퍼티를 사용하면 한 곳에서 멤버를 만들고 초기화할 수 있음</p><p id="794e8a35-7123-47e4-9a9f-77ca8099d4ec" class="">바로 위에서 만든 예제를 다음과 같이 수정할 수 있음</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="1c262d02-b877-4b29-8657-c095ab1bd85c" class="code"><code><span class="token keyword">class</span> <span class="token class-name">Octopus</span> <span class="token punctuation">{</span>
+  <span class="token keyword">readonly</span> numberOfLegs<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span>
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">readonly</span> name<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> dad <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Octopus</span><span class="token punctuation">(</span><span class="token string">"Man with the 8 strong legs"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dad<span class="token punctuation">.</span>name<span class="token punctuation">;</span></code></pre><ul id="61350f79-7dd5-4ac8-b838-d040ad48a292" class="bulleted-list"><li>name 속성의 선언과 할당이 생성자의 파라미터 위치에서 동시에 이루어짐</li></ul><ul id="a465d032-97eb-4a05-94e5-93516c3bd87f" class="bulleted-list"><li>접근자(Access Modifier), <code>readonly</code> 중 하나를 접두어로 붙이면 파라미터 프로퍼티를 선언할 수 있음<ul id="d76f6502-ab92-4f8d-8a0e-73257ded59fb" class="bulleted-list"><li>접근자 = protected, private, public</li></ul></li></ul><h2 id="e79a50b0-d640-415a-b830-417ab2d55592" class=""><a href="https://www.typescriptlang.org/docs/handbook/classes.html#accessors">Accessors</a> - 접근자</h2><p id="b50078bd-8218-4120-bf60-ac87447a5280" class="">타입스크립트에는 객체의 멤버에 대한 액세스를 지원하는 Getter/Setter 메서드가 있음</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="0a010b8e-d453-4506-9135-0fbab55319b9" class="code"><code><span class="token keyword">class</span> <span class="token class-name">Employee</span> <span class="token punctuation">{</span>
+  fullName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> employee <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Employee</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+employee<span class="token punctuation">.</span>fullName <span class="token operator">=</span> <span class="token string">"Bob Smith"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>employee<span class="token punctuation">.</span>fullName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>employee<span class="token punctuation">.</span>fullName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p id="9962b45b-a807-4f96-9b4a-dccad49dc98d" class="">get/set이 없는 심플한 클래스를 접근자를 가지도록 변경해볼 것</p><p id="abab6a94-96af-4ebd-abe0-b55c7183fcd5" class=""><code>fullName</code>을 외부에서 직접 지정할 수 있게 하는 것이 편리할 순 있지만 예측할 수 없는 변경을 만들어낼 수 있음</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="3dbe2655-495b-48bd-9810-870d26f5ae13" class="code"><code><span class="token keyword">const</span> fullNameMaxLength <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Employee</span> <span class="token punctuation">{</span>
+  <span class="token keyword">private</span> _fullName<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">get</span> <span class="token function">fullName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_fullName<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">set</span> <span class="token function">fullName</span><span class="token punctuation">(</span><span class="token parameter">newName<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>newName <span class="token operator">&amp;&amp;</span> newName<span class="token punctuation">.</span>length <span class="token operator">></span> fullNameMaxLength<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"fullName has a max length of "</span> <span class="token operator">+</span> fullNameMaxLength<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">this</span><span class="token punctuation">.</span>_fullName <span class="token operator">=</span> newName<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> employee <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Employee</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+employee<span class="token punctuation">.</span>fullName <span class="token operator">=</span> <span class="token string">"Bob Smith"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>employee<span class="token punctuation">.</span>fullName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>employee<span class="token punctuation">.</span>fullName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><ul id="c9c4c5b0-aece-421a-b1d0-aa54ab715312" class="bulleted-list"><li>setter에서 정해진 규칙(여기에서는 10자 미만)을 지키지 않으면<p id="60da16c7-0406-4a7d-87d4-e5b550831878" class="">값을 변경하지 않고 오류를 발생하는 방법으로 값을 더 유효하게 관리할 수 있음</p></li></ul><ul id="99dc5ab9-ea5f-4b25-80d2-002666e14a0b" class="bulleted-list"><li>보통 다른 언어에서는 저런 setter가 정해진게 아니라 <code>setPropertyName</code> 이름의 메서드를 만들고<p id="3c1782f6-a776-4e66-871c-4c2cc68fa786" class="">해당 메서드를 호출하는 방식인데 여기에서는 값 할당은 기존처럼 하면 되니 조금 낯설음..ㅎ</p></li></ul><h3 id="6a74e942-4c37-47ac-a004-ef788e937d66" class="">주의사항</h3><ol id="7de8a27e-ff34-4409-9251-15c013b84e2e" class="numbered-list" start="1"><li>Getter/Setter는 ECMAScript 5 이상을 사용하도록 컴파일러를 설정해야 함</li></ol><ol id="badc7f2f-361d-4902-a787-150ed463be19" class="numbered-list" start="2"><li><em>get과 set이 없는 프로퍼티는 자동으로 읽기 전용으로 추정됨</em><p id="f8be9286-35a9-442c-a153-ce3591a76aad" class="">→ 코드에서 <code><a href="https://www.typescriptlang.org/docs/handbook/utility-types.html">.d.ts</a></code><a href="https://www.typescriptlang.org/docs/handbook/utility-types.html"> 파일</a>을 생성할 때 유용함</p><p id="3f564d06-e014-4fea-b1d0-a94757f3196b" class="">왜냐하면 프로퍼티 사용자가 그것을 변경할 수 없다는 것을 알 수 있기 때문</p></li></ol><h2 id="0c7f8ec9-5eeb-477a-b81f-d984f03976c7" class=""><a href="https://www.typescriptlang.org/docs/handbook/classes.html#static-properties">Static Properties</a></h2><p id="e1038289-8c09-4ad8-ae5e-38f6705c934b" class="">클래스 인스턴스가 아니라 클래스 자체에서 볼 수 있는 클래스의 정적 멤버를 생성 가능</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="c48fd62e-c952-41b3-ac83-2ea52de8b82a" class="code"><code><span class="token keyword">class</span> <span class="token class-name">Grid</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> origin <span class="token operator">=</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> y<span class="token operator">:</span> <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function">calculateDistanceFromOrigin</span><span class="token punctuation">(</span><span class="token parameter">point<span class="token operator">:</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span> y<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> xDist <span class="token operator">=</span> point<span class="token punctuation">.</span>x <span class="token operator">-</span> Grid<span class="token punctuation">.</span>origin<span class="token punctuation">.</span>x<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> yDist <span class="token operator">=</span> point<span class="token punctuation">.</span>y <span class="token operator">-</span> Grid<span class="token punctuation">.</span>origin<span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span>xDist <span class="token operator">*</span> xDist <span class="token operator">+</span> yDist <span class="token operator">*</span> yDist<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">this</span><span class="token punctuation">.</span>scale<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">public</span> scale<span class="token operator">:</span> <span class="token builtin">number</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> grid1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Grid</span><span class="token punctuation">(</span><span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1x scale</span>
+<span class="token keyword">let</span> grid2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Grid</span><span class="token punctuation">(</span><span class="token number">5.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 5x scale</span>
+
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>grid1<span class="token punctuation">.</span><span class="token function">calculateDistanceFromOrigin</span><span class="token punctuation">(</span><span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span> y<span class="token operator">:</span> <span class="token number">10</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>grid2<span class="token punctuation">.</span><span class="token function">calculateDistanceFromOrigin</span><span class="token punctuation">(</span><span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span> y<span class="token operator">:</span> <span class="token number">10</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p id="cad9a08a-3465-4d53-9870-5b5d028ca9d0" class="">인스턴스 멤버에 접근할 때 <code>this.</code>를 사용했다면 static 멤버는 <code>ClassName.</code>으로 접근 가능</p><h2 id="d76ed2ca-a7f9-4345-8467-a2bca66199df" class=""><a href="https://www.typescriptlang.org/docs/handbook/classes.html#abstract-classes">Abstract Class</a></h2><p id="2b708fd9-aa06-4f6e-a15c-11d76332facd" class="">추상 클래스는 다른 클래스를 파생시킬 수 있는 기본 클래스이지만, 직접 인스턴스화 할 수 없음</p><p id="1c94408c-d942-437a-b54b-34abc1a51907" class="">인터페이스와 다른 점은 멤버에 대한 구현 세부 정보를 포함할 수 있음</p><p id="e2331a91-f585-4843-83c5-f057e8ec290e" class=""><code>abstract</code> 키워드는 추상 클래스 내의 추상 메서드 뿐 아니라 추상 클래스를 정의할 때도 사용됨</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="e4de4b00-03a1-4fa4-b150-78d8ba52f8e5" class="code"><code><span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+  <span class="token keyword">abstract</span> <span class="token function">makeSound</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+
+  <span class="token function">move</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"roaming the earth..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre><p id="4ed13861-2f4e-436f-9b13-ea25c198d26f" class="">abstract로 표시된 추상 클래스 내의 메서드는 구현이 없기 때문에</p><p id="a5dd48b5-538f-4f31-98d8-94f604d5699c" class="">상속하는 subclass에서 직접 구현해야 함</p><figure id="971058d1-dccd-47b9-addb-91ef903efc8e" class="image"><a href="06%20Class%20c950d649aba24578926f81244e86c2a0/Untitled%201.png"><img style="width:2762px" src="06%20Class%20c950d649aba24578926f81244e86c2a0/Untitled%201.png"/></a></figure><p id="3e1f214c-aefb-46da-aec8-5ac831ab3268" class="">어떻게 컴파일되는지 살펴봤는데,  추상 메서드는 그냥 없어짐</p><p id="5330f36f-a00a-4f1d-b364-10e1d95e2e15" class="">= 정적 레벨에서 추상 클래스 상속했는데 구현 안하면 린트 오류만 띄워줌</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="6e484e12-46fc-44b2-993d-f758e71c9e53" class="code"><code><span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Department</span> <span class="token punctuation">{</span>
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">public</span> name<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token function">printName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Department name: "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">abstract</span> <span class="token function">printMeeting</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span> <span class="token comment">// must be implemented in derived classes</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">AccountingDepartment</span> <span class="token keyword">extends</span> <span class="token class-name">Department</span> <span class="token punctuation">{</span>
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token string">"Accounting and Auditing"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// constructors in derived classes must call super()</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">printMeeting</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"The Accounting Department meets each Monday at 10am."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">generateReports</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Generating accounting reports..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="d9921ad6-01bc-495a-8df4-7e6d57001523" class="code"><code><span class="token keyword">let</span> department<span class="token operator">:</span> Department<span class="token punctuation">;</span> <span class="token comment">// ok to create a reference to an abstract type</span>
+department <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Department</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// error: cannot create an instance of an abstract class</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="de1ce4ca-b8dc-40c4-8766-01de98830cbc" class="code"><code>department <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AccountingDepartment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ok to create and assign a non-abstract subclass</span>
+department<span class="token punctuation">.</span><span class="token function">printName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+department<span class="token punctuation">.</span><span class="token function">printMeeting</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+department<span class="token punctuation">.</span><span class="token function">generateReports</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// error: department is not of type AccountingDepartment, cannot access generateReports</span>
+
+<span class="token comment">// 꼭 호출하고 싶다면</span>
+<span class="token punctuation">(</span>department <span class="token keyword">as</span> AccountingDepartment<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">generateReports</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 그러나 사실 department 타입 자체를 AccountingDepartment로 하는 것이..</span></code></pre><ul id="7d91bc03-7eb3-46f7-82e0-3df7dad7460f" class="bulleted-list"><li>추상 메서드는 인터페이스와 유사한 메서드 구문을 사용함<p id="b9dcdee0-110c-4661-ab4b-d78d96e2d65f" class="">둘 다 메서드 본문을 구현하지 않고, Method Signature를 정의함</p></li></ul><ul id="6f4346a5-74c6-43d8-a06c-6208b2fda6f2" class="bulleted-list"><li>추상 메서드는 인터페이스와 다르게 <code>abstract</code> 키워드를 포함해야 하고, <p id="859a85c3-2208-4fb3-936c-8b3abeabb5cd" class="">선택적으로 Getter/Setter를 포함할 수 있음</p></li></ul><h1 id="1c244757-91bb-4169-ae0d-c2a19a22eb81" class=""><a href="https://www.typescriptlang.org/docs/handbook/classes.html#advanced-techniques">고오급 기술</a></h1><h2 id="66f0cea3-6a39-48ea-8eed-12a66a653f47" class=""><a href="https://www.typescriptlang.org/docs/handbook/classes.html#constructor-functions">생성자 함수</a></h2><p id="bbfb9282-5697-4381-aa02-4b7fcfa4e495" class="">타입스크립트에서 클래스를 선언하면 동시에 여러 가지가 만들어짐 </p><h3 id="10bdffeb-10ab-4875-b570-2cfe7d75f15b" class="">클래스의 인스턴스 타입</h3><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="f11c8a49-c5f1-45fe-a498-155371d2e322" class="code"><code><span class="token keyword">class</span> <span class="token class-name">Greeter</span> <span class="token punctuation">{</span>
+  greeting<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token parameter">message<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>greeting <span class="token operator">=</span> message<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">"Hello, "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>greeting<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> greeter<span class="token operator">:</span> Greeter<span class="token punctuation">;</span>
+greeter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Greeter</span><span class="token punctuation">(</span><span class="token string">"world"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>greeter<span class="token punctuation">.</span><span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "Hello, world"</span></code></pre><p id="e4f089c3-fd2b-451d-8980-89a57f80a5c8" class=""><code>let greeter: Greeter</code> : <code>Greeter</code>를 클래스 인스턴스의 <strong>타입</strong>으로 사용함</p><p id="a231f531-b90a-4ee5-8862-dacabb880999" class="">다른 객체지향 언어를 사용하는 프로그래머들에게 아주 자연스러운 행동</p><h3 id="566c13f8-c75a-4b9c-bbb1-4c24ff8b604f" class="">생성자 함수 - constructor function</h3><p id="da704cea-fe57-43c8-b739-f776becb86db" class=""><code>new</code> 키워드를 이용해서 클래스의 인스턴스를 생성할 때 호출하는 함수</p><p id="17fba35f-60f5-4cbe-9c9b-2d0e3ec7ea04" class="">위의 코드를 자바스크립트로 변환한 결과물을 살펴보면</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="381c16a2-4b54-4cb1-815b-f87f4cecbc45" class="code"><code><span class="token keyword">var</span> Greeter <span class="token operator">=</span> <span class="token comment">/** @class */</span> <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">function</span> <span class="token function">Greeter</span><span class="token punctuation">(</span><span class="token parameter">message</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>greeting <span class="token operator">=</span> message<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token class-name">Greeter</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">greet</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"Hello, "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>greeting<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> Greeter<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> greeter<span class="token punctuation">;</span>
+greeter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Greeter</span><span class="token punctuation">(</span><span class="token string">"world"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>greeter<span class="token punctuation">.</span><span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "Hello, world"</span></code></pre><ul id="1701e318-b07b-4519-a8aa-3ec794ed7695" class="bulleted-list"><li><code>new</code> 키워드와 함께 생성자 함수를 호출하면 클래스 인스턴스가 생성됨</li></ul><ul id="fd728fa8-7574-47a4-9f16-98b72079194a" class="bulleted-list"><li>생성자 함수는 클래스의 모든 정적 멤버를 가지고 있음</li></ul><p id="f2e2eee8-b289-4271-9a75-3296f2282468" class="">→ 클래스에는 instance side와 static side가 있음 (<a href="https://stackoverflow.com/questions/58399613/what-is-exactly-the-static-side-and-the-instance-side-in-typescript">지난주에 봤던 그 글</a>)</p><p id="d6341660-4713-4c20-a075-b375f697ceea" class="">위의 예제를 조금 고쳐봅시다</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="6665e723-ac1e-461c-84d1-a2e083b3b126" class="code"><code><span class="token keyword">class</span> <span class="token class-name">Greeter</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> standardGreeting <span class="token operator">=</span> <span class="token string">"Hello, there"</span><span class="token punctuation">;</span>
+  greeting<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  <span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>greeting<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token string">"Hello, "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>greeting<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> Greeter<span class="token punctuation">.</span>standardGreeting<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+Greeter<span class="token punctuation">.</span>standardGreeting
+
+<span class="token keyword">let</span> greeter1<span class="token operator">:</span> Greeter<span class="token punctuation">;</span>
+greeter1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Greeter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>greeter1<span class="token punctuation">.</span><span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "Hello, there"</span>
+
+<span class="token keyword">let</span> greeterMaker<span class="token operator">:</span> <span class="token keyword">typeof</span> Greeter <span class="token operator">=</span> Greeter<span class="token punctuation">;</span>
+greeterMaker<span class="token punctuation">.</span>standardGreeting <span class="token operator">=</span> <span class="token string">"Hey there!"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> greeter2<span class="token operator">:</span> Greeter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">greeterMaker</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>greeter2<span class="token punctuation">.</span><span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "Hey there!"</span>
+
+<span class="token keyword">let</span> greeter3<span class="token operator">:</span> Greeter<span class="token punctuation">;</span>
+greeter3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Greeter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>greeter3<span class="token punctuation">.</span><span class="token function">greet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "Hey there!"</span></code></pre><ul id="3285eb07-222b-4699-9e4f-286e73eb04a6" class="bulleted-list"><li><code>greeter1</code> : 이전 예제의 <code>greeter</code>와 유사함</li></ul><ul id="e4558b4a-7860-404f-a79f-0f0cf22adea2" class="bulleted-list"><li><code>greeterMarker</code> : <code>Greeter</code> 클래스를 직접적으로 사용함, 클래스 자체(= 생성자 함수)를 변수에 가짐<ul id="a66bfd0e-2140-47de-92a6-ce988e26222a" class="bulleted-list"><li><code>typeof Greeter</code> : “give me the type of the <code>Greeter</code> class itself” 또는<p id="c6ee7390-fefe-48ba-a443-8104145cab9a" class="">“give me the type of the symbol called <code>Greeter</code>,”의 의미</p></li></ul></li></ul><h2 id="b7549bdd-786f-489f-b193-91d87a6fb7ca" class=""><a href="https://www.typescriptlang.org/docs/handbook/classes.html#using-a-class-as-an-interface">클래스를 인터페이스로 사용하기</a></h2><p id="98e6e628-ccd7-4e31-928c-d62ff068759f" class="">위에서 말한대로 클래스의 선언은 두 가지를 만들어냄</p><ul id="ac3ed64f-2c0e-4d6a-ba45-82ebb80af978" class="bulleted-list"><li>인스턴스를 나타내는 <strong>타입</strong></li></ul><ul id="7889bc8b-804f-4408-8f74-1a576fbf7e06" class="bulleted-list"><li><strong>생성자 함수</strong></li></ul><p id="fc04f293-ff68-412c-a2cf-3808ceba8d1e" class="">클래스가 타입을 만들기 때문에, 인터페이스에서도 사용할 수 있음</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="398e88bd-52ff-473f-811e-2e19ccaceec0" class="code"><code><span class="token keyword">class</span> <span class="token class-name">Point</span> <span class="token punctuation">{</span>
+  x<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+  y<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Point3d</span> <span class="token keyword">extends</span> <span class="token class-name">Point</span> <span class="token punctuation">{</span>
+  z<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> point3d<span class="token operator">:</span> Point3d <span class="token operator">=</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> y<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span> z<span class="token operator">:</span> <span class="token number">3</span> <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre></div></article></body></html>
