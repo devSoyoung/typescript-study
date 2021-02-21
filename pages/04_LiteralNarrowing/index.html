@@ -1,0 +1,690 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Literal Narrowing</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="5261360e-a239-474a-8b55-eafae3cb49ad" class="page sans"><header><h1 class="page-title">Literal Narrowing</h1></header><div class="page-body"><h1 id="c2e128cc-76e5-405a-aeaa-ed65e9d3938f" class="">개요</h1><ul id="9c6f180b-5e25-4d09-b12a-c29346f9d886" class="bulleted-list"><li>리터럴 타입은 집합 타입의 보다 구체적인 하위 타입을 의미</li></ul><ul id="b24061f6-eac6-452d-99eb-7d691d9ef7d8" class="bulleted-list"><li>즉, 타입 시스템 안에서 <code>&quot;Hello World&quot;</code>는 <code>string</code>이지만, <code>string</code>은 <code>&quot;Hello World&quot;</code>가 아니라는 뜻</li></ul><ul id="e6b8751e-92b8-4f3d-97f8-762bddd2a07b" class="bulleted-list"><li>현재 TypeScript에는 문자열과 숫자, 그리고 boolean 까지 세 가지 리터럴 타입 존재</li></ul><ul id="45438d34-72e4-45c2-8967-426078c09c72" class="bulleted-list"><li>이를 사용하면 문자열, 숫자나 불리언에 정확한 값을 지정 가능</li></ul><p id="3ddf1fbe-1954-4ed3-88f6-55c2b36395aa" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="8f3c4e14-8d8e-44bd-abf7-f88d96b669e5"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>리터럴이란?</strong>
+컴퓨터 과학 분야에서 리터럴(literal)이란 <em>소스 코드의 고정된 값</em>을 대표하는 용어다. 거의 모든 프로그래밍 언어는 정수, 부동소수점 숫자, 문자열, 불린 자료형과 같은 용어를 가지고 있다. 어떤 언어는 열거 타입이나, 배열, 자료형, 객체와 같은 용어도 있다. - by wikipedia</div></figure><p id="c3ee20fe-176a-4d7c-bd3b-203103b63457" class="">
+</p><h1 id="d18f5c79-2204-40be-a6e8-5466c83669fc" class=""><strong>리터럴 타입 좁히기 (Literal Narrowing)</strong></h1><ul id="e2b1ba9b-c3fa-4dbc-9b7c-fa2c4be260ea" class="bulleted-list"><li><code>var</code> 또는 <code>let</code>으로 변수를 선언할 경우 이 변수의 값은 변경될 가능성이 있음을 컴파일러에게 알림</li></ul><ul id="f34aea6f-57b2-4868-8eda-9cc167c37962" class="bulleted-list"><li><code>const</code>로 변수를 선언하게 되면 TypeScript에게 이 객체는 절대 변경되지 않음을 알림</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="48da5ac8-c21b-4777-8c8a-5ebed375bff1" class="code code-wrap"><code>// const를 사용하여 변수 helloWorld가
+// 절대 변경되지 않음을 보장합니다.
+
+// 따라서, TypeScript는 문자열이 아닌 "Hello World"로 타입을 정합니다.
+const helloWorld = "Hello World";
+
+// 반면, let은 변경될 수 있으므로 컴파일러는 문자열이라고 선언할 것입니다.
+let hiWorld = "Hi World";
+</code></pre><ul id="3a1cc684-fd93-4749-bc93-1e9eb4d09b05" class="bulleted-list"><li>그래서 타입 좁히기란<ul id="dc1ae6bb-03eb-4538-9fa7-a3023473e869" class="bulleted-list"><li>무한한 수의 케이스들 (ex. 문자열)  ⇒ 유한한 수의 케이스 (ex. <code>helloWorld</code> )</li></ul><ul id="9ba06f0c-9e40-49b9-b742-b7e3c1c73546" class="bulleted-list"><li>변수가 가질 수 있는 케이스를 더 적게 한정해 주는 것</li></ul></li></ul><ul id="818d12ad-9362-4124-b2c3-08585ea605d8" class="bulleted-list"><li>❓helloWorld typeOf 찍어보면 문자열 나올텐데,, 가장 구체적인 (좁은) 타입을 얻는 방식이 따로 있을까?</li></ul><p id="e2f13a9c-df13-4899-93f6-e1ff89cbb52e" class="">
+</p><h1 id="98576b70-9e87-4e90-81bb-824a170e2223" class=""><strong>문자열 리터럴 타입 (String Literal Types)</strong></h1><ul id="832feac3-4a0d-430e-9471-d9b2c2169ad5" class="bulleted-list"><li>문자열 리터럴 타입과 잘 어울리는 타입스크립트 기능<ul id="5bf25cc4-e200-469c-a76e-219f0a2baacd" class="bulleted-list"><li>유니언 타입</li></ul><ul id="c08fdfda-fc7f-44b0-b34e-0d26caa062c3" class="bulleted-list"><li>타입 가드</li></ul><ul id="504aff90-e626-4f5c-9a56-e20697dabbf5" class="bulleted-list"><li>타입 별칭</li></ul></li></ul><ul id="a7a7cc23-d9c0-4a03-b1e3-f2f7e4ebf70c" class="bulleted-list"><li>이런 기능을 함께 사용하여 문자열로 enum과 비슷한 형태 만들기 가능<ul id="2c0caee9-71bc-4659-b304-1956dea7c054" class="bulleted-list"><li>1장에서 언급했던 내용과 같이 트리쉐이킹이 안되는 enum 보다 문자열 리터럴 타입으로 타입을 지정하면 번들링시 사이즈 최적화에 더 유리함</li></ul></li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="3714d72b-cc2c-46da-9f80-afb49589f3e9" class="code code-wrap"><code><span class="token keyword">type</span> Easing <span class="token operator">=</span> <span class="token string">"ease-in"</span> <span class="token operator">|</span> <span class="token string">"ease-out"</span> <span class="token operator">|</span> <span class="token string">"ease-in-out"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">UIElement</span> <span class="token punctuation">{</span>
+  <span class="token function">animate</span><span class="token punctuation">(</span><span class="token parameter">dx<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> dy<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> easing<span class="token operator">:</span> Easing</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>easing <span class="token operator">===</span> <span class="token string">"ease-in"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// ...</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>easing <span class="token operator">===</span> <span class="token string">"ease-out"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>easing <span class="token operator">===</span> <span class="token string">"ease-in-out"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 하지만 누군가가 타입을 무시하게 된다면</span>
+      <span class="token comment">// 이곳에 도달하게 될 수 있습니다.</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> button <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UIElement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+button<span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">"ease-in"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+button<span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">"uneasy"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><ul id="a6677ff5-bcca-4949-ad03-0c7db9938ec0" class="bulleted-list"><li>허용되지 않은 문자열을 사용하게 되면 오류 발생</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="a5243be7-4bc4-4cc6-a5fd-6b29ff87ed64" class="code code-wrap"><code>'"uneasy"' 타입은 '"ease-in" | "ease-out" | "ease-in-out"' 타입의 매개 변수에 할당할 수 없습니다.</code></pre><ul id="4cfb0e6d-e4b1-4268-83cf-4f817f478516" class="bulleted-list"><li>문자열 리터럴 타입은 함수 오버로딩에 사용 가능<ul id="59305255-839a-4eae-8c21-d237d4787ead" class="bulleted-list"><li>타입스크립트 컴파일러가 다른 타입으로 받아들여서 가능한 것</li></ul></li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="8eff8dde-b8b3-4820-8077-bb71a6b6a9ec" class="code code-wrap"><code><span class="token keyword">function</span> <span class="token function">createElement</span><span class="token punctuation">(</span>tagName<span class="token operator">:</span> <span class="token string">"img"</span><span class="token punctuation">)</span><span class="token operator">:</span> HTMLImageElement<span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">createElement</span><span class="token punctuation">(</span>tagName<span class="token operator">:</span> <span class="token string">"input"</span><span class="token punctuation">)</span><span class="token operator">:</span> HTMLInputElement<span class="token punctuation">;</span>
+<span class="token comment">// ... 추가적인 중복 정의들 ...</span>
+<span class="token keyword">function</span> <span class="token function">createElement</span><span class="token punctuation">(</span><span class="token parameter">tagName<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span><span class="token operator">:</span> Element <span class="token punctuation">{</span>
+  <span class="token comment">// ... 여기에 로직 추가 ...</span>
+<span class="token punctuation">}</span>
+</code></pre><h1 id="fa6c2bd1-7d49-4a08-9e34-ec56f61c6003" class=""><strong>숫자형 리터럴 타입 (Numeric Literal Types)</strong></h1><ul id="e5a61c0f-42cc-4b97-abb4-4899bddb6ff2" class="bulleted-list"><li>문자열 리터럴과 같은 역할을 하는 숫자형 리터럴 타입도 있음</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="994cba11-b739-45f0-b196-45831e5d53fb" class="code code-wrap"><code><span class="token keyword">function</span> <span class="token function">rollDice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token number">1</span> <span class="token operator">|</span> <span class="token number">2</span> <span class="token operator">|</span> <span class="token number">3</span> <span class="token operator">|</span> <span class="token number">4</span> <span class="token operator">|</span> <span class="token number">5</span> <span class="token operator">|</span> <span class="token number">6</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">6</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token number">1</span> <span class="token operator">|</span> <span class="token number">2</span> <span class="token operator">|</span> <span class="token number">3</span> <span class="token operator">|</span> <span class="token number">4</span> <span class="token operator">|</span> <span class="token number">5</span> <span class="token operator">|</span> <span class="token number">6</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token function">rollDice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><ul id="0a7f4115-abcc-410a-b7a5-24808b00469b" class="bulleted-list"><li>주로 가능한 설정값을 설명할 때 사용</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="ed248a91-1eff-4972-ab73-2e8c08bcb475" class="code code-wrap"><code><span class="token comment">/** loc/lat 좌표에 지도를 생성합니다. */</span>
+<span class="token keyword">declare</span> <span class="token keyword">function</span> <span class="token function">setupMap</span><span class="token punctuation">(</span><span class="token parameter">config<span class="token operator">:</span> MapConfig</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+<span class="token comment">// ---생략---</span>
+<span class="token keyword">interface</span> <span class="token class-name">MapConfig</span> <span class="token punctuation">{</span>
+  lng<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+  lat<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+  tileSize<span class="token operator">:</span> <span class="token number">8</span> <span class="token operator">|</span> <span class="token number">16</span> <span class="token operator">|</span> <span class="token number">32</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">setupMap</span><span class="token punctuation">(</span><span class="token punctuation">{</span> lng<span class="token operator">:</span> <span class="token operator">-</span><span class="token number">73.935242</span><span class="token punctuation">,</span> lat<span class="token operator">:</span> <span class="token number">40.73061</span><span class="token punctuation">,</span> tileSize<span class="token operator">:</span> <span class="token number">16</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p id="be374c7c-1938-41d8-9b96-c244bd1813a5" class="">
+</p><h1 id="37d9d059-7455-4cf1-8e64-a5cf96a180dd" class="">불린형 리터럴 타입 (Boolean Literal Types)</h1><ul id="0000440f-c09b-4022-9431-6389b2103525" class="bulleted-list"><li>불린 형태의 리터럴 타입도 있음.</li></ul><ul id="3916e399-9b45-48b8-99ca-a8579ac3034b" class="bulleted-list"><li>어떤 객체가 그 속성과 서로 관련이 있는 경우에 속성값을 제한하기 위해 사용할 수 있음<ul id="2e9fdccb-11f2-4956-81a8-7074114a4a6d" class="bulleted-list"><li>검증 성공한 경우 isValid 는 true 로 제한한다거나, 실패한 경우 false 로 제한하는 등..</li></ul></li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="016b2c41-0d03-4b3b-8c9a-8144e2efd1ae" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">ValidationSuccess</span> <span class="token punctuation">{</span>
+  isValid<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  reason<span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">ValidationFailure</span> <span class="token punctuation">{</span>
+  isValid<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  reason<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> ValidationResult <span class="token operator">=</span> ValidationSuccess <span class="token operator">|</span> ValidationFailure<span class="token punctuation">;</span>
+</code></pre><p id="9b27c416-2c0b-4783-8678-8681a7565aac" class="">
+</p></div></article></body></html>
