@@ -1,0 +1,788 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Enum Types</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="69d09d5b-30fe-4c93-b23a-2f5681976328" class="page sans"><header><h1 class="page-title">Enum Types</h1></header><div class="page-body"><p id="33103ff7-fde6-4254-a556-e0ad5809f425" class="">
+</p><h1 id="d86d82ef-607b-4d8b-94ae-7e5c63066ba7" class=""><strong>열거형 (Enums)</strong></h1><ul id="5a5b7949-36b7-4fc7-81aa-6872ec11a273" class="bulleted-list"><li>열거형은 JS 의 타입의 확장 정도의 기능이 아님</li></ul><ul id="8d9ad623-1c26-4e4d-96a6-2de9673789c2" class="bulleted-list"><li>이름이 있는 상수들의 집합을 정의 가능</li></ul><ul id="1b13f200-955e-44bc-9f29-c525e38ab262" class="bulleted-list"><li>사용시 얻을 수 있는 점<ul id="cacda4ef-f986-48b8-b418-0b6a8e495c59" class="bulleted-list"><li>개발 의도를 문서화 가능</li></ul><ul id="453810f7-5104-4232-b6ba-b89cba78e3e7" class="bulleted-list"><li>구분되는 사례 집합을 더 쉽게 만들 수 있음</li></ul></li></ul><ul id="cd7241df-a27d-459b-bd85-b84e80940043" class="bulleted-list"><li>TypeScript는 숫자와 문자열-기반 열거형을 제공</li></ul><h2 id="de8210b2-2283-48aa-9175-9c6509be0efb" class=""><strong>숫자 열거형 (Numeric enums)</strong></h2><ul id="07eca6e9-e7c0-49c5-9036-5fe3b00385b4" class="bulleted-list"><li>열거형은 <code>enum</code> 키워드를 사용해 정의</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="3f21ab42-a890-4bcf-87e1-ff357804c793" class="code code-wrap"><code><span class="token keyword">enum</span> Direction <span class="token punctuation">{</span>
+    Up <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    Down<span class="token punctuation">,</span>
+    Left<span class="token punctuation">,</span>
+    Right<span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre><ul id="2e94764a-21e0-4fbd-8afb-8b7ca6f9206b" class="bulleted-list"><li>위 코드에서 <code>Up</code>이 <code>1</code> 로 초기화된 숫자 열거형을 선언</li></ul><ul id="54e87320-87a9-4f8d-9d2b-d7c269f78693" class="bulleted-list"><li>그 지점부터 뒤의 멤버들은 자동으로 증가된 값을 가짐<ul id="1d1d68f7-5e66-4d4d-86bd-0b350764b860" class="bulleted-list"><li>즉 <code>Direction.Up</code> 은 <code>1</code>, <code>Down</code> 은 <code>2</code>, <code>Left</code> 는 <code>3</code>, <code>Right</code> 은 <code>4</code></li></ul></li></ul><p id="8e82af44-28e7-4031-80a0-fd611b9d3af8" class="">
+</p><p id="c7fd9054-6f75-4c91-ac23-407d28a87881" class="">원한다면, 전부 초기화 하지 않기도 가능</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="20a57171-7c8a-4592-8ecc-4dcb78b41911" class="code code-wrap"><code><span class="token keyword">enum</span> Direction <span class="token punctuation">{</span>
+    Up<span class="token punctuation">,</span>
+    Down<span class="token punctuation">,</span>
+    Left<span class="token punctuation">,</span>
+    Right<span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre><ul id="49a66528-da0e-402d-8965-b36648aaa178" class="bulleted-list"><li>위 경우 <code>Up</code> 값은 <code>0</code>, <code>Down</code> 은 <code>1</code> </li></ul><ul id="9fa384a5-3820-4080-a019-8ea91ef93fb7" class="bulleted-list"><li>값이 자동 증가하는 기능이 유용한 경우<ul id="69596ca9-40bc-4d1f-bd96-1fce24e3eed3" class="bulleted-list"><li>멤버 값 자체에는 신경 쓰지 않지만, 각 값이 같은 열거형의 다른 값과 구별돼야 하는 경우</li></ul><p id="ae4a0305-7d79-454f-bc9d-ccbdac2a5a51" class="">
+</p></li></ul><p id="88f23672-35d8-4809-8d84-29696fad36af" class=""><strong>열거형 사용법</strong></p><ul id="8049349e-cc09-42ec-b2ba-571203aa07e1" class="bulleted-list"><li>열거형 자체에서 프로퍼티로 모든 멤버에 접근하며, 열거형의 이름을 사용해 타입을 선언</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="36727ebb-837a-4299-8221-89e997af3a59" class="code code-wrap"><code><span class="token keyword">enum</span> Response <span class="token punctuation">{</span>
+    No <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    Yes <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">respond</span><span class="token punctuation">(</span><span class="token parameter">recipient<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> message<span class="token operator">:</span> Response</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">respond</span><span class="token punctuation">(</span><span class="token string">"Princess Caroline"</span><span class="token punctuation">,</span> Response<span class="token punctuation">.</span>Yes<span class="token punctuation">)</span></code></pre><ul id="b0514828-1b43-4b35-b094-fa66bb085d30" class="bulleted-list"><li>숫자 열거형은 <a href="https://typescript-kr.github.io/pages/enums.html#%EA%B3%84%EC%82%B0%EB%90%9C-%EB%A9%A4%EB%B2%84%EC%99%80-%EC%83%81%EC%88%98-%EB%A9%A4%EB%B2%84-computed-and-constant-members">계산된 멤버와 상수 멤버 (참조)</a>를 섞어서 사용 가능</li></ul><ul id="99cf2e0c-7756-4b13-917a-777ec101ffc6" class="bulleted-list"><li>아래와 같은 순서로 사용해야 함<ol id="3d2817e4-390e-45da-85d8-cd3f21da47f2" class="numbered-list" start="1"><li>초기화되지 않은 열거형</li></ol><ol id="d3795239-0929-47f0-bec6-a041d4258f1e" class="numbered-list" start="2"><li>숫자 상수 혹은 다른 상수 열거형 멤버와 함께 초기화된 숫자 열거형</li></ol><ul id="bc7c4ac2-3c67-426f-9dca-5502dbd7499e" class="bulleted-list"><li>❓계산된 멤버의 순서에 관한 이야기는 없는데, 상수 멤버로 치는건가? → 관련 내용 후술</li></ul></li></ul><p id="881701fb-e617-4447-b76f-31e4226b9ad2" class="">즉 아래 방식은 사용 불가능</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="2df3ed4b-4c17-48e1-8010-68bcc17948c9" class="code code-wrap"><code><span class="token keyword">enum</span> <span class="token constant">E</span> <span class="token punctuation">{</span>
+    <span class="token constant">A</span> <span class="token operator">=</span> <span class="token function">getSomeValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token constant">B</span><span class="token punctuation">,</span> <span class="token comment">// 오류! 앞에 나온 A가 계산된 멤버이므로 초기화가 필요합니다.</span>
+<span class="token punctuation">}</span></code></pre><h2 id="eebd7c17-9de5-41b6-b35d-30e21d596acf" class=""><strong>문자열 열거형 (String enums)</strong></h2><ul id="cbd3ab68-0da8-498f-8338-ce9322b3d2f3" class="bulleted-list"><li>문자열 열거형은 유사하지만 <a href="https://typescript-kr.github.io/pages/enums.html#%EB%9F%B0%ED%83%80%EC%9E%84%EC%97%90%EC%84%9C-%EC%97%B4%EA%B1%B0%ED%98%95-enums-at-runtime">런타임에서 열거형</a>의 동작이 약간 다름</li></ul><ul id="9c797711-39a6-42b1-9bdf-f77573161b18" class="bulleted-list"><li>각 멤버들은 문자열 리터럴 또는 다른 문자열 열거형의 멤버로 상수 초기화 해야 함</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="44e7daad-645b-44a8-8631-4ad09d75a332" class="code code-wrap"><code><span class="token keyword">enum</span> Direction <span class="token punctuation">{</span>
+    Up <span class="token operator">=</span> <span class="token string">"UP"</span><span class="token punctuation">,</span>
+    Down <span class="token operator">=</span> <span class="token string">"DOWN"</span><span class="token punctuation">,</span>
+    Left <span class="token operator">=</span> <span class="token string">"LEFT"</span><span class="token punctuation">,</span>
+    Right <span class="token operator">=</span> <span class="token string">"RIGHT"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span></code></pre><ul id="d49dabab-60d5-4e1d-9cf2-68f4f729e8d3" class="bulleted-list"><li>문자열 열거형은 숫자 열거형처럼 자동-증가하는 기능은 없지만, &quot;직렬화&quot;를 잘한다는 이점이 있음</li></ul><ul id="017ffa5f-3d42-497f-8576-b000d2d952a1" class="bulleted-list"><li>예를 들어 숫자 열거형을 이용해서 디버깅하고 있고 그 값을 읽어야 한다면, 종종 그 값이 불확실한 경우가 있음<ul id="e2b18549-484c-4a98-b9c5-de6a0ba319fb" class="bulleted-list"><li>숫자만으로는 이것이 어떤 의미인지 유의미한 정보를 제공해주지 않기 때문</li></ul><ul id="abb05b36-95f9-4641-bdad-19e114190113" class="bulleted-list"><li><a href="https://typescript-kr.github.io/pages/enums.html#%EC%97%AD-%EB%A7%A4%ED%95%91-Reverse-mappings">역 매핑</a> 을 이용하면 가능하긴 함</li></ul></li></ul><ul id="9f242a4d-0702-4d3c-86fb-553bd15c9be6" class="bulleted-list"><li>반면 문자열 열거형을 이용하면 코드를 실행할 때, 열거형 멤버에 지정된 이름과는 무관하게 유의미하고 읽기 좋은 값을 이용하여 실행가능</li></ul><p id="5c9b90b0-a046-4f3f-9e38-099e4545664a" class="">
+</p><p id="a3407c13-935b-45b4-899b-a65614c83e02" class="">예시)</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="2a6a2a99-6eb7-428d-807f-89701c93903f" class="code"><code><span class="token keyword">enum</span> NumericMembership <span class="token punctuation">{</span>
+		Normal <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>
+		Silver<span class="token punctuation">,</span>
+		Gold<span class="token punctuation">,</span>
+		<span class="token constant">VIP</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">enum</span> StringMembership <span class="token punctuation">{</span>
+		Normal <span class="token operator">=</span> <span class="token string">"NORMAL"</span><span class="token punctuation">,</span>
+		Silver <span class="token operator">=</span> <span class="token string">"SILVER"</span>
+		Gold <span class="token operator">=</span> <span class="token string">"GOLD"</span><span class="token punctuation">,</span>
+		<span class="token constant">VIP</span> <span class="token operator">=</span> <span class="token string">"VIP"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>NumericMembership<span class="token punctuation">.</span>Gold<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 2</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>NumericMembership<span class="token punctuation">[</span>NumericMembership<span class="token punctuation">.</span>Gold<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment">// Gold - reverse mapping</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>StringMembership<span class="token punctuation">.</span>Gold<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// GOLD</span>
+</code></pre><p id="0191cbf7-8cd0-4204-ac71-328dd8f18b6c" class="">
+</p><h2 id="3530065d-9853-4ee0-92c0-2ec30e51f96c" class=""><strong>이종 열거형 (Heterogeneous enums)</strong></h2><ul id="78b84225-9ac6-414a-90f8-07c1a4ce8e77" class="bulleted-list"><li>기술적으로 열거형은 숫자와 문자를 섞어서 사용할 수 있지만 굳이..?</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="6ef95b1e-ec8f-452a-a504-612798f8a055" class="code code-wrap"><code><span class="token keyword">enum</span> BooleanLikeHeterogeneousEnum <span class="token punctuation">{</span>
+    No <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    Yes <span class="token operator">=</span> <span class="token string">"YES"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre><ul id="2b741ccb-e287-4d92-aa9e-0e89cd336f8b" class="bulleted-list"><li>확실하게 JavaScript 런타임에서 장점을 취하려는 것이 아니라면, <strong>이렇게 사용하지 않는 것을 권장</strong></li></ul><h2 id="a7822b5b-8c41-4123-84e1-d3f2ea051ade" class=""><strong>계산된 멤버와 상수 멤버 (Computed and constant members)</strong></h2><p id="3d422592-7d7b-4ae8-a300-aa0f3c8953fb" class="">열거형의 멤버는 <em>상수</em>이거나 <em>계산된</em> 값일 수 있다. </p><p id="27d8a69e-49e8-4f94-b254-36ac73b7b74b" class="">열거형의 멤버는 아래의 경우 상수로 간주</p><ul id="4e075864-dd95-4ea8-805d-97565ce56ea3" class="bulleted-list"><li>열거형의 첫 번째 데이터이며 초기화 값이 없는 경우, 0으로 값이 할당<style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="0cd1fa0f-3f83-45e4-9ad5-c12af9662bb3" class="code code-wrap"><code><span class="token comment">// E.X는 상수입니다:</span>
+<span class="token keyword">enum</span> <span class="token constant">E</span> <span class="token punctuation">{</span> <span class="token constant">X</span> <span class="token punctuation">}</span>
+</code></pre></li></ul><ul id="ea15f0c7-3c88-496e-9d70-a59cb15600ce" class="bulleted-list"><li>초기화 값이 없으며 숫자 상수로 초기화된 열거형 멤버 뒤에 따라 나오는 경우. 앞에 나온 상수 값에 1씩 증가한 값을 상수로 가짐<style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="9f2aa064-cad1-4129-af40-3d75d6b91cbd" class="code code-wrap"><code><span class="token comment">// 'E1' 과 'E2' 의 모든 열거형 멤버는 상수입니다.</span>
+
+<span class="token keyword">enum</span> <span class="token constant">E1</span> <span class="token punctuation">{</span> <span class="token constant">X</span><span class="token punctuation">,</span> <span class="token constant">Y</span><span class="token punctuation">,</span> <span class="token constant">Z</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">enum</span> <span class="token constant">E2</span> <span class="token punctuation">{</span>
+    <span class="token constant">A</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token constant">B</span><span class="token punctuation">,</span> <span class="token constant">C</span>
+<span class="token punctuation">}</span></code></pre></li></ul><ul id="f7bcdd7f-14b8-47ee-99a7-f0b682d40f56" class="bulleted-list"><li>열거형 멤버는 상수 열거형 표현식으로 초기화 된 경우. 상수 열거형 표현식은 컴파일 시 알아낼 수 있는 TypeScript 표현식의 subset 임, 아래의 경우 상수 열거형 표현식<ol id="6a35d376-c255-4713-88a5-20b03dd0c73e" class="numbered-list" start="1"><li>리터럴 열거형 표현식 (기본적으로 문자 리터럴 또는 숫자 리터럴)</li></ol><ol id="31cf6d39-caf6-474c-85c5-97c438de082b" class="numbered-list" start="2"><li>이전에 정의된 다른 상수 열거형 멤버에 대한 참조 (다른 열거형에서 시작될 수 있음)</li></ol><ol id="b1f77695-2f6f-4f88-b9c5-d0bd7d90383f" class="numbered-list" start="3"><li>괄호로 묶인 상수 열거형 표현식</li></ol><ol id="486687ea-f4f3-4f99-ac8a-43e6bb279ca9" class="numbered-list" start="4"><li>상수 열거형 표현식에 단항 연산자 <code>+</code> , <code>-</code>  ,<code>~</code> 를 사용한 경우 (<code>~</code> 이건 not 을 뜻하는 비트 연산자)</li></ol><ol id="381921e9-c95b-4335-a0d3-9bc48c02f211" class="numbered-list" start="5"><li>상수 열거형 표현식을 이중 연산자 <code>+</code>, <code>-</code>, <code>*</code>,  <code>/</code>, <code>%</code>, <code>&lt;&lt;</code>, <code>&gt;&gt;</code>, <code>&gt;&gt;&gt;</code>, <code>&amp;</code>, <code>|</code>, <code>^</code> 의 피연산자로 사용할 경우</li></ol><p id="9b5db176-d20e-4e97-8373-dba89b005c91" class="">⚠️ 상수 열거형 표현식 값이 <code>NaN</code> 이거나 <code>Infinity</code> 이면 컴파일 시점에 오류 발생</p></li></ul><p id="7ed3f186-04c6-4b01-b658-2b39ab34e676" class="">위 경우 이외의 다른 모든 경우 열거형 멤버는 계산된 것</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="1139c83f-058c-48d4-a6e7-7c093e4eccd2" class="code code-wrap"><code><span class="token keyword">enum</span> FileAccess <span class="token punctuation">{</span>
+    <span class="token comment">// 상수 멤버</span>
+    None<span class="token punctuation">,</span>
+    Read    <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    Write   <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">2</span><span class="token punctuation">,</span>
+    ReadWrite  <span class="token operator">=</span> Read <span class="token operator">|</span> Write<span class="token punctuation">,</span>
+    <span class="token comment">// 계산된 멤버</span>
+    <span class="token constant">G</span> <span class="token operator">=</span> <span class="token string">"123"</span><span class="token punctuation">.</span>length
+<span class="token punctuation">}</span>
+</code></pre><h2 id="51e81ac8-26f0-4573-895d-3c36d8da5582" class=""><strong>유니언 열거형과 열거형 멤버 타입 (Union enums and enum member types)</strong></h2><ul id="da0a6b93-e870-4988-8242-d5e4b6c2673c" class="bulleted-list"><li>리터럴 열거형 멤버는 상수 열거형 멤버의 특수한 부분 집합이다</li></ul><ul id="506b3a12-e533-4e46-b85f-ebbd23310607" class="bulleted-list"><li>리터럴 열거형 멤버는 초기화 값이 존재하지 않거나, 아래 값들로 초기화되는 멤버이다<ol id="44ebe648-5b53-40ce-b59c-a860c977b3a6" class="numbered-list" start="1"><li>문자 리터럴 (예시. <code>&quot;foo&quot;</code>, <code>&quot;bar</code>, <code>&quot;baz&quot;</code>)</li></ol><ol id="bff83253-36e1-4140-8b53-cc33d9f772d0" class="numbered-list" start="2"><li>숫자 리터럴 (예시. <code>1</code>, <code>100</code>)</li></ol><ol id="61a60c4a-3e34-4ccc-a6ef-bce5913a9877" class="numbered-list" start="3"><li>숫자 리터럴에 단항 연산자 <code>-</code> 가 적용된 경우 (e.g. <code>-1</code>, <code>-100</code>)</li></ol></li></ul><p id="59010c58-06f8-4bd4-a5b8-d333d572eaea" class="">열거형의 모든 멤버가 리터럴 열거형 값을 가지면 특별한 의미로 쓰이게 됨</p><p id="cf4a5d63-4638-44c8-8db0-cf2ef60e1c6c" class="">
+</p><p id="b06882eb-10c8-416d-bad3-32e906b7d488" class=""><strong>첫째</strong> </p><p id="053d9f8e-ec80-4189-883f-1cc8ec99300f" class="">열거형 멤버를 타입처럼 사용할 수 있게 됨</p><ul id="0091ea24-4447-4c56-a108-1cbffd615949" class="bulleted-list"><li>ex) 특정 멤버는 <em>오직</em> 열거형 멤버의 값만 가지게 할 수 있다</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="9db1ab2e-ccd5-4aaf-8cbf-673b2d6cd083" class="code code-wrap"><code><span class="token keyword">enum</span> ShapeKind <span class="token punctuation">{</span>
+    Circle<span class="token punctuation">,</span>
+    Square<span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Circle</span> <span class="token punctuation">{</span>
+    kind<span class="token operator">:</span> ShapeKind<span class="token punctuation">.</span>Circle<span class="token punctuation">;</span>
+    radius<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Square</span> <span class="token punctuation">{</span>
+    kind<span class="token operator">:</span> ShapeKind<span class="token punctuation">.</span>Square<span class="token punctuation">;</span>
+    sideLength<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> c<span class="token operator">:</span> Circle <span class="token operator">=</span> <span class="token punctuation">{</span>
+    kind<span class="token operator">:</span> ShapeKind<span class="token punctuation">.</span>Square<span class="token punctuation">,</span> <span class="token comment">// 오류! 'ShapeKind.Circle' 타입에 'ShapeKind.Square' 타입을 할당할 수 없습니다.</span>
+    radius<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre><p id="cbafc9bb-805a-4055-8682-9e88a3be6d85" class="">
+</p><p id="3bdd2d2a-b2f9-4739-aec0-8b0a3787d3ad" class=""><strong>둘째</strong></p><ul id="13426613-78d1-4d8f-b8e6-6759bfd5db44" class="bulleted-list"><li>열거형 타입 자체가 효율적으로 각각의 열거형 멤버의 <em>유니언</em>이 된다는 점</li></ul><ul id="5074029e-9339-4ef6-9b77-7b476c6f93b0" class="bulleted-list"><li>아직 <a href="https://typescript-kr.github.io/pages/advanced-types.html#%EC%9C%A0%EB%8B%88%EC%96%B8-%ED%83%80%EC%9E%85-union-types">유니언 타입</a>에 대해서 배우진 않았지만, 유니언 타입 열거형을 사용하면<ul id="f5481d93-1043-447c-b4fe-2ecd1b670d25" class="bulleted-list"><li>타입 시스템이 열거형 자체에 존재하는 정확한 값의 집합을 알고 </li></ul><ul id="84e823d5-06dd-4c71-a63c-376f140d747f" class="bulleted-list"><li>이를 활용할 수 있다는 점만 알아두면 됨</li></ul></li></ul><ul id="3c988e80-2b24-46bf-ac56-28427385c125" class="bulleted-list"><li>이 때문에 TypeScript는 값을 잘못 비교하는 어리석은 버그를 잡을 수 있다: 예를 들면</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="a651f8aa-6c0e-45ec-9638-31aede5a4e43" class="code code-wrap"><code><span class="token keyword">enum</span> <span class="token constant">E</span> <span class="token punctuation">{</span>
+    Foo<span class="token punctuation">,</span>
+    Bar<span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token operator">:</span> <span class="token constant">E</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">!==</span> <span class="token constant">E</span><span class="token punctuation">.</span>Foo <span class="token operator">||</span> x <span class="token operator">!==</span> <span class="token constant">E</span><span class="token punctuation">.</span>Bar<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">//             ~~~~~~~~~~~</span>
+        <span class="token comment">// 에러! E 타입은 Foo, Bar 둘 중 하나이기 때문에 이 조건은 항상 true를 반환합니다.</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><ul id="fe88491c-f083-48c6-b686-f9fd21875311" class="bulleted-list"><li>위 예제에서  <code>x</code> 가 <code>E.Foo</code> 가 <em>아닌지</em> 확인함<ul id="ded30349-a897-41ff-b229-66f777430c87" class="bulleted-list"><li>만약 이 조건이 true 라면, <code>||</code> 조건은 더는 체크할 필요가 없으므로 if 아래의 body가 실행될 것입니다. 그러나 만약 이 조건이 통과되지 않는다면, <code>x</code> 는 반드시 <code>E.Foo</code> 이기 때문에, x가 <code>E.Bar</code> 가 아닌지 묻는 조건과 비교하는 것은 적절하지 않습니다.</li></ul></li></ul><h2 id="06a53975-73d7-436b-8c86-1c43d63c3a63" class=""><strong>런타임에서 열거형 (Enums at runtime)</strong></h2><ul id="b5de3f5d-38d0-4310-8813-5d9f1b221ed5" class="bulleted-list"><li>열거형은 런타임에 존재하는 실제 객체이다</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="8d8015f1-a6a0-4a99-a1d6-61b582af069f" class="code code-wrap"><code><span class="token keyword">enum</span> <span class="token constant">E</span> <span class="token punctuation">{</span>
+    <span class="token constant">X</span><span class="token punctuation">,</span> <span class="token constant">Y</span><span class="token punctuation">,</span> <span class="token constant">Z</span>
+<span class="token punctuation">}</span>
+</code></pre><ul id="f4b2b7b2-ee5c-46d5-9184-8723b35c8fe1" class="bulleted-list"><li>실제로 아래와 같이 함수로 전달될 수 있음</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="192672d2-f276-4b5c-961c-2ec811af35c9" class="code code-wrap"><code><span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token parameter">obj<span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token constant">X</span><span class="token operator">:</span> <span class="token builtin">number</span> <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> obj<span class="token punctuation">.</span><span class="token constant">X</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// E가 X라는 숫자 프로퍼티를 가지고 있기 때문에 동작하는 코드입니다.</span>
+<span class="token function">f</span><span class="token punctuation">(</span><span class="token constant">E</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h2 id="21c9e0c9-063a-4c1e-b72e-741e77ab49fa" class=""><strong>컴파일 시점에서 열거형 (Enums at compile time)</strong></h2><ul id="986cfb2c-c6ff-48af-b28f-0e6c15a4dd40" class="bulleted-list"><li>열거형이 런타임에 존재하는 실제 객체이긴 하지만,</li></ul><ul id="bc822c49-3571-48d8-82ee-0f14b5069473" class="bulleted-list"><li><code>keyof</code> 키워드는 일반적인 객체에서 기대하는 동작과 다르게 동작함</li></ul><ul id="61d936ab-27e7-4adc-be24-c8cb34fee553" class="bulleted-list"><li>대신, <code>keyof typeof</code> 를 사용하면 모든 열거형의 키를 문자열로 나타내는 타입을 가져옴</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="7ed52be4-2340-4389-a031-85c816e4eee7" class="code code-wrap"><code><span class="token keyword">enum</span> LogLevel <span class="token punctuation">{</span>
+    <span class="token constant">ERROR</span><span class="token punctuation">,</span> <span class="token constant">WARN</span><span class="token punctuation">,</span> <span class="token constant">INFO</span><span class="token punctuation">,</span> <span class="token constant">DEBUG</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+ * 이것은 아래와 동일합니다. :
+ * type LogLevelStrings = 'ERROR' | 'WARN' | 'INFO' | 'DEBUG';
+ */</span>
+<span class="token keyword">type</span> LogLevelStrings <span class="token operator">=</span> <span class="token keyword">keyof</span> <span class="token keyword">typeof</span> LogLevel<span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">printImportant</span><span class="token punctuation">(</span><span class="token parameter">key<span class="token operator">:</span> LogLevelStrings<span class="token punctuation">,</span> message<span class="token operator">:</span> <span class="token builtin">string</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> num <span class="token operator">=</span> LogLevel<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">&lt;=</span> LogLevel<span class="token punctuation">.</span><span class="token constant">WARN</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Log level key is: '</span><span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Log level value is: '</span><span class="token punctuation">,</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Log level message is: '</span><span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token function">printImportant</span><span class="token punctuation">(</span><span class="token string">'ERROR'</span><span class="token punctuation">,</span> <span class="token string">'This is a message'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h3 id="b1674d12-bc63-49bf-ab30-1b9201dd0443" class=""><strong>역 매핑 (Reverse mappings)</strong></h3><ul id="616b451d-be5f-47dd-9cbd-ed0a4a0845d4" class="bulleted-list"><li>숫자 열거형 멤버는 멤버의 프로퍼티 이름을 가진 객체를 생성하는 것 외에도,</li></ul><ul id="e1735060-4746-4c80-b90d-2e7a70e6c69f" class="bulleted-list"><li>열거형 값에서 열거형 이름으로 <em>역 매핑</em> 을 받음</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="1c7a353b-2e20-47cf-8f0d-2025b421fbca" class="code code-wrap"><code><span class="token keyword">enum</span> Enum <span class="token punctuation">{</span>
+    <span class="token constant">A</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">let</span> a <span class="token operator">=</span> Enum<span class="token punctuation">.</span><span class="token constant">A</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> nameOfA <span class="token operator">=</span> Enum<span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// "A"</span>
+</code></pre><ul id="5d04ef82-a435-48c1-b710-e34c731b3e59" class="bulleted-list"><li>TypeScript는 아래와 같은 JavaScript 코드로 컴파일 함</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="dff5c068-38d8-4218-8fb2-adc3b7bc07f4" class="code code-wrap"><code><span class="token keyword">var</span> Enum<span class="token punctuation">;</span>
+<span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">Enum</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Enum<span class="token punctuation">[</span>Enum<span class="token punctuation">[</span><span class="token string">"A"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"A"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>Enum <span class="token operator">||</span> <span class="token punctuation">(</span>Enum <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> a <span class="token operator">=</span> Enum<span class="token punctuation">.</span><span class="token constant">A</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> nameOfA <span class="token operator">=</span> Enum<span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// "A"</span>
+</code></pre><ul id="8cd09def-697b-4924-954a-b29ee0022942" class="bulleted-list"><li>열거형은 정방향 (<code>name</code> -&gt; <code>value</code>) 매핑과 역방향 (<code>value</code> -&gt; <code>name</code>) 매핑 두 정보를 모두 저장하는 객체로 컴파일 됨</li></ul><ul id="64e0c39a-23a2-4d16-a4a0-05b9124aed93" class="bulleted-list"><li>다른 열거형 멤버 참조는 항상 프로퍼티 접근으로 노출되며 인라인되지 않음</li></ul><ul id="1f4debe9-b9c4-4dff-8420-20009d28a299" class="bulleted-list"><li>⚠️ 문자열 열거형은 역 매핑을 생성하지 <em>않는다</em> !</li></ul><h3 id="2e97d01a-d258-47d2-875d-812cd8a21567" class=""><code><strong>const</strong></code><strong> 열거형 (</strong><code><strong>const</strong></code><strong> enums)</strong></h3><ul id="0e64544a-7d19-46fa-9649-d562e62025b5" class="bulleted-list"><li>대부분 열거형은 완벽하게 유효한 해결책이지만 하지만 종종 열거형의 요구사항이 좀 더 엄격할 때가 있음</li></ul><ul id="9d08a580-e19b-4788-b8dd-7e60e999b0c8" class="bulleted-list"><li>추가로 생성된 코드 및 추가적인 간접 참조에 대한 비용을 피하기 위해 <code>const</code> 열거형을 사용가능 </li></ul><ul id="b6d7e0eb-9d14-4aed-90ac-c171438445a9" class="bulleted-list"><li>const 열거형은 <code>const</code> 지정자를 열거형에 붙여 정의함</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="a1353eb5-afa3-4bff-9549-a14216c58b5c" class="code code-wrap"><code><span class="token keyword">const</span> <span class="token keyword">enum</span> Enum <span class="token punctuation">{</span>
+    <span class="token constant">A</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token constant">B</span> <span class="token operator">=</span> <span class="token constant">A</span> <span class="token operator">*</span> <span class="token number">2</span>
+<span class="token punctuation">}</span>
+</code></pre><ul id="8a804160-f35c-4616-889a-b1b33a22b589" class="bulleted-list"><li>const 열거형은 상수 열거형 표현식만 사용될 수 있음</li></ul><ul id="c13209fa-3a1e-48f9-bdd0-aa595900de0c" class="bulleted-list"><li>일반적인 열거형과 달리 컴파일 과정에서 완전히 제거된다</li></ul><ul id="3f821e1d-b205-4f50-9183-f58267e3932b" class="bulleted-list"><li>const 열거형은 사용하는 공간에 인라인 됨<ul id="c90b27b2-8cae-400c-973d-5a3ba94fe823" class="bulleted-list"><li>이러한 동작은 const 열거형이 계산된 멤버를 가지고 있지 않기 때문에 가능</li></ul></li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="4b65c8ac-cc64-43cf-a557-d1e25c619d99" class="code code-wrap"><code><span class="token keyword">const</span> <span class="token keyword">enum</span> Directions <span class="token punctuation">{</span>
+    Up<span class="token punctuation">,</span>
+    Down<span class="token punctuation">,</span>
+    Left<span class="token punctuation">,</span>
+    Right
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> directions <span class="token operator">=</span> <span class="token punctuation">[</span>Directions<span class="token punctuation">.</span>Up<span class="token punctuation">,</span> Directions<span class="token punctuation">.</span>Down<span class="token punctuation">,</span> Directions<span class="token punctuation">.</span>Left<span class="token punctuation">,</span> Directions<span class="token punctuation">.</span>Right<span class="token punctuation">]</span>
+</code></pre><ul id="8be48786-5822-4e94-90c9-8acdcbf74894" class="bulleted-list"><li>위 코드 컴파일 결과</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="92033203-d277-4d0b-943f-c13f2790b187" class="code code-wrap"><code><span class="token keyword">var</span> directions <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span> <span class="token comment">/* Up */</span><span class="token punctuation">,</span> <span class="token number">1</span> <span class="token comment">/* Down */</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token comment">/* Left */</span><span class="token punctuation">,</span> <span class="token number">3</span> <span class="token comment">/* Right */</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre><h2 id="a5aec24f-fd84-4de7-8a8a-9f72d0a55f37" class=""><strong>Ambient 열거형 (Ambient enums)</strong></h2><ul id="15c00145-edce-463f-8440-d116d0e0f61f" class="bulleted-list"><li>Ambient 열거형은 이미 존재하는 열거형 타입의 모습을 묘사하기 위해 사용됨</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="402e3f8c-ac21-4d09-ba0d-535584b1c436" class="code code-wrap"><code><span class="token keyword">declare</span> <span class="token keyword">enum</span> Enum <span class="token punctuation">{</span>
+    <span class="token constant">A</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token constant">B</span><span class="token punctuation">,</span>
+    <span class="token constant">C</span> <span class="token operator">=</span> <span class="token number">2</span>
+<span class="token punctuation">}</span>
+</code></pre><p id="76293fb7-0272-431f-84d1-84d2854226ee" class="">ambient 열거형과 비-ambient 열거형의 가장 큰 차이점</p><ul id="6793bc24-e2b1-4467-888c-8c70391a1122" class="bulleted-list"><li>초기화되지 않은 멤버가 상수로 간주하는 멤버 뒤에 있다면?<ul id="26ae8011-8cf7-4c32-bd5a-a98132a790e4" class="bulleted-list"><li>일반적인 열거형 : 이 멤버도 상수</li></ul><ul id="a717471e-6fec-4dde-865c-804d8703d202" class="bulleted-list"><li>(const가 아닌) ambient 열거 : 초기화되지 않은 멤버는 <em>항상</em> 계산된 멤버</li></ul></li></ul></div></article></body></html>
