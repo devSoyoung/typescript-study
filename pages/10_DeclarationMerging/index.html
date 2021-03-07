@@ -1,0 +1,792 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Declaration Merging</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="6f188516-c4e1-48cb-be10-e64270841bd0" class="page sans"><header><h1 class="page-title">Declaration Merging</h1></header><div class="page-body"><p id="541b474f-084d-41b9-a1db-ee2d981bcb13" class="">
+</p><h1 id="92973d58-835c-42a2-976c-d45b2cb2ee5e" class=""><strong>소개 (Introduction)</strong></h1><ul id="6b7d79be-4480-4411-8fd1-57ae0ad65833" class="bulleted-list"><li>TypeScript 만의 독특한 개념 중 일부는 타입 레벨에서 JavaScript 객체의 형태를 설명 한다는 점<ul id="cfd2f6a2-8baf-45d6-a1d4-8fb5b1a64a1d" class="bulleted-list"><li>기존의 JavaScript와 작업을 할 때 이점</li></ul><ul id="9546c603-5964-4563-af4e-3aa457249165" class="bulleted-list"><li>고급 추상화 개념으로의 문</li></ul></li></ul><ul id="b414ef58-6ecd-4611-8691-c7c7aefa2a05" class="bulleted-list"><li><strong>선언 병합</strong>: 컴파일러가 같은 이름으로 선언된 두 개의 개별적인 선언을 하나의 정의로 병합하는 것을 뜻<ul id="f35618df-f067-44ad-b293-8723b05ba198" class="bulleted-list"><li>병합된 정의는 원래 두 선언 각각의 기능을 모두 갖게 됨</li></ul><ul id="aabd9766-811f-4e39-8f7d-cd3f4e50d202" class="bulleted-list"><li>병합할 선언이 몇 개든 상관없음</li></ul><ul id="83e99c75-8b18-4d6e-8bd5-fb3b7b37b720" class="bulleted-list"><li>단지 두 개의 선언만 합치도록 제한하지 않음</li></ul></li></ul><h1 id="5c574e31-9f24-4002-8ddf-ec501735ad75" class=""><strong>기본 사용법 (Basic Concepts)</strong></h1><p id="8f76cd66-b5ca-4669-ac17-24f0846f0e0a" class="">TypeScript에서 선언은 네임스페이스, 타입, 값 중 한 종류 이상의 엔티티를 생성</p><ul id="47692626-08c2-42e9-8021-f65c6bec8cf6" class="bulleted-list"><li>네임스페이스-생성 선언은 점으로 구분된 표기법을 사용하여 접근할 이름을 가진 네임스페이스를 생성<ul id="e2d50b70-e450-4f67-849a-68d0956a8ef0" class="bulleted-list"><li>일종의 패키지 개념</li></ul></li></ul><ul id="7fc97a53-aa24-43d0-a120-b2547feb6758" class="bulleted-list"><li>타입-생성 선언은 선언된 형태로 표시되며 지정된 이름에 바인딩 된 타입을 생성</li></ul><ul id="8fb46f45-acb1-4ae2-8ed8-b2db3c8d9f01" class="bulleted-list"><li>값-생성 선언은 출력된 JavaScript에서 확인할 수 있는 값을 생성</li></ul><p id="643887e9-bea8-4c88-a086-4e986b962b53" class="">
+</p><div id="a88e1fb4-19ff-4773-aa28-1a21c68f558e" class="collection-content"><h4 class="collection-title">선언 타입에 따른 생성 값</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>선언 타입</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCheckbox"><path d="M0,3 C0,1.34314 1.34326,0 3,0 L11,0 C12.6567,0 14,1.34314 14,3 L14,11 C14,12.6569 12.6567,14 11,14 L3,14 C1.34326,14 0,12.6569 0,11 L0,3 Z M3,1.5 C2.17139,1.5 1.5,2.17157 1.5,3 L1.5,11 C1.5,11.8284 2.17139,12.5 3,12.5 L11,12.5 C11.8286,12.5 12.5,11.8284 12.5,11 L12.5,3 C12.5,2.17157 11.8286,1.5 11,1.5 L3,1.5 Z M2.83252,6.8161 L3.39893,6.27399 L3.57617,6.10425 L3.92334,5.77216 L4.26904,6.10559 L4.44531,6.27582 L5.58398,7.37402 L9.28271,3.81073 L9.45996,3.64008 L9.80664,3.3056 L10.1538,3.63989 L10.3311,3.81067 L10.8936,4.35303 L11.0708,4.52399 L11.4434,4.88379 L11.0708,5.24353 L10.8936,5.41437 L6.1084,10.0291 L5.93115,10.2 L5.58398,10.5344 L5.23682,10.2 L5.05957,10.0292 L2.83057,7.87946 L2.65283,7.70801 L2.27832,7.34674 L2.6543,6.98694 L2.83252,6.8161 Z"></path></svg></span>네임스페이스</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCheckbox"><path d="M0,3 C0,1.34314 1.34326,0 3,0 L11,0 C12.6567,0 14,1.34314 14,3 L14,11 C14,12.6569 12.6567,14 11,14 L3,14 C1.34326,14 0,12.6569 0,11 L0,3 Z M3,1.5 C2.17139,1.5 1.5,2.17157 1.5,3 L1.5,11 C1.5,11.8284 2.17139,12.5 3,12.5 L11,12.5 C11.8286,12.5 12.5,11.8284 12.5,11 L12.5,3 C12.5,2.17157 11.8286,1.5 11,1.5 L3,1.5 Z M2.83252,6.8161 L3.39893,6.27399 L3.57617,6.10425 L3.92334,5.77216 L4.26904,6.10559 L4.44531,6.27582 L5.58398,7.37402 L9.28271,3.81073 L9.45996,3.64008 L9.80664,3.3056 L10.1538,3.63989 L10.3311,3.81067 L10.8936,4.35303 L11.0708,4.52399 L11.4434,4.88379 L11.0708,5.24353 L10.8936,5.41437 L6.1084,10.0291 L5.93115,10.2 L5.58398,10.5344 L5.23682,10.2 L5.05957,10.0292 L2.83057,7.87946 L2.65283,7.70801 L2.27832,7.34674 L2.6543,6.98694 L2.83252,6.8161 Z"></path></svg></span>타입</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCheckbox"><path d="M0,3 C0,1.34314 1.34326,0 3,0 L11,0 C12.6567,0 14,1.34314 14,3 L14,11 C14,12.6569 12.6567,14 11,14 L3,14 C1.34326,14 0,12.6569 0,11 L0,3 Z M3,1.5 C2.17139,1.5 1.5,2.17157 1.5,3 L1.5,11 C1.5,11.8284 2.17139,12.5 3,12.5 L11,12.5 C11.8286,12.5 12.5,11.8284 12.5,11 L12.5,3 C12.5,2.17157 11.8286,1.5 11,1.5 L3,1.5 Z M2.83252,6.8161 L3.39893,6.27399 L3.57617,6.10425 L3.92334,5.77216 L4.26904,6.10559 L4.44531,6.27582 L5.58398,7.37402 L9.28271,3.81073 L9.45996,3.64008 L9.80664,3.3056 L10.1538,3.63989 L10.3311,3.81067 L10.8936,4.35303 L11.0708,4.52399 L11.4434,4.88379 L11.0708,5.24353 L10.8936,5.41437 L6.1084,10.0291 L5.93115,10.2 L5.58398,10.5344 L5.23682,10.2 L5.05957,10.0292 L2.83057,7.87946 L2.65283,7.70801 L2.27832,7.34674 L2.6543,6.98694 L2.83252,6.8161 Z"></path></svg></span>값</th></tr></thead><tbody><tr id="94595f15-3564-4009-890d-0026e37047b5"><td class="cell-title"><a href="Declaration%20Merging%206f188516c4e148cbbe10e64270841bd0/%E1%84%89%E1%85%A5%E1%86%AB%E1%84%8B%E1%85%A5%E1%86%AB%20%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8%E1%84%8B%E1%85%A6%20%E1%84%84%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%20%E1%84%80%E1%85%A1%E1%86%B9%20a88e1fb419ff4773aa281a21c68f558e/%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%89%E1%85%B3%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%2094595f1535644009890d0026e37047b5.html">네임스페이스</a></td><td class="cell-frfs"><div class="checkbox checkbox-on"></div></td><td class="cell-@Clh"><div class="checkbox checkbox-off"></div></td><td class="cell-@zjI"><div class="checkbox checkbox-on"></div></td></tr><tr id="44c00c12-1fbe-4f48-90fb-48f9e44abbff"><td class="cell-title"><a href="Declaration%20Merging%206f188516c4e148cbbe10e64270841bd0/%E1%84%89%E1%85%A5%E1%86%AB%E1%84%8B%E1%85%A5%E1%86%AB%20%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8%E1%84%8B%E1%85%A6%20%E1%84%84%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%20%E1%84%80%E1%85%A1%E1%86%B9%20a88e1fb419ff4773aa281a21c68f558e/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3%2044c00c121fbe4f4890fb48f9e44abbff.html">클래스</a></td><td class="cell-frfs"><div class="checkbox checkbox-off"></div></td><td class="cell-@Clh"><div class="checkbox checkbox-on"></div></td><td class="cell-@zjI"><div class="checkbox checkbox-on"></div></td></tr><tr id="244fe592-6b6e-4515-8437-33a5a4dc83ae"><td class="cell-title"><a href="Declaration%20Merging%206f188516c4e148cbbe10e64270841bd0/%E1%84%89%E1%85%A5%E1%86%AB%E1%84%8B%E1%85%A5%E1%86%AB%20%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8%E1%84%8B%E1%85%A6%20%E1%84%84%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%20%E1%84%80%E1%85%A1%E1%86%B9%20a88e1fb419ff4773aa281a21c68f558e/%E1%84%8B%E1%85%A7%E1%86%AF%E1%84%80%E1%85%A5%E1%84%92%E1%85%A7%E1%86%BC%20244fe5926b6e4515843733a5a4dc83ae.html">열거형</a></td><td class="cell-frfs"><div class="checkbox checkbox-off"></div></td><td class="cell-@Clh"><div class="checkbox checkbox-on"></div></td><td class="cell-@zjI"><div class="checkbox checkbox-on"></div></td></tr><tr id="fb7cd2a3-d00e-471b-ae46-cced24190573"><td class="cell-title"><a href="Declaration%20Merging%206f188516c4e148cbbe10e64270841bd0/%E1%84%89%E1%85%A5%E1%86%AB%E1%84%8B%E1%85%A5%E1%86%AB%20%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8%E1%84%8B%E1%85%A6%20%E1%84%84%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%20%E1%84%80%E1%85%A1%E1%86%B9%20a88e1fb419ff4773aa281a21c68f558e/%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20fb7cd2a3d00e471bae46cced24190573.html">인터페이스</a></td><td class="cell-frfs"><div class="checkbox checkbox-off"></div></td><td class="cell-@Clh"><div class="checkbox checkbox-on"></div></td><td class="cell-@zjI"><div class="checkbox checkbox-off"></div></td></tr><tr id="ba1f5c40-b331-4633-a4e8-dc684c8bfdf3"><td class="cell-title"><a href="Declaration%20Merging%206f188516c4e148cbbe10e64270841bd0/%E1%84%89%E1%85%A5%E1%86%AB%E1%84%8B%E1%85%A5%E1%86%AB%20%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8%E1%84%8B%E1%85%A6%20%E1%84%84%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%20%E1%84%80%E1%85%A1%E1%86%B9%20a88e1fb419ff4773aa281a21c68f558e/%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8%20%E1%84%87%E1%85%A7%E1%86%AF%E1%84%8E%E1%85%B5%E1%86%BC%20ba1f5c40b3314633a4e8dc684c8bfdf3.html">타입 별칭</a></td><td class="cell-frfs"><div class="checkbox checkbox-off"></div></td><td class="cell-@Clh"><div class="checkbox checkbox-on"></div></td><td class="cell-@zjI"><div class="checkbox checkbox-off"></div></td></tr><tr id="7f404a2c-497b-4012-af46-2b3370413433"><td class="cell-title"><a href="Declaration%20Merging%206f188516c4e148cbbe10e64270841bd0/%E1%84%89%E1%85%A5%E1%86%AB%E1%84%8B%E1%85%A5%E1%86%AB%20%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8%E1%84%8B%E1%85%A6%20%E1%84%84%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%20%E1%84%80%E1%85%A1%E1%86%B9%20a88e1fb419ff4773aa281a21c68f558e/%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%207f404a2c497b4012af462b3370413433.html">함수</a></td><td class="cell-frfs"><div class="checkbox checkbox-off"></div></td><td class="cell-@Clh"><div class="checkbox checkbox-off"></div></td><td class="cell-@zjI"><div class="checkbox checkbox-on"></div></td></tr><tr id="28b6235c-c804-4828-a7c7-a2dc297cc742"><td class="cell-title"><a href="Declaration%20Merging%206f188516c4e148cbbe10e64270841bd0/%E1%84%89%E1%85%A5%E1%86%AB%E1%84%8B%E1%85%A5%E1%86%AB%20%E1%84%90%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8%E1%84%8B%E1%85%A6%20%E1%84%84%E1%85%A1%E1%84%85%E1%85%B3%E1%86%AB%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%20%E1%84%80%E1%85%A1%E1%86%B9%20a88e1fb419ff4773aa281a21c68f558e/%E1%84%87%E1%85%A7%E1%86%AB%E1%84%89%E1%85%AE%2028b6235cc8044828a7c7a2dc297cc742.html">변수</a></td><td class="cell-frfs"><div class="checkbox checkbox-off"></div></td><td class="cell-@Clh"><div class="checkbox checkbox-off"></div></td><td class="cell-@zjI"><div class="checkbox checkbox-on"></div></td></tr></tbody></table></div><p id="63fc3d9e-5158-47f1-bb7a-21556c1dc486" class="">
+</p><h1 id="6a7ef8cb-a409-44e7-9ba4-6a00406af483" class=""><strong>인터페이스 병합 (Merging Interfaces)</strong></h1><p id="a4473f9a-8988-47c1-b0ec-f993f8939aeb" class=""><strong>기본</strong></p><ul id="a68475cd-3076-4c17-a65c-89c2850dc18d" class="bulleted-list"><li>가장 일반적이고 간단한 선언 병합 유형</li></ul><ul id="6a4bb0bf-ea34-428e-be2c-e9925e7da737" class="bulleted-list"><li>이 병합은 각 선언의 멤버를 같은 이름의 인터페이스에 기계적으로 결합함</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="a75aba1e-f7b4-432c-9eea-04da7d9f63be" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">Box</span> <span class="token punctuation">{</span>
+    height<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+    width<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Box</span> <span class="token punctuation">{</span>
+    scale<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> box<span class="token operator">:</span> Box <span class="token operator">=</span> <span class="token punctuation">{</span>height<span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span> width<span class="token operator">:</span> <span class="token number">6</span><span class="token punctuation">,</span> scale<span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p id="e20618a2-b679-4dde-8afd-250fd6f48d80" class="">
+</p><p id="bf95bff7-f1ce-440a-8b01-b63cc5c45efa" class=""><strong>함수가 아닌 멤버의 병합</strong></p><ul id="d1fd050c-6f88-4641-801e-e082de23e95e" class="bulleted-list"><li>각 인터페이스의 비-함수 멤버는 고유해야 함 </li></ul><ul id="9ab29091-5c29-4036-bbae-8277782d4b41" class="bulleted-list"><li>만약 고유하지 않다면, 모두 같은 타입이어야 함</li></ul><ul id="2174b63c-5db1-4e25-abc2-fe8342f5f3ff" class="bulleted-list"><li>인터페이스가 같은 이름이지만 다른 타입을 가진 비-함수 멤버가 있을 경우, 컴파일러는 오류로 인식</li></ul><p id="42bc4a09-cbd0-4a17-837f-f98751ff35d5" class="">
+</p><p id="b118eb53-d3b1-4370-8a1f-8f39d67554c4" class=""><strong>함수인 멤버의 병합</strong></p><ul id="545ce2f5-64df-47be-910c-c731e6d21cda" class="bulleted-list"><li>이름이 같을 경우 동일한 함수에 대한 오버로드하는 것으로 처리</li></ul><ul id="0464eb06-795e-4a53-880d-b193244210d8" class="bulleted-list"><li><code>A</code> 인터페이스와 나중의 <code>A</code> 인터페이스를 병합하는 경우, 두 번째 인터페이스가 더 높은 우선순위를 가짐</li></ul><p id="58c81b60-e65a-4982-9221-7dff77e1013a" class="">예를 들어:</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="0e7dc59f-dfbc-4f07-9a7f-abeac72dd002" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">Cloner</span> <span class="token punctuation">{</span>
+    <span class="token function">clone</span><span class="token punctuation">(</span>animal<span class="token operator">:</span> Animal<span class="token punctuation">)</span><span class="token operator">:</span> Animal<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Cloner</span> <span class="token punctuation">{</span>
+    <span class="token function">clone</span><span class="token punctuation">(</span>animal<span class="token operator">:</span> Sheep<span class="token punctuation">)</span><span class="token operator">:</span> Sheep<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Cloner</span> <span class="token punctuation">{</span>
+    <span class="token function">clone</span><span class="token punctuation">(</span>animal<span class="token operator">:</span> Dog<span class="token punctuation">)</span><span class="token operator">:</span> Dog<span class="token punctuation">;</span>
+    <span class="token function">clone</span><span class="token punctuation">(</span>animal<span class="token operator">:</span> Cat<span class="token punctuation">)</span><span class="token operator">:</span> Cat<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p id="807ccc20-0148-4c36-bbc5-c7d3444b8763" class="">위의 세 인터페이스는 병합되어 다음과 같이 하나의 새로운 선언을 생성</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="36a5d208-25af-4d6c-8220-520f43a0f565" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">Cloner</span> <span class="token punctuation">{</span>
+    <span class="token function">clone</span><span class="token punctuation">(</span>animal<span class="token operator">:</span> Dog<span class="token punctuation">)</span><span class="token operator">:</span> Dog<span class="token punctuation">;</span>
+    <span class="token function">clone</span><span class="token punctuation">(</span>animal<span class="token operator">:</span> Cat<span class="token punctuation">)</span><span class="token operator">:</span> Cat<span class="token punctuation">;</span>
+    <span class="token function">clone</span><span class="token punctuation">(</span>animal<span class="token operator">:</span> Sheep<span class="token punctuation">)</span><span class="token operator">:</span> Sheep<span class="token punctuation">;</span>
+    <span class="token function">clone</span><span class="token punctuation">(</span>animal<span class="token operator">:</span> Animal<span class="token punctuation">)</span><span class="token operator">:</span> Animal<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p id="8ee3fd61-307d-4c0b-bb20-f8ef6071f218" class="">
+</p><ul id="cfb8f773-4f6b-45e1-bdbf-e3dca3ca701b" class="bulleted-list"><li>각 그룹의 요소는 동일한 순서를 유지</li></ul><ul id="7df2958d-b36c-49b1-a884-81dc803eec1b" class="bulleted-list"><li>그룹 자체는 나중에 병합되어 오버로드 될수록 첫 번째에 위치하는 것에 유의</li></ul><p id="1bb07c85-bf40-4f3f-8379-478b17d55425" class="">
+</p><p id="3be52736-db2f-4518-a49c-275729f21c6b" class=""><strong>예외</strong></p><ul id="99856407-f1ca-43fe-891b-94fde5ae5290" class="bulleted-list"><li>특수 시그니처?<ul id="305c0272-7267-4ef9-bace-56ab47b43490" class="bulleted-list"><li>시그니처에 <em>단일</em> 문자열 리터럴 타입(예: 문자열 리터럴의 유니언이 아닌 경우)인 매개변수가 있을 경우, 시그니처는 병합된 오버로드 목록의 맨 위로 올라온다.</li></ul></li></ul><p id="eae96273-75e0-4afc-af21-275b112a2092" class="">예를 들어, 아래의 인터페이스들이 병합됩니다:</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="ce74af3f-b94a-4c2a-937b-7a5e96a867be" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">Document</span> <span class="token punctuation">{</span>
+    <span class="token function">createElement</span><span class="token punctuation">(</span>tagName<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">)</span><span class="token operator">:</span> Element<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">interface</span> <span class="token class-name">Document</span> <span class="token punctuation">{</span>
+    <span class="token function">createElement</span><span class="token punctuation">(</span>tagName<span class="token operator">:</span> <span class="token string">"div"</span><span class="token punctuation">)</span><span class="token operator">:</span> HTMLDivElement<span class="token punctuation">;</span>
+    <span class="token function">createElement</span><span class="token punctuation">(</span>tagName<span class="token operator">:</span> <span class="token string">"span"</span><span class="token punctuation">)</span><span class="token operator">:</span> HTMLSpanElement<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">interface</span> <span class="token class-name">Document</span> <span class="token punctuation">{</span>
+    <span class="token function">createElement</span><span class="token punctuation">(</span>tagName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token operator">:</span> HTMLElement<span class="token punctuation">;</span>
+    <span class="token function">createElement</span><span class="token punctuation">(</span>tagName<span class="token operator">:</span> <span class="token string">"canvas"</span><span class="token punctuation">)</span><span class="token operator">:</span> HTMLCanvasElement<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p id="0a129564-97d8-48ac-9d6b-9bcc40d673b5" class=""><code>Document</code>의 병합된 선언은 다음과 같이 생성합니다:</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="7102977d-9d08-4a3f-8c15-07408ba4459f" class="code code-wrap"><code><span class="token keyword">interface</span> <span class="token class-name">Document</span> <span class="token punctuation">{</span>
+    <span class="token function">createElement</span><span class="token punctuation">(</span>tagName<span class="token operator">:</span> <span class="token string">"canvas"</span><span class="token punctuation">)</span><span class="token operator">:</span> HTMLCanvasElement<span class="token punctuation">;</span>
+    <span class="token function">createElement</span><span class="token punctuation">(</span>tagName<span class="token operator">:</span> <span class="token string">"div"</span><span class="token punctuation">)</span><span class="token operator">:</span> HTMLDivElement<span class="token punctuation">;</span>
+    <span class="token function">createElement</span><span class="token punctuation">(</span>tagName<span class="token operator">:</span> <span class="token string">"span"</span><span class="token punctuation">)</span><span class="token operator">:</span> HTMLSpanElement<span class="token punctuation">;</span>
+    <span class="token function">createElement</span><span class="token punctuation">(</span>tagName<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token operator">:</span> HTMLElement<span class="token punctuation">;</span>
+    <span class="token function">createElement</span><span class="token punctuation">(</span>tagName<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">)</span><span class="token operator">:</span> Element<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h1 id="ae5fa4f3-2736-4746-acbf-f7c6d827d01b" class=""><strong>네임스페이스 병합 (Merging Namespaces)</strong></h1><p id="a96c6320-fdcc-4b30-865a-ecee3b6abcca" class=""><strong>개요</strong></p><ul id="c3508928-0861-4f16-afd4-0effdb7bcf2f" class="bulleted-list"><li>인터페이스와 마찬가지로, 같은 이름을 가진 네임스페이스도 멤버를 병합 함</li></ul><ul id="751ef0fc-d785-4588-a6a9-a9ad00690762" class="bulleted-list"><li>네임스페이스는 네임스페이스와 값을 둘 다 생성하기 때문에, 이들이 어떻게 병합하는지 이해해야 함</li></ul><p id="c435e89c-acc4-41d0-8b8b-6ce834ecc494" class="">
+</p><p id="57177058-aa0a-4ec9-9f79-94f46c745b8e" class=""><strong>기본</strong></p><ul id="abf6e40b-d804-4cf0-ac75-bcdaa46f41c1" class="bulleted-list"><li>각 네임스페이스에 선언된 내보낸(export) 인터페이스로부터 타입 정의가 병합</li></ul><ul id="6918a1b0-7f65-4433-9924-1df278579c42" class="bulleted-list"><li>내부에 병합된 인터페이스 정의들이 있는 단일 네임스페이스를 형성</li></ul><ul id="cd7a4165-a67e-40df-879c-41acf9bf1c97" class="bulleted-list"><li>각 선언 위치에서 이미 지정된 이름의 네임스페이스가 있을 경우<ul id="e784a88e-5d2a-43e0-b049-4a379d3a4278" class="bulleted-list"><li>기존 네임스페이스를 첫번째로 하고,  두 번째 네임스페이스의 내보낸 멤버를 그 밑에 추가하여 네임스페이스 값을 확장</li></ul></li></ul><p id="23ca1608-823a-4033-a91e-c29a765977d5" class="">
+</p><p id="1432d520-ff1e-4312-84ad-22bf8bd6035d" class=""><strong>예제) </strong><strong><code>Animals</code></strong><strong>의 선언 병합:</strong></p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="7ba0a901-3d5a-4d9f-9229-f56a61e5142c" class="code code-wrap"><code><span class="token keyword">namespace</span> Animals <span class="token punctuation">{</span>
+    <span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">Zebra</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">namespace</span> Animals <span class="token punctuation">{</span>
+    <span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">Legged</span> <span class="token punctuation">{</span> numberOfLegs<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">Dog</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p id="b927eeeb-6793-48af-a5bf-b6cf53c16ef8" class="">다음과 같습니다:</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="6b1f5b50-b6a8-4b55-8fff-1ff0599ad092" class="code code-wrap"><code><span class="token keyword">namespace</span> Animals <span class="token punctuation">{</span>
+    <span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">Legged</span> <span class="token punctuation">{</span> numberOfLegs<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">Zebra</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+    <span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">Dog</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p id="c87f7d5a-642b-478d-8491-1be288e38a7d" class="">
+</p><p id="b964bc71-7839-4a27-b9c9-e167165e9f9a" class="">
+</p><p id="ec663718-f0ce-409c-8651-f8ee32f898f1" class=""><strong>export 되지 않은 멤버</strong></p><ul id="3a67242b-f08f-4f59-ba10-b1bb33432a5f" class="bulleted-list"><li>export 되지 않은 멤버는 원래의(병합되지 않은) 네임스페이스에서만 볼 수 있음</li></ul><ul id="ec2f4e79-59fa-4856-8c81-6eb7529d6243" class="bulleted-list"><li>병합된 후에 다른 선언으로부터 합쳐진 멤버는 export 되지 않은 멤버를 볼 수 없다는 것을 의미합니다.</li></ul><p id="e75d6a8b-d80e-4cd6-a3d8-519a68803e78" class=""><strong>예제:</strong></p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="b04e41e9-d9b2-4db1-bc40-b79a3e409287" class="code code-wrap"><code><span class="token keyword">namespace</span> Animal <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> haveMuscles <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">animalsHaveMuscles</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> haveMuscles<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">namespace</span> Animal <span class="token punctuation">{</span>
+    <span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">doAnimalsHaveMuscles</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> haveMuscles<span class="token punctuation">;</span>  <span class="token comment">// 오류, haveMuscles는 이곳에서 액세스 할 수 없습니다.</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><ul id="48dbdb9c-69c6-49f1-a76d-5254e67a62b0" class="bulleted-list"><li><code>haveMuscles</code>이 export 되지 않음<ul id="f33dfe25-37be-40c7-8d90-e0f5ebcc479f" class="bulleted-list"><li>동일하게 병합되지 않은 네임스페이스를 공유하는 <code>animalsHaveMuscles</code> 함수만 이 심벌을 볼 수 있음</li></ul><ul id="b72e079f-fe82-4dfd-b1ef-39fcb39dc9ec" class="bulleted-list"><li> <code>doAnimalsHaveMuscles</code> 함수가 병합된 <code>Animal</code>의 멤버일지라도, 내보내지 않은 멤버는 볼 수 없음</li></ul></li></ul><h1 id="4add6298-1300-41c5-98c9-94f4609126ca" class=""><strong>클래스, 함수, 열거형과 네임스페이스 병합 (Merging Namespaces with Classes, Functions, and Enums)</strong></h1><ul id="2754aafb-830f-490f-80a4-2a1751537bda" class="bulleted-list"><li>네임스페이스는 다른 타입의 선언과 병합할 수 있을 정도로 유연함<ul id="289080ba-fd45-4b4e-91d0-e475be8aa9a4" class="bulleted-list"><li>이를 위해선, 네임스페이스의 선언은 병합할 선언을 따라야 함</li></ul><ul id="995f0faa-82c5-46b9-8f49-1f2f80d71a75" class="bulleted-list"><li>결과 선언에는 두 타입의 프로퍼티를 모두 가짐</li></ul></li></ul><p id="93863bbb-85d8-41f5-8342-b4149f6511ab" class="">TypeScript는 이를 통해 JavaScript 및 기타 프로그래밍 언어의 패턴을 모델링 한다.</p><p id="43813a18-5cce-428a-9b19-b7d340163b7c" class="">
+</p><h2 id="edc3c81a-0f13-498f-97b6-23cb3b272a53" class=""><strong>네임스페이스와 클래스 병합 (Merging Namespaces with Classes)</strong></h2><p id="49265f9e-78c7-4a1e-8238-ab24e113443a" class=""><strong>내부 클래스 패턴</strong></p><p id="0af1bf24-f9fb-49c7-9bd3-2fc55979f370" class="">여기서는 내부 클래스를 설명하는 방법을 다룸</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="827e0468-40fc-477e-8c63-978d0066ead1" class="code code-wrap"><code><span class="token keyword">class</span> <span class="token class-name">Album</span> <span class="token punctuation">{</span>
+    label<span class="token operator">:</span> Album<span class="token punctuation">.</span>AlbumLabel<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">namespace</span> Album <span class="token punctuation">{</span>
+    <span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AlbumLabel</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p id="b45621af-4fb4-43d4-ae3e-84efd99045aa" class="">
+</p><ul id="5d2b0058-22eb-449c-b5bb-3376f0f92858" class="bulleted-list"><li>병합된 멤버의 가시성 규칙은 &#x27;네임스페이스 병합&#x27; 섹션에서 설명한 것과 같음<ul id="4bdbe677-d27d-4bdb-b360-254be081b0f3" class="bulleted-list"><li>가시성 규칙 → export 되지 않은 멤버는 볼 수 없다</li></ul></li></ul><ul id="a8fec762-b4a3-46e0-baeb-fe030f1f283f" class="bulleted-list"><li> <code>AlbumLabel</code> 클래스를 export 해야 병합된 클래스를 볼 수 있음</li></ul><ul id="91292f08-7e2c-490c-b2bf-9dd90f5fbfd8" class="bulleted-list"><li>최종 결과물은 다른 클래스 내에서 관리되는 클래스(AlbumLabel 이 Album 에서 관리 됨)이다</li></ul><ul id="7edfe066-b87a-4d66-a4df-61fe7f07f213" class="bulleted-list"><li>또한 네임스페이스를 사용하여 기존 클래스에 더 많은 정적 멤버를 추가할 수도 있음</li></ul><p id="6449b59b-d311-431f-a4ff-a8de13792251" class="">
+</p><p id="ce53c634-cf17-4322-9a01-87ae8e66d45e" class=""><strong>함수를 생성한 후 프로퍼티를 추가하는 패턴</strong></p><p id="b2fe2d5f-f304-419b-bfbf-b4405dbd8840" class="">내부 클래스 패턴 이외에도, JavaScript에서 함수를 생성한 후 프로퍼티를 추가하여 함수를 확장하는 것에도 익숙할 것입니다. TypeScript는 선언 병합을 통해 타입을 안전하게 보존하며 정의할 수 있습니다.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="f722d143-1829-41b0-901a-ff4dbb94c1ae" class="code code-wrap"><code><span class="token keyword">function</span> <span class="token function">buildLabel</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token operator">:</span> string</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> buildLabel<span class="token punctuation">.</span>prefix <span class="token operator">+</span> name <span class="token operator">+</span> buildLabel<span class="token punctuation">.</span>suffix<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">namespace</span> buildLabel <span class="token punctuation">{</span>
+    <span class="token keyword">export</span> <span class="token keyword">let</span> suffix <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token keyword">export</span> <span class="token keyword">let</span> prefix <span class="token operator">=</span> <span class="token string">"Hello, "</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">buildLabel</span><span class="token punctuation">(</span><span class="token string">"Sam Smith"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p id="b3b9e90f-92f1-42e7-925c-2dbb14d34b0d" class="">
+</p><p id="5855a134-843f-459e-bc51-581ee67d216d" class=""><strong>정적 멤버의 열거형을 확장</strong></p><p id="260c9cd0-676a-46e6-be18-eaa841d062a1" class="">마찬가지로, 네임스페이스를 정적 멤버의 열거형을 확장할 수 있습니다:</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="dd5a8d8c-e08f-4508-90c2-fbf4b73d8803" class="code code-wrap"><code><span class="token keyword">enum</span> Color <span class="token punctuation">{</span>
+    red <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    green <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">,</span>
+    blue <span class="token operator">=</span> <span class="token number">4</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">namespace</span> Color <span class="token punctuation">{</span>
+    <span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">mixColor</span><span class="token punctuation">(</span><span class="token parameter">colorName<span class="token operator">:</span> string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>colorName <span class="token operator">==</span> <span class="token string">"yellow"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> Color<span class="token punctuation">.</span>red <span class="token operator">+</span> Color<span class="token punctuation">.</span>green<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>colorName <span class="token operator">==</span> <span class="token string">"white"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> Color<span class="token punctuation">.</span>red <span class="token operator">+</span> Color<span class="token punctuation">.</span>green <span class="token operator">+</span> Color<span class="token punctuation">.</span>blue<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>colorName <span class="token operator">==</span> <span class="token string">"magenta"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> Color<span class="token punctuation">.</span>red <span class="token operator">+</span> Color<span class="token punctuation">.</span>blue<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>colorName <span class="token operator">==</span> <span class="token string">"cyan"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> Color<span class="token punctuation">.</span>green <span class="token operator">+</span> Color<span class="token punctuation">.</span>blue<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><h1 id="9c6e6857-1fde-4fd5-b856-643f7c37e7b7" class=""><strong>허용되지 않는 병합 (Disallowed Merges)</strong></h1><p id="fb0cdf35-646d-4f63-ba03-1db1b2e75b3e" class="">TypeScript에서 <em><strong>모든 병합이 허용되는 것</strong></em>은 아니다</p><ul id="a1516b33-d234-4650-8bd4-1ce5364298dd" class="bulleted-list"><li>현재로선, 클래스는 다른 클래스 혹은 변수와 병합할 수 없다</li></ul><ul id="a6208e91-51cc-49b3-b9fc-b8e34def351e" class="bulleted-list"><li>클래스 병합을 대체하려면, <a href="https://typescript-kr.github.io/pages/mixins.html">TypeScript의 믹스인</a> 섹션을 참고해야함</li></ul><h1 id="8f313a06-02fa-4426-a335-1c58a1278915" class=""><strong>모듈 보강 (Module Augmentation)</strong></h1><p id="f8ef14aa-36f2-4040-82b9-d7695f8f465e" class="">JavaScript는 모듈 병합을 지원하지 않지만, 기존 객체를 가져와 업데이트하여 패치 할 수 있습니다. 아래의 장난감 Observable 예시를 살펴보겠습니다:</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="56f120f3-f93e-4497-bf68-eafc77baa52e" class="code code-wrap"><code><span class="token comment">// observable.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">Observable<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span></span> <span class="token punctuation">{</span>
+    <span class="token comment">// ... 구현은 여러분의 몫으로 남겨놓겠습니다</span>
+<span class="token punctuation">}</span>
+</code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="8bbfb953-6874-408f-81e8-f49cbb1bd9ed" class="code"><code><span class="token comment">// map.ts</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Observable <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./observable"</span><span class="token punctuation">;</span>
+Observable<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">map</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">f</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ... 여러분을 위한 또 다른 숙제</span>
+<span class="token punctuation">}</span></code></pre><p id="ae509228-8485-4d84-8895-6d37878d0a14" class="">이는 TypeScript에서 잘 동작하지만, 컴파일러는 <code>Observable.prototype.map</code>에 대해 알지 못합니다. 모듈 보강을 통해 컴파일러에게 정보를 알려줄 수 있습니다:</p><p id="921fc8c8-4a27-4783-8a10-61d06a3518fa" class="">
+</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="4853d687-095b-46b4-b404-61ae2ad4f1a3" class="code code-wrap"><code><span class="token comment">// observable.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">Observable<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span></span> <span class="token punctuation">{</span>
+    <span class="token comment">// ... 구현은 여러분의 몫으로 남겨놓겠습니다 ...</span>
+<span class="token punctuation">}</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="d0655bcd-5d46-4327-aa36-b0f448a864a7" class="code"><code><span class="token comment">// map.ts</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Observable <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./observable"</span><span class="token punctuation">;</span>
+<span class="token keyword">declare</span> <span class="token keyword">module</span> <span class="token string">"./observable"</span> <span class="token punctuation">{</span>
+    <span class="token keyword">interface</span> <span class="token class-name">Observable<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span></span> <span class="token punctuation">{</span>
+        <span class="token generic-function"><span class="token function">map</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token constant">U</span><span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token function-variable function">f</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">x<span class="token operator">:</span> <span class="token constant">T</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token constant">U</span><span class="token punctuation">)</span><span class="token operator">:</span> Observable<span class="token operator">&lt;</span><span class="token constant">U</span><span class="token operator">></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+Observable<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">map</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">f</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ... 여러분을 위한 또 다른 숙제</span>
+<span class="token punctuation">}</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="fdd0fdc4-b5c8-4eb1-bef3-d0cf59053c70" class="code"><code><span class="token comment">// consumer.ts</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Observable <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./observable"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">"./map"</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> o<span class="token operator">:</span> Observable<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">></span><span class="token punctuation">;</span>
+o<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">x</span> <span class="token operator">=></span> x<span class="token punctuation">.</span><span class="token function">toFixed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p id="67d1294a-725c-4331-ba75-04b97bae25a6" class="">모듈 이름은 <code>import</code>/<code>export</code>의 모듈 지정자와 같은 방법으로 해석됩니다. 자세한 내용은 <a href="https://typescript-kr.github.io/pages/modules.html">모듈</a>을 참고하세요. 그 다음 보강된 선언은 마치 원본과 같은 파일에서 선언된 것처럼 병합됩니다.</p><p id="8eaba606-3bcf-45be-af0f-3fa62e9bcc88" class="">그러나, 두 가지 제한 사항을 명심하세요:</p><ol id="63a91869-ec0f-4316-9deb-b356e220af79" class="numbered-list" start="1"><li>보강에 새로운 최상위 선언을 할 수 없습니다 -- 기존 선언에 대한 패치만 가능합니다.</li></ol><ol id="730492cd-6390-4519-a754-558fd0d61e96" class="numbered-list" start="2"><li>default export 는 보강할 수 없으며, 이름을 갖는 export 만 보강할 수 있습니다.(해당 이름으로 확장시켜야 하며, <code>default</code>는 예약어입니다 - 자세한 내용은 <a href="https://github.com/Microsoft/TypeScript/issues/14080">#14080</a>을 참고하세요)</li></ol><h2 id="7bc85e81-673e-47ac-b401-f33b808292f9" class=""><strong>전역 보강 (Global augmentation)</strong></h2><p id="b379b85d-deef-4852-9b76-fb19c264cc1b" class="">모듈 내부에서 전역 범위에 선언을 추가할 수도 있습니다:</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="15f97553-af46-474c-89fb-ce472f3e7d40" class="code code-wrap"><code><span class="token comment">// observable.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">Observable<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span></span> <span class="token punctuation">{</span>
+    <span class="token comment">// ... 여전히 구현해놓지 않았습니다 ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">declare</span> global <span class="token punctuation">{</span>
+    <span class="token keyword">interface</span> <span class="token class-name"><span class="token builtin">Array</span><span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span></span> <span class="token punctuation">{</span>
+        <span class="token function">toObservable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> Observable<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token builtin">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">toObservable</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</code></pre><p id="bafe5e6e-1e0d-4cfe-909d-8943fb779c57" class="">전역 보강 또한 모듈 보강과 동일한 제한 사항을 갖습니다.</p></div></article></body></html>
